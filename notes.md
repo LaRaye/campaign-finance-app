@@ -29,10 +29,10 @@ Donations / Contributions
 Donors / Contributors
   Name
   Donor Type:
-  Candidate/Self-Funding
-  Individual - Large or Small? If above or under $200
-  PAC
-  Other
+    Candidate/Self-Funding
+    Individual - Large or Small? If above or under $200
+    PAC
+    Other
   Industry / Affiliation if Large Donor or PAC
   Has many donations
   Has many candidates through donations
