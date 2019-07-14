@@ -40,3 +40,14 @@ Donors / Contributors
 
 Associations order in models matters*
 Sessions - home - sessionscontroller
+
+To Do
+work on favs associations
+sign in / sign up ; log in / log out
+password authentication etc
+validations
+views - forms
+  index view of favs
+scope methods
+  various queries 
+routes / controllers
