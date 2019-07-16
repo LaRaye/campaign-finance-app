@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  def index
+    @users = User.all
+  end
 
   def new
     @user = User.new
@@ -6,12 +9,20 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.save
-    #what page after sign in, if @user.save?
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
+    else
+      render :new
+    end
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   def destroy
-  end 
+  end
 
   private
 

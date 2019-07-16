@@ -46,8 +46,9 @@ work on favs associations
 sign in / sign up ; log in / log out
 password authentication etc
 validations
+errors!!
 views - forms
   index view of favs
 scope methods
-  various queries 
+  various queries
 routes / controllers
