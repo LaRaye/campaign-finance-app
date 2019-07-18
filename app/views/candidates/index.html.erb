@@ -1,1 +1,5 @@
 <h2>Candidates</h2>
+
+<% @candidates.each do |candidate| %>
+  <li><%= link_to candidate.full_name, candidate_path(candidate) %></li>
+<% end %>
