@@ -1,0 +1,9 @@
+<h1>Contributions</h1>
+
+<table>
+  <tbody>
+    <% @contributions.each do |c| %>
+      <tr><%= link_to c.amount, contribution_path(c) %></tr>
+    <% end %>
+  </tbody>
+</table>
