@@ -1,0 +1,11 @@
+<h3>Make Changes to This Contributor Profile Below</h3>
+
+<%= form_for @contributor url: contributor_path, method: :put do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br><br>
+
+  <%= f.label :industry_affiliation %>
+  <%= f.text_field :industry_affiliation%><br><br>
+
+  <%= f.submit 'Edit Contributor' %>
+<% end %>

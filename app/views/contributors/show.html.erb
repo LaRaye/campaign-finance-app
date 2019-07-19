@@ -1,0 +1,13 @@
+<h2><%= @contributor.name %></h2>
+  <h3>Industry: $<%= @contributor.industry_affiliation %></h3>
+  <h3>Classification: <%= @contributor.category %></h3>
+  <p>Candidates Contributed To:
+    <% @contributor.candidates.each do |c| %>
+      <li><%= link_to c.full_name, candidate_path(c) %></li>
+    <% end %>
+  </p>
+
+<%= button_to "Edit Contributor", edit_contributor_path(@contributor)%><br>
+<%= form_tag contributor_path(@contributor.id), method: "delete" do %>
+  <%= submit_tag "Delete Contributor" %>
+<% end %>

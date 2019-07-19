@@ -1,8 +1,12 @@
-<h2>Welcome, <%= @user.username %>!</h2>
-  <h3>What would you like to do?</h3>
-    <p>See Your Favorites</p>
-    <p>Explore <%= link_to 'Candidates', candidates_path %></p>
-    <p>Explore Contributors</p>
-    <p>List A <%= link_to 'Contribution', new_contribution_path %></p>
-    <p>List A <%= link_to 'Candidate', new_candidate_path %></p>
-<%= link_to 'Log Out', logout_path %>
+<h1>Welcome, <%= @user.username %>!</h1>
+  <h2>What would you like to do?</h2>
+    <h3>See Your Favorites</h3>
+    <h3>Explore:</h3>
+      <%= link_to 'Candidates', candidates_path %><br>
+      <%= link_to 'Contributors', contributors_path %><br>
+      <%= link_to 'Contributions', contributions_path %><br>
+    <h3>List A New:</h3>
+    <%= link_to 'Candidate', new_candidate_path %><br>
+    <%= link_to 'Contributor', new_contributor_path %><br>
+    <%= link_to 'Contribution', new_contribution_path %><br><br><br>
+<%= button_to 'Log Out', logout_path %>
