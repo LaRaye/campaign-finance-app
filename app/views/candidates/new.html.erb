@@ -1,0 +1,28 @@
+<h3>Fill In Below to List a New Candidate</h3>
+
+<%= form_for @candidate do |f| %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %><br><br>
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %><br><br>
+
+  <%= f.label :party_affiliation %>
+  <%= f.text_field :party_affiliation, list: "party_affiliation_autocomplete" %><br><br>
+  <datalist id="party_affiliation_autocomplete">
+    <option value="Democrat">
+    <option value="Independent">
+    <option value="Republican">
+  </datalist>
+
+  <%= f.label :office_position %>
+  <%= f.text_field :office_position %><br><br>
+
+  <%= f.label :location %>
+  <%= f.text_field :location %><br><br>
+
+  <%= f.label :platform_outline %>
+  <%= f.text_area :platform_outline %><br><br>
+
+  <%= f.submit 'List Candidate' %>
+<% end %>

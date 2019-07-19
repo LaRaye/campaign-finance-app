@@ -22,7 +22,12 @@ class ContributionsController < ApplicationController
 
   def edit
     find_contribution
-    render :edit
+  end
+
+  def update
+    find_candidate
+    @contribution.update(contribution_params)
+    redirect_to candidate_path(@contribution)
   end
 
   def destroy

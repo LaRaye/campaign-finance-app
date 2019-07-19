@@ -10,6 +10,10 @@ class CandidatesController < ApplicationController
 
   def new
     @candidate = Candidate.new
+  end
+
+  def create
+    @candidate = Candidate.new(candidate_params)
     if @candidate.save
       redirect_to candidate_path(@candidate)
     else
@@ -17,8 +21,14 @@ class CandidatesController < ApplicationController
     end
   end
 
-  def create
-    @candidate = Candidate.new(candidate_params)
+  def edit
+    find_candidate
+  end
+
+  def update
+    find_candidate
+    @candidate.update(candidate_params)
+    redirect_to candidate_path(@candidate)
   end
 
   def destroy
