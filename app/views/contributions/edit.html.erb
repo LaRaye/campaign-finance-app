@@ -1,6 +1,6 @@
 <h3>Make Changes to This Contribution Below</h3>
 
-<%= form_for @contribution url: contribution_path, method: :put do |f| %>
+<%= form_for @contribution, url: edit_contribution_path, method: :put do |f| %>
   <%= f.label :contributor_name %>
   <%= f.text_field :contributor_name %><br><br>
 
