@@ -8,12 +8,12 @@ class ContributorsController < ApplicationController
   end
 
   def new
-    @candidate = Contributor.new
+    @contributor = Contributor.new
   end
 
   def create
     @contributor = Contributor.new(contributor_params)
-    if @candidate.save
+    if @contributor.save
       redirect_to contributor_path(@contributor)
     else
       render :new

@@ -25,9 +25,9 @@ class ContributionsController < ApplicationController
   end
 
   def update
-    find_candidate
+    find_contribution
     @contribution.update(contribution_params)
-    redirect_to candidate_path(@contribution)
+    redirect_to contribution_path(@contribution)
   end
 
   def destroy
