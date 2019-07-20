@@ -2,6 +2,8 @@ class ContributionsController < ApplicationController
   def index
     if params[:contributor_id]
       @contributions = Contributor.find(params[:contributor_id]).contributions
+    elsif params[:candidate_id]
+      @contributions = Candidate.find(params[:candidate_id]).contributions
     else
       @contributions = Contribution.all
     end

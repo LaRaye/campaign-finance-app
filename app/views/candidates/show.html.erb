@@ -2,7 +2,8 @@
   <h3><%= @candidate.party_affiliation %></h3>
   <h3><%= @candidate.location %></h3>
     <p>Running for <%= @candidate.office_position %></p>
-    <p>Key Issues: <%= @candidate.platform_outline %></p><br>
+    <p>Key Issues: <%= @candidate.platform_outline %></p>
+    <p>See All <%= link_to "Contributions", candidate_contributions_path(@candidate)%></p><br>
 
 <%= button_to 'Edit Candidate', edit_candidate_path(@candidate), method: :get %><br>
 <%= form_tag candidate_path(@candidate.id), method: "delete" do %>
