@@ -9,6 +9,7 @@ class ContributionsController < ApplicationController
 
   def new
     @contribution = Contribution.new
+    @contributor_name = params[:contributor_name]
   end
 
   def create
