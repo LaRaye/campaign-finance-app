@@ -1,6 +1,23 @@
 <h1>Contributions</h1>
 
-<% @contributions.each do |c| %>
-  <%= link_to c.candidate_name, candidate_path(c.candidate) %>
-  <%= link_to c.amount, contribution_path(c) %>
-<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Candidate</th>
+      <th>Contributon</th>
+      <th>Contributor</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contributions.each do |c| %>
+      <tr>
+        <td><%= link_to c.candidate_name, candidate_path(c.candidate) %></td>
+        <td><%= link_to c.amount, contribution_path(c) %></td>
+        <td><%= link_to c.contributor_name, contributor_path(c.contributor) %></td>
+        <td><%= c.date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
