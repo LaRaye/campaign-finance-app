@@ -1,4 +1,6 @@
 <%= form_for @candidate do |f| %>
+  <%= render partial: 'layouts/errors', locals: {object: @candidate} %>
+
   <%= f.label :first_name, "First Name" %>
   <%= f.text_field :first_name %><br><br>
 

@@ -1,4 +1,6 @@
 <%= form_for @contribution do |f| %>
+  <%= render partial: 'layouts/errors', locals: {object: @contribution} %>
+
   <%= f.hidden_field :contributor_id %>
   <%= f.label :contributor_name, "Contributor Name" %>
   <%= f.text_field :contributor_name %><br><br>

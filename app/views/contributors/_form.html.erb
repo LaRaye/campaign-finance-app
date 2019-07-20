@@ -1,4 +1,6 @@
 <%= form_for @contributor do |f| %>
+  <%= render partial: 'layouts/errors', locals: {object: @contributor} %>
+
   <%= f.label :name %>
   <%= f.text_field :name %><br><br>
 
