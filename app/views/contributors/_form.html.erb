@@ -1,0 +1,26 @@
+<%= form_for @contributor do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br><br>
+
+  <%= f.label :industry_affiliation, "Industry Affiliation" %>
+  <%= f.text_field :industry_affiliation, list: "industry_affiliation_autocomplete" %><br><br>
+  <datalist id="industry_affiliation_autocomplete">
+    <option value="Finance/Insurance/Real Estate">
+    <option value="Ideology/Single-Issue">
+    <option value="Misc Business">
+    <option value="Technology">
+    <option value="Health">
+    <option value="Communications/Electronics">
+    <option value="Lawyers & Lobbyists">
+    <option value="Labor">
+    <option value="Energy/Natural Resources">
+    <option value="Agribusiness">
+    <option value="Construction">
+    <option value="Transportation">
+    <option value="Defense">
+    <option value="Not Applicable">
+    <option value="Other">
+  </datalist>
+
+  <%= f.submit 'List Contributor' %>
+<% end %>
