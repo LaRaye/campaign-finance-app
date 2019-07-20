@@ -8,9 +8,11 @@ class Contribution < ApplicationRecord
   validates :contributor_name, presence: true
 
   def candidate_name=(candidate_name)
-    first_name = candidate_name.split(" ")[0]
-    last_name = candidate_name.split(" ")[1]
-    self.candidate = Candidate.find_or_create_by(first_name: first_name, last_name: last_name)
+    if !candidate_name.nil? && candidate_name != ""
+      first_name = candidate_name.split(" ")[0]
+      last_name = candidate_name.split(" ")[1]
+      self.candidate = Candidate.find_or_create_by(first_name: first_name, last_name: last_name)
+    end
   end
 
   def candidate_name
