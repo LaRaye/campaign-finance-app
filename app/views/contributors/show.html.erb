@@ -7,7 +7,7 @@
     <% end %>
   </p><br>
 
-<%= button_to 'List a Contribution', new_contribution_path(contributor_name: @contributor.name), method: :put %><br>
+<%= button_to 'List a Contribution', new_contribution_path, method: :put %><br>
 <%= button_to 'Edit Contributor', edit_contributor_path(@contributor), method: :get %><br>
 <%= form_tag contributor_path(@contributor.id), method: "delete" do %>
   <%= submit_tag "Delete Contributor" %>
