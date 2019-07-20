@@ -52,3 +52,22 @@ views - forms
 scope methods
   various queries
 routes / controllers
+Associations order in models matters*
+Sessions - home - sessionscontroller
+
+Edit route issue for contributions
+Finish crud for all models
+Category - large or small donors
+Index alphabetical (scope method?)
+Methods for dot chaining in forms
+Validations
+Errors
+Scope methods?
+Favorites situation
+Routes as:
+Navigation for user
+Appearance
+form partials
+video to fix formatting when form does not submit
+Customize /users/:id
+Fix migrations belongs to / references?
