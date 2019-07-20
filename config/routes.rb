@@ -18,18 +18,9 @@ Rails.application.routes.draw do
       resources :contributions, only: [:show, :index]
     end
 
-    resources :contributions
-
-    root 'contributions#index'
-  end
-
-  Rails.application.routes.draw do
-
     resources :candidates, only: [:show] do
       resources :contributions, only: [:show, :index]
     end
-
-    resources :contributions
 
     root 'contributions#index'
   end
