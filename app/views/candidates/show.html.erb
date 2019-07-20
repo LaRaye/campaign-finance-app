@@ -3,7 +3,7 @@
     <p>Running for <%= @candidate.office_position %></p>
     <p>Key Issues: <%= @candidate.platform_outline %></p><br>
 
-<%= button_to "Edit Candidate", edit_candidate_path(@candidate)%><br>
+<%= button_to 'Edit Candidate', edit_candidate_path(@candidate), method: :get %><br>
 <%= form_tag candidate_path(@candidate.id), method: "delete" do %>
-  <%= submit_tag "Delete Contribution" %>
+  <%= submit_tag "Delete Candidate" %>
 <% end %>

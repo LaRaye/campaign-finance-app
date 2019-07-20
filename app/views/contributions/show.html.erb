@@ -3,7 +3,7 @@
   <h3>Date: <%= @contribution.date %></h3>
   <h3>Contributor: <%= link_to @contribution.contributor_name, contributor_path(@contribution.contributor) %></h3>
 
-<%= button_to "Edit Contribution", edit_contribution_path(@contribution)%><br>
+<%= button_to "Edit Contribution", edit_contribution_path(@contribution), method: :get %><br>
 <%= form_tag contribution_path(@contribution.id), method: "delete" do %>
   <%= submit_tag "Delete Contribution" %>
 <% end %>

@@ -2,6 +2,11 @@ class Contribution < ApplicationRecord
   belongs_to :candidate
   belongs_to :contributor
 
+  validates :amount, presence: true, numericality: {only_integer: true, greater_than: 0}
+  validates :date, presence: true, format: {with: /\d{2}\/\d{2}\/\d{4}/}
+  validates :candidate_name, presence: true
+  validates :contributor_name, presence: true
+
   def candidate_name=(candidate_name)
     first_name = candidate_name.split(" ")[0]
     last_name = candidate_name.split(" ")[1]
