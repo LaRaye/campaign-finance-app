@@ -1,10 +1,10 @@
 <h3>Fill In Below to List a Contribution</h3>
 
 <%= form_for @contribution do |f| %>
-  <%= f.label :contributor_name %>
+  <%= f.label :contributor_name, "Contributor Name" %>
   <%= f.text_field :contributor_name, value: @contributor_name %><br><br>
 
-  <%= f.label :candidate_name %>
+  <%= f.label :candidate_name, "Candidate Name" %>
   <%= f.text_field :candidate_name %><br><br>
 
   <%= f.label :amount %>
