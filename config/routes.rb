@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
 
     resources :candidates, only: [:show] do
-      resources :contributions, only: [:show, :index]
+      resources :contributions, only: [:show, :index, :new]
     end
 
     root 'contributions#index'
