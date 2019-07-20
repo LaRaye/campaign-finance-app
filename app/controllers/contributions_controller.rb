@@ -14,7 +14,7 @@ class ContributionsController < ApplicationController
   end
 
   def new
-    @contribution = Contribution.new
+    @contribution = Contribution.new(contributor_id: params[:contributor_id])
   end
 
   def create

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   Rails.application.routes.draw do
 
     resources :contributors, only: [:show] do
-      resources :contributions, only: [:show, :index]
+      resources :contributions, only: [:show, :index, :new]
     end
 
     resources :candidates, only: [:show] do

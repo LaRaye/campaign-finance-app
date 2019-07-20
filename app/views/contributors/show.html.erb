@@ -2,8 +2,8 @@
   <h3>Industry: <%= @contributor.industry_affiliation %></h3>
   <h3>Classification: <%= @contributor.category %></h3>
   <p>See All <%= link_to "Contributions", contributor_contributions_path(@contributor)%></p>
+  <p><%= link_to 'List a New Contribution', new_contributor_contribution_path(@contributor) %></p><br>
 
-<%= button_to 'List a Contribution', new_contribution_path, method: :put %><br>
 <%= button_to 'Edit Contributor', edit_contributor_path(@contributor), method: :get %><br>
 <%= form_tag contributor_path(@contributor.id), method: "delete" do %>
   <%= submit_tag "Delete Contributor" %>
