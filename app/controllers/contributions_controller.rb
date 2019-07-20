@@ -1,6 +1,10 @@
 class ContributionsController < ApplicationController
   def index
-    @contributions = Contribution.all
+    if params[:contributor_id]
+      @contributions = Contributor.find(params[:contributor_id]).contributions
+    else
+      @contributions = Contribution.all
+    end
   end
 
   def show
@@ -9,7 +13,6 @@ class ContributionsController < ApplicationController
 
   def new
     @contribution = Contribution.new
-    @contributor_name = params[:contributor_name]
   end
 
   def create

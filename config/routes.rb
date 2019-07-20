@@ -7,19 +7,21 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
 
-  # get 'contributions/:id/edit', to: 'contributions#edit', as: :edit_contribution
-  # patch 'contributions/:id', to: 'contributions#update'
-  #
-  # get 'candidates/:id/edit', to: 'candidates#edit', as: :edit_candidate
-  # patch 'candidates/:id', to: 'candidates#update'
-  #
-  # get 'contributors/:id/edit', to: 'contributors#edit', as: :edit_contributor
-  # patch 'contributors/:id', to: 'contributors#update'
-
   resources :contributors
   resources :contributions
   resources :candidates
   resources :users, except: [:new, :create]
+
+  Rails.application.routes.draw do
+
+    resources :contributors, only: [:show] do
+      resources :contributions, only: [:show, :index]
+    end
+
+    resources :contributions
+
+    root 'contributions#index'
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
