@@ -3,7 +3,7 @@
   <h3><%= @candidate.location %></h3>
     <p>Running for <%= @candidate.office_position %></p>
     <p>Key Issues: <%= @candidate.platform_outline %></p>
-    <p>See All <%= link_to "Contributions", candidate_contributions_path(@candidate) %></p>
+    <p><%= link_to "See All Contributions", candidate_contributions_path(@candidate) %></p>
     <p><%= link_to 'List a New Contribution', new_candidate_contribution_path(@candidate) %></p><br>
 
 <%= button_to 'Edit Candidate', edit_candidate_path(@candidate), method: :get %><br>

@@ -5,7 +5,7 @@
   <%= f.text_field :name %><br><br>
 
   <%= f.label :industry_affiliation, "Industry Affiliation" %>
-  <%= f.text_field :industry_affiliation, list: "industry_affiliation_autocomplete" %><br><br>
+  <%= f.text_field :industry_affiliation, placeholder: "Enter or Select Industry", list: "industry_affiliation_autocomplete" %><br><br>
   <datalist id="industry_affiliation_autocomplete">
     <option value="Finance/Insurance/Real Estate">
     <option value="Ideology/Single-Issue">

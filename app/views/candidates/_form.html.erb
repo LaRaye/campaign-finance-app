@@ -2,10 +2,10 @@
   <%= render partial: 'layouts/errors', locals: {object: @candidate} %>
 
   <%= f.label :first_name, "First Name" %>
-  <%= f.text_field :first_name %><br><br>
+  <%= f.text_field :first_name, placeholder: "ex. Jane" %><br><br>
 
   <%= f.label :last_name, "Last Name" %>
-  <%= f.text_field :last_name %><br><br>
+  <%= f.text_field :last_name, placeholder: "ex. Smith" %><br><br>
 
   <%= f.label :party_affiliation, "Party Affiliation" %>
   <%= f.text_field :party_affiliation, placeholder: "Enter Party Name Here or Select One From Dropdown", list: "party_affiliation_autocomplete" %><br><br>
@@ -16,13 +16,13 @@
   </datalist>
 
   <%= f.label :office_position, "Running For" %>
-  <%= f.text_field :office_position %><br><br>
+  <%= f.text_field :office_position, placeholder: "ex. President" %><br><br>
 
   <%= f.label :location, "Current Office and/or State" %>
-  <%= f.text_field :location %><br><br>
+  <%= f.text_field :location, placeholder: "ex. Senator from Hawaii" %><br><br>
 
   <%= f.label :platform_outline, "Platform Outline" %>
-  <%= f.text_area :platform_outline %><br><br>
+  <%= f.text_area :platform_outline, placeholder: "Describe platform here." %><br><br>
 
   <%= f.submit 'List Candidate' %>
 <% end %>
