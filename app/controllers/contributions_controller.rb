@@ -36,7 +36,6 @@ class ContributionsController < ApplicationController
   end
 
   def destroy
-    @contribution.destroy
     redirect_to contributions_path
   end
 
