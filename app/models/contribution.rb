@@ -1,11 +1,15 @@
 class Contribution < ApplicationRecord
-  belongs_to :candidate
-  belongs_to :contributor
+  belongs_to :candidate, optional: true
+  belongs_to :contributor, optional: true
+
+  after_commit :assign_size
 
   validates :amount, presence: true, numericality: {only_integer: true, greater_than: 0}
   validates :date, presence: true, format: {with: /\d{2}\/\d{2}\/\d{4}/}
   validates :candidate_name, presence: true
   validates :contributor_name, presence: true
+
+  scope :all_by_date, -> { order(date: :desc)}
 
   def candidate_name=(candidate_name)
     if !candidate_name.nil? && candidate_name != ""
@@ -25,5 +29,13 @@ class Contribution < ApplicationRecord
 
   def contributor_name
     self.contributor ? self.contributor.name : nil
+  end
+
+  def assign_size
+    if self.amount > 199
+      self.size = "Large"
+    else
+      self.size = "Small"
+    end
   end
 end

@@ -1,11 +1,11 @@
 class ContributionsController < ApplicationController
   def index
     if params[:contributor_id]
-      @contributions = Contributor.find(params[:contributor_id]).contributions
+      @contributions = Contributor.find(params[:contributor_id]).contributions.all_by_date
     elsif params[:candidate_id]
-      @contributions = Candidate.find(params[:candidate_id]).contributions
+      @contributions = Candidate.find(params[:candidate_id]).contributions.all_by_date
     else
-      @contributions = Contribution.all
+      @contributions = Contribution.all_by_date
     end
   end
 
