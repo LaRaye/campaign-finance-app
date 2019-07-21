@@ -15186,3 +15186,61 @@ Processing by SessionsController#home as HTML
 Completed 200 OK in 26ms (Views: 25.9ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-20 22:03:33 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-20 22:03:33 -0400
+Started GET "/auth/facebook/callback?code=AQBSueDPM7MZ8u1MI5yyAmSNDdd59_yrxEbk9vGTYvbNQWZPadyf7lW1If0XJX_pQgnC7-bHVunLdSn-Jn2drkNirSciPW8pgn2Mtt_uZbEmspMnsD-T24yOmMuFnoNHBKlcwXGXiPe1j0e1l261FHMf3A5CZu26WoExoDld48CtFBqigR_8KW7bXxryGeJ1J0yXdllEuf01E1LCvJr1bIMNn2u2m5pUIa83V5tI-eZYn-LnSsBlk4eHIog_2gCxEatjI5pH8J8qQKkcQaHjq3m5HqUwNB_7l4K5GNHYyNVkUd6qeiuhuwg-U6odCNnoxu5y9Sd9j91k-mU1haApTuPs&state=a0ceb37fa554a5488422e0c2fe8b52ad1d23b4949693819d" for 127.0.0.1 at 2019-07-20 22:03:35 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQBSueDPM7MZ8u1MI5yyAmSNDdd59_yrxEbk9vGTYvbNQWZPadyf7lW1If0XJX_pQgnC7-bHVunLdSn-Jn2drkNirSciPW8pgn2Mtt_uZbEmspMnsD-T24yOmMuFnoNHBKlcwXGXiPe1j0e1l261FHMf3A5CZu26WoExoDld48CtFBqigR_8KW7bXxryGeJ1J0yXdllEuf01E1LCvJr1bIMNn2u2m5pUIa83V5tI-eZYn-LnSsBlk4eHIog_2gCxEatjI5pH8J8qQKkcQaHjq3m5HqUwNB_7l4K5GNHYyNVkUd6qeiuhuwg-U6odCNnoxu5y9Sd9j91k-mU1haApTuPs", "state"=>"a0ceb37fa554a5488422e0c2fe8b52ad1d23b4949693819d"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2019-07-20 22:03:36 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 47ms (Views: 45.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates/new" for 127.0.0.1 at 2019-07-20 22:03:39 -0400
+Processing by CandidatesController#new as HTML
+  Rendering candidates/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.4ms)
+  Rendered candidates/_form.html.erb (5.8ms)
+  Rendered candidates/new.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 37ms (Views: 25.3ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/candidates" for 127.0.0.1 at 2019-07-20 22:03:41 -0400
+Processing by CandidatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"85zmwzqLzAYh2PKnOQuqbXuadiQF9eGc1ctfJCjDA+u5WcXIdfvunAfpIJTCfrl8CFstASd+Nu5hylfvEH2Xrw==", "candidate"=>{"first_name"=>"", "last_name"=>"", "party_affiliation"=>"", "office_position"=>"", "location"=>"", "platform_outline"=>""}, "commit"=>"List Candidate"}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/candidates_controller.rb:17
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/candidates_controller.rb:17
+  Rendering candidates/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (1.2ms)
+  Rendered candidates/_form.html.erb (4.4ms)
+  Rendered candidates/new.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 45ms (Views: 43.0ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/candidates" for 127.0.0.1 at 2019-07-20 22:04:35 -0400
+Processing by CandidatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"HDSg4jnTtJx1//ZocUvlK4drCzs3cD/tLWE/H2JvFEKhKOvrlEzis5P2krJm9n2JiLVqXcHlWaotMk/r8v8BYQ==", "candidate"=>{"first_name"=>"", "last_name"=>"", "party_affiliation"=>"", "office_position"=>"", "location"=>"", "platform_outline"=>""}, "commit"=>"List Candidate"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/candidates_controller.rb:17
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/candidates_controller.rb:17
+  Rendering candidates/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.9ms)
+  Rendered candidates/_form.html.erb (5.1ms)
+  Rendered candidates/new.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 44ms (Views: 40.5ms | ActiveRecord: 0.1ms)
+
+
