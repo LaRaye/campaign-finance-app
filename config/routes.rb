@@ -16,11 +16,11 @@ Rails.application.routes.draw do
 
   Rails.application.routes.draw do
 
-    resources :contributors, only: [:show] do
+    resources :contributors, only: [:show, :new, :create] do
       resources :contributions, only: [:show, :index, :new]
     end
 
-    resources :candidates, only: [:show] do
+    resources :candidates, only: [:show, :new, :create] do
       resources :contributions, only: [:show, :index, :new]
     end
 
@@ -29,11 +29,9 @@ Rails.application.routes.draw do
 
   Rails.application.routes.draw do
 
-    resources :candidates, except: [:edit, :new] do 
+    resources :candidates, except: [:edit, :new] do
       resource :favorite, only:[:create, :destroy]
     end
-
-
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

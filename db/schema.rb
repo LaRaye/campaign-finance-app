@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_21_013400) do
+ActiveRecord::Schema.define(version: 2019_07_21_233133) do
 
   create_table "candidates", force: :cascade do |t|
     t.string "first_name"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 2019_07_21_013400) do
     t.string "size"
     t.integer "candidate_id"
     t.integer "contributor_id"
+    t.index ["candidate_id"], name: "index_contributions_on_candidate_id"
+    t.index ["contributor_id"], name: "index_contributions_on_contributor_id"
   end
 
   create_table "contributors", force: :cascade do |t|

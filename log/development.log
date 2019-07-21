@@ -19704,3 +19704,1164 @@ Processing by ContributionsController#create as HTML
 Completed 200 OK in 225ms (Views: 173.9ms | ActiveRecord: 1.6ms)
 
 
+Started POST "/contributions" for 127.0.0.1 at 2019-07-21 19:07:36 -0400
+Processing by ContributionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Ko661GuqeUNsiZtx1BIcKGE3cPOAs9KZqvgOiz2+0++XkvHdxjUvbIqA/6vDr4SKbukRlXYmtN6qq35/rS7GzA==", "contribution"=>{"contributor_id"=>"", "contributor_name"=>"Jane Smith", "candidate_id"=>"", "candidate_name"=>"Cory Booker", "amount"=>"1000", "date"=>"10/20/2019"}, "commit"=>"Contribute"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."name" = ? LIMIT ?[0m  [["name", "Jane Smith"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:27
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."first_name" = ? AND "candidates"."last_name" = ? LIMIT ?[0m  [["first_name", "Cory"], ["last_name", "Booker"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:18
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[36mContribution Create (0.4ms)[0m  [1m[32mINSERT INTO "contributions" ("amount", "date", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["amount", 1000], ["date", "10/20/2019"], ["created_at", "2019-07-21 23:07:37.017062"], ["updated_at", "2019-07-21 23:07:37.017062"]]
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+Redirected to http://localhost:3000/contributions/1
+Completed 302 Found in 40ms (ActiveRecord: 3.2ms)
+
+
+Started GET "/contributions/1" for 127.0.0.1 at 2019-07-21 19:07:37 -0400
+Processing by ContributionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContribution Load (0.3ms)[0m  [1m[34mSELECT  "contributions".* FROM "contributions" WHERE "contributions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:46
+  Rendering contributions/show.html.erb within layouts/application
+  Rendered contributions/show.html.erb within layouts/application (2.7ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"candidates", :id=>nil}, missing required keys: [:id]):
+    1: <h2><%= link_to @contribution.candidate_name, candidate_path(@contribution.candidate) %></h2>
+    2:   <h3>Amount: $<%= @contribution.amount %></h3>
+    3:   <h3>Date: <%= @contribution.date %></h3>
+    4:   <h3>Contributor: <%= link_to @contribution.contributor_name, contributor_path(@contribution.contributor) %></h3>
+  
+app/views/contributions/show.html.erb:1:in `_app_views_contributions_show_html_erb___2416167007206563123_70150902974300'
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 19:08:12 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.3ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  Rendered contributions/index.html.erb within layouts/application (12.0ms)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.8ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"candidates", :id=>nil}, missing required keys: [:id]):
+    15:   <tbody>
+    16:     <% @contributions.each do |c| %>
+    17:       <tr>
+    18:         <td><%= link_to c.candidate_name, candidate_path(c.candidate) %></td>
+    19:         <td><%= link_to c.amount, contribution_path(c) %></td>
+    20:         <td><%= link_to c.contributor_name, contributor_path(c.contributor) %></td>
+    21:         <td><%= c.date %></td>
+  
+app/views/contributions/index.html.erb:18:in `block in _app_views_contributions_index_html_erb__945472451322226930_70150906001660'
+app/views/contributions/index.html.erb:16:in `_app_views_contributions_index_html_erb__945472451322226930_70150906001660'
+Started POST "/contributions" for 127.0.0.1 at 2019-07-21 19:08:15 -0400
+Processing by ContributionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"/pXLEGyywX8InjaNN+Rx5bFIV20hh57/ejZqxsPfb/9DiYAZwS2XUO6XUlcgWelHvpY2C9cS+Lh6ZRoyU0963A==", "contribution"=>{"contributor_id"=>"", "contributor_name"=>"Jane Smith", "candidate_id"=>"", "candidate_name"=>"Cory Booker", "amount"=>"1000", "date"=>"10/20/2019"}, "commit"=>"Contribute"}
+  [1m[36mContributor Load (0.4ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."name" = ? LIMIT ?[0m  [["name", "Jane Smith"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:26
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."first_name" = ? AND "candidates"."last_name" = ? LIMIT ?[0m  [["first_name", "Cory"], ["last_name", "Booker"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:17
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[36mContribution Create (0.3ms)[0m  [1m[32mINSERT INTO "contributions" ("amount", "date", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["amount", 1000], ["date", "10/20/2019"], ["created_at", "2019-07-21 23:08:15.866947"], ["updated_at", "2019-07-21 23:08:15.866947"]]
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+Redirected to http://localhost:3000/contributions/2
+Completed 302 Found in 34ms (ActiveRecord: 3.5ms)
+
+
+Started GET "/contributions/2" for 127.0.0.1 at 2019-07-21 19:08:15 -0400
+Processing by ContributionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT  "contributions".* FROM "contributions" WHERE "contributions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:46
+  Rendering contributions/show.html.erb within layouts/application
+  Rendered contributions/show.html.erb within layouts/application (2.1ms)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"candidates", :id=>nil}, missing required keys: [:id]):
+    1: <h2><%= link_to @contribution.candidate_name, candidate_path(@contribution.candidate) %></h2>
+    2:   <h3>Amount: $<%= @contribution.amount %></h3>
+    3:   <h3>Date: <%= @contribution.date %></h3>
+    4:   <h3>Contributor: <%= link_to @contribution.contributor_name, contributor_path(@contribution.contributor) %></h3>
+  
+app/views/contributions/show.html.erb:1:in `_app_views_contributions_show_html_erb___2416167007206563123_70150951654320'
+Started GET "/contributions/new" for 127.0.0.1 at 2019-07-21 19:08:35 -0400
+Processing by ContributionsController#new as HTML
+  Rendering contributions/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.5ms)
+  Rendered contributions/_form.html.erb (4.8ms)
+  Rendered contributions/new.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 37ms (Views: 35.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/contributions" for 127.0.0.1 at 2019-07-21 19:09:00 -0400
+Processing by ContributionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mI6dbO4aB9OQOTWezjRcjGe1flDDeqRZ1Jd4qxjOb9slktZlQ4VR/HYwUUTZicQuaGsfNjXvwh7UxAhfiF56+A==", "contribution"=>{"contributor_id"=>"", "contributor_name"=>"Jane Smith", "candidate_id"=>"", "candidate_name"=>"Cory Booker", "amount"=>"1000", "date"=>"10/01/2019"}, "commit"=>"Contribute"}
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."name" = ? LIMIT ?[0m  [["name", "Jane Smith"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:26
+  [1m[36mCandidate Load (0.3ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."first_name" = ? AND "candidates"."last_name" = ? LIMIT ?[0m  [["first_name", "Cory"], ["last_name", "Booker"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[36mContribution Create (0.8ms)[0m  [1m[32mINSERT INTO "contributions" ("amount", "date", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["amount", 1000], ["date", "10/01/2019"], ["created_at", "2019-07-21 23:09:00.040622"], ["updated_at", "2019-07-21 23:09:00.040622"]]
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+Redirected to http://localhost:3000/contributions/3
+Completed 302 Found in 11ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/contributions/3" for 127.0.0.1 at 2019-07-21 19:09:00 -0400
+Processing by ContributionsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT  "contributions".* FROM "contributions" WHERE "contributions"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:46
+  Rendering contributions/show.html.erb within layouts/application
+  Rendered contributions/show.html.erb within layouts/application (1.8ms)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"candidates", :id=>nil}, missing required keys: [:id]):
+    1: <h2><%= link_to @contribution.candidate_name, candidate_path(@contribution.candidate) %></h2>
+    2:   <h3>Amount: $<%= @contribution.amount %></h3>
+    3:   <h3>Date: <%= @contribution.date %></h3>
+    4:   <h3>Contributor: <%= link_to @contribution.contributor_name, contributor_path(@contribution.contributor) %></h3>
+  
+app/views/contributions/show.html.erb:1:in `_app_views_contributions_show_html_erb___2416167007206563123_70150933793120'
+Started POST "/contributions" for 127.0.0.1 at 2019-07-21 19:09:36 -0400
+Processing by ContributionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"mI6dbO4aB9OQOTWezjRcjGe1flDDeqRZ1Jd4qxjOb9slktZlQ4VR/HYwUUTZicQuaGsfNjXvwh7UxAhfiF56+A==", "contribution"=>{"contributor_id"=>"", "contributor_name"=>"Jane Smith", "candidate_id"=>"", "candidate_name"=>"Cory Booker", "amount"=>"1000", "date"=>"10/01/2019"}, "commit"=>"Contribute"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."name" = ? LIMIT ?[0m  [["name", "Jane Smith"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:27
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."first_name" = ? AND "candidates"."last_name" = ? LIMIT ?[0m  [["first_name", "Cory"], ["last_name", "Booker"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:18
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  Rendering contributions/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (1.0ms)
+  Rendered contributions/_form.html.erb (4.8ms)
+  Rendered contributions/new.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 154ms (Views: 83.0ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/contributions" for 127.0.0.1 at 2019-07-21 19:12:01 -0400
+Processing by ContributionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jHyg39HFB4tpr7cC2x0n/lEhsB7+7K5HqjjP9XypmEMxYOvWfFpRpI+m09jMoL9cXv/ReAh5yACqa78B7DmNYA==", "contribution"=>{"contributor_id"=>"", "contributor_name"=>"Jane Smith", "candidate_id"=>"", "candidate_name"=>"Cory Booker", "amount"=>"1000", "date"=>"10/01/2019"}, "commit"=>"Contribute"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."name" = ? LIMIT ?[0m  [["name", "Jane Smith"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:27
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."first_name" = ? AND "candidates"."last_name" = ? LIMIT ?[0m  [["first_name", "Cory"], ["last_name", "Booker"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:18
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  Rendering contributions/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (1.5ms)
+  Rendered contributions/_form.html.erb (4.9ms)
+  Rendered contributions/new.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 62ms (Views: 24.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 19:12:49 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  Rendered contributions/index.html.erb within layouts/application (15.9ms)
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 0.9ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"candidates", :id=>nil}, missing required keys: [:id]):
+    15:   <tbody>
+    16:     <% @contributions.each do |c| %>
+    17:       <tr>
+    18:         <td><%= link_to c.candidate_name, candidate_path(c.candidate) %></td>
+    19:         <td><%= link_to c.amount, contribution_path(c) %></td>
+    20:         <td><%= link_to c.contributor_name, contributor_path(c.contributor) %></td>
+    21:         <td><%= c.date %></td>
+  
+app/views/contributions/index.html.erb:18:in `block in _app_views_contributions_index_html_erb__945472451322226930_70150908098420'
+app/views/contributions/index.html.erb:16:in `_app_views_contributions_index_html_erb__945472451322226930_70150908098420'
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 19:12:51 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 43ms (Views: 25.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 19:12:53 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:3
+  Rendered candidates/index.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 30ms (Views: 26.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/candidates/2" for 127.0.0.1 at 2019-07-21 19:12:55 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCandidate Load (0.3ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  Rendering candidates/show.html.erb within layouts/application
+  Rendered candidates/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 19ms (Views: 16.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/candidates/2/contributions/new" for 127.0.0.1 at 2019-07-21 19:12:56 -0400
+Processing by ContributionsController#new as HTML
+  Parameters: {"candidate_id"=>"2"}
+  Rendering contributions/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.6ms)
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  Rendered contributions/_form.html.erb (10.7ms)
+  Rendered contributions/new.html.erb within layouts/application (12.9ms)
+Completed 200 OK in 33ms (Views: 31.1ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/contributions" for 127.0.0.1 at 2019-07-21 19:13:18 -0400
+Processing by ContributionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"6fDdPmoz7ZaSCs7VJ7zD/JhXmvSXMqVSxFuQhUDyTQ1UDIQumIbVzjHlqaFpzHZ8a8RpPn/fGOPq1L5y3kVwvQ==", "contribution"=>{"contributor_id"=>"", "contributor_name"=>"John Smith", "candidate_id"=>"2", "candidate_name"=>"Cory Booker", "amount"=>"100", "date"=>"02/02/2019"}, "commit"=>"Contribute"}
+  [1m[36mContributor Load (0.3ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."name" = ? LIMIT ?[0m  [["name", "John Smith"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:27
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/contribution.rb:27
+  [1m[36mContributor Create (0.4ms)[0m  [1m[32mINSERT INTO "contributors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "John Smith"], ["created_at", "2019-07-21 23:13:18.918316"], ["updated_at", "2019-07-21 23:13:18.918316"]]
+  ↳ app/models/contribution.rb:27
+  [1m[35m (9.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/contribution.rb:27
+  [1m[36mCandidate Load (0.3ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."first_name" = ? AND "candidates"."last_name" = ? LIMIT ?[0m  [["first_name", "Cory"], ["last_name", "Booker"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:18
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  Rendering contributions/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.6ms)
+  Rendered contributions/_form.html.erb (3.4ms)
+  Rendered contributions/new.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 61ms (Views: 35.1ms | ActiveRecord: 11.2ms)
+
+
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "candidates"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "candidates" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "party_affiliation" varchar, "office_position" varchar, "location" varchar, "platform_outline" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "favorite_counter" integer)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributions"[0m
+  ↳ db/schema.rb:27
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE TABLE "contributions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" integer, "date" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar, "candidate_id" integer, "contributor_id" integer)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributors"[0m
+  ↳ db/schema.rb:37
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "contributors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "industry_affiliation" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:37
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:45
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "candidate_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:45
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_candidate_id" ON "favorites" ("candidate_id")[0m
+  ↳ db/schema.rb:45
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  ↳ db/schema.rb:45
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  ↳ db/schema.rb:54
+  [1m[35m (50.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "uid" varchar, "image" varchar)[0m
+  ↳ db/schema.rb:54
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190721013400)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190713214451),
+(20190713221735),
+(20190713220913),
+(20190713213904),
+(20190714223519),
+(20190713213639),
+(20190714223545),
+(20190713214739),
+(20190721013239),
+(20190713212829);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-21 23:32:09.058758"], ["updated_at", "2019-07-21 23:32:09.058758"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "candidates"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "candidates" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "party_affiliation" varchar, "office_position" varchar, "location" varchar, "platform_outline" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "favorite_counter" integer)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (2.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributions"[0m
+  ↳ db/schema.rb:27
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "contributions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" integer, "date" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar, "candidate_id" integer, "contributor_id" integer)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributors"[0m
+  ↳ db/schema.rb:37
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "contributors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "industry_affiliation" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:37
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:45
+  [1m[35m (49.9ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "candidate_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:45
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_candidate_id" ON "favorites" ("candidate_id")[0m
+  ↳ db/schema.rb:45
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  ↳ db/schema.rb:45
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  ↳ db/schema.rb:54
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "uid" varchar, "image" varchar)[0m
+  ↳ db/schema.rb:54
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190721013400)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190713214451),
+(20190713221735),
+(20190713220913),
+(20190713213904),
+(20190714223519),
+(20190713213639),
+(20190714223545),
+(20190713214739),
+(20190721013239),
+(20190713212829);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-21 23:32:09.183883"], ["updated_at", "2019-07-21 23:32:09.183883"]]
+  ↳ db/schema.rb:13
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Update (0.4ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2019-07-21 23:32:09.194102"], ["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (14.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to RemoveCandidateIdFromContributions (20190721232655)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20190721232655_remove_candidate_id_from_contributions.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "acontributions" ("id" integer NOT NULL PRIMARY KEY, "amount" integer DEFAULT NULL, "date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar DEFAULT NULL, "candidate_id" integer DEFAULT NULL, "contributor_id" integer DEFAULT NULL)[0m
+  ↳ db/migrate/20190721232655_remove_candidate_id_from_contributions.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "acontributions" ("id","amount","date","created_at","updated_at","size","candidate_id","contributor_id")
+                     SELECT "id","amount","date","created_at","updated_at","size","candidate_id","contributor_id" FROM "contributions"[0m
+  ↳ db/migrate/20190721232655_remove_candidate_id_from_contributions.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "contributions"[0m
+  ↳ db/migrate/20190721232655_remove_candidate_id_from_contributions.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "contributions" ("id" integer NOT NULL PRIMARY KEY, "amount" integer DEFAULT NULL, "date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar DEFAULT NULL, "contributor_id" integer DEFAULT NULL)[0m
+  ↳ db/migrate/20190721232655_remove_candidate_id_from_contributions.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "contributions" ("id","amount","date","created_at","updated_at","size","contributor_id")
+                     SELECT "id","amount","date","created_at","updated_at","size","contributor_id" FROM "acontributions"[0m
+  ↳ db/migrate/20190721232655_remove_candidate_id_from_contributions.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "acontributions"[0m
+  ↳ db/migrate/20190721232655_remove_candidate_id_from_contributions.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721232655"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to RemoveContributorIdFromContributions (20190721232736)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "acontributions" ("id" integer NOT NULL PRIMARY KEY, "amount" integer DEFAULT NULL, "date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar DEFAULT NULL, "contributor_id" integer DEFAULT NULL)[0m
+  ↳ db/migrate/20190721232736_remove_contributor_id_from_contributions.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "acontributions" ("id","amount","date","created_at","updated_at","size","contributor_id")
+                     SELECT "id","amount","date","created_at","updated_at","size","contributor_id" FROM "contributions"[0m
+  ↳ db/migrate/20190721232736_remove_contributor_id_from_contributions.rb:3
+  [1m[35m (1.2ms)[0m  [1m[35mDROP TABLE "contributions"[0m
+  ↳ db/migrate/20190721232736_remove_contributor_id_from_contributions.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "contributions" ("id" integer NOT NULL PRIMARY KEY, "amount" integer DEFAULT NULL, "date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar DEFAULT NULL)[0m
+  ↳ db/migrate/20190721232736_remove_contributor_id_from_contributions.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "contributions" ("id","amount","date","created_at","updated_at","size")
+                     SELECT "id","amount","date","created_at","updated_at","size" FROM "acontributions"[0m
+  ↳ db/migrate/20190721232736_remove_contributor_id_from_contributions.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "acontributions"[0m
+  ↳ db/migrate/20190721232736_remove_contributor_id_from_contributions.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721232736"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (3.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to AddBelongsToCandidateToContributions (20190721232913)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "candidates"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "candidates" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "party_affiliation" varchar, "office_position" varchar, "location" varchar, "platform_outline" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "favorite_counter" integer)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributions"[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "contributions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" integer, "date" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar, "candidate_id" integer, "contributor_id" integer)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributors"[0m
+  ↳ db/schema.rb:37
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "contributors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "industry_affiliation" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:37
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:45
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "candidate_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:45
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_candidate_id" ON "favorites" ("candidate_id")[0m
+  ↳ db/schema.rb:45
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  ↳ db/schema.rb:45
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  ↳ db/schema.rb:54
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "uid" varchar, "image" varchar)[0m
+  ↳ db/schema.rb:54
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190721013400)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190713214451),
+(20190713221735),
+(20190713220913),
+(20190713213904),
+(20190714223519),
+(20190713213639),
+(20190714223545),
+(20190713214739),
+(20190721013239),
+(20190713212829);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-21 23:33:09.540736"], ["updated_at", "2019-07-21 23:33:09.540736"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "candidates"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE TABLE "candidates" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "party_affiliation" varchar, "office_position" varchar, "location" varchar, "platform_outline" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "favorite_counter" integer)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributions"[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "contributions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" integer, "date" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar, "candidate_id" integer, "contributor_id" integer)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributors"[0m
+  ↳ db/schema.rb:37
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "contributors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "industry_affiliation" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:37
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:45
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "candidate_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:45
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_candidate_id" ON "favorites" ("candidate_id")[0m
+  ↳ db/schema.rb:45
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  ↳ db/schema.rb:45
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  ↳ db/schema.rb:54
+  [1m[35m (11.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "uid" varchar, "image" varchar)[0m
+  ↳ db/schema.rb:54
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190721013400)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190713214451),
+(20190713221735),
+(20190713220913),
+(20190713213904),
+(20190714223519),
+(20190713213639),
+(20190714223545),
+(20190713214739),
+(20190721013239),
+(20190713212829);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-21 23:33:09.715871"], ["updated_at", "2019-07-21 23:33:09.715871"]]
+  ↳ db/schema.rb:13
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2019-07-21 23:33:09.720266"], ["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to RemoveCandidateIdFromContributions (20190721232655)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20190721232655_remove_candidate_id_from_contributions.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "acontributions" ("id" integer NOT NULL PRIMARY KEY, "amount" integer DEFAULT NULL, "date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar DEFAULT NULL, "candidate_id" integer DEFAULT NULL, "contributor_id" integer DEFAULT NULL)[0m
+  ↳ db/migrate/20190721232655_remove_candidate_id_from_contributions.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "acontributions" ("id","amount","date","created_at","updated_at","size","candidate_id","contributor_id")
+                     SELECT "id","amount","date","created_at","updated_at","size","candidate_id","contributor_id" FROM "contributions"[0m
+  ↳ db/migrate/20190721232655_remove_candidate_id_from_contributions.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "contributions"[0m
+  ↳ db/migrate/20190721232655_remove_candidate_id_from_contributions.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "contributions" ("id" integer NOT NULL PRIMARY KEY, "amount" integer DEFAULT NULL, "date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar DEFAULT NULL, "contributor_id" integer DEFAULT NULL)[0m
+  ↳ db/migrate/20190721232655_remove_candidate_id_from_contributions.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "contributions" ("id","amount","date","created_at","updated_at","size","contributor_id")
+                     SELECT "id","amount","date","created_at","updated_at","size","contributor_id" FROM "acontributions"[0m
+  ↳ db/migrate/20190721232655_remove_candidate_id_from_contributions.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "acontributions"[0m
+  ↳ db/migrate/20190721232655_remove_candidate_id_from_contributions.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721232655"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to RemoveContributorIdFromContributions (20190721232736)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TEMPORARY TABLE "acontributions" ("id" integer NOT NULL PRIMARY KEY, "amount" integer DEFAULT NULL, "date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar DEFAULT NULL, "contributor_id" integer DEFAULT NULL)[0m
+  ↳ db/migrate/20190721232736_remove_contributor_id_from_contributions.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "acontributions" ("id","amount","date","created_at","updated_at","size","contributor_id")
+                     SELECT "id","amount","date","created_at","updated_at","size","contributor_id" FROM "contributions"[0m
+  ↳ db/migrate/20190721232736_remove_contributor_id_from_contributions.rb:3
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "contributions"[0m
+  ↳ db/migrate/20190721232736_remove_contributor_id_from_contributions.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "contributions" ("id" integer NOT NULL PRIMARY KEY, "amount" integer DEFAULT NULL, "date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar DEFAULT NULL)[0m
+  ↳ db/migrate/20190721232736_remove_contributor_id_from_contributions.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "contributions" ("id","amount","date","created_at","updated_at","size")
+                     SELECT "id","amount","date","created_at","updated_at","size" FROM "acontributions"[0m
+  ↳ db/migrate/20190721232736_remove_contributor_id_from_contributions.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "acontributions"[0m
+  ↳ db/migrate/20190721232736_remove_contributor_id_from_contributions.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721232736"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to AddBelongsToCandidateToContributions (20190721232913)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to AddCandidateToContributions (20190721232913)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "contributions" ADD "candidate_id" integer[0m
+  ↳ db/migrate/20190721232913_add_candidate_to_contributions.rb:3
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20190721232913_add_candidate_to_contributions.rb:3
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE  INDEX "index_contributions_on_candidate_id" ON "contributions" ("candidate_id")[0m
+  ↳ db/migrate/20190721232913_add_candidate_to_contributions.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721232913"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Migrating to AddContributorToContributions (20190721233133)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "contributions" ADD "contributor_id" integer[0m
+  ↳ db/migrate/20190721233133_add_contributor_to_contributions.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_contributions_on_contributor_id" ON "contributions" ("contributor_id")[0m
+  ↳ db/migrate/20190721233133_add_contributor_to_contributions.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721233133"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "candidates"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "candidates" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "party_affiliation" varchar, "office_position" varchar, "location" varchar, "platform_outline" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "favorite_counter" integer)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributions"[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "contributions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" integer, "date" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar, "candidate_id" integer, "contributor_id" integer)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX "index_contributions_on_candidate_id" ON "contributions" ("candidate_id")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE  INDEX "index_contributions_on_contributor_id" ON "contributions" ("contributor_id")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributors"[0m
+  ↳ db/schema.rb:39
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "contributors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "industry_affiliation" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:39
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:47
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "candidate_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:47
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_candidate_id" ON "favorites" ("candidate_id")[0m
+  ↳ db/schema.rb:47
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  ↳ db/schema.rb:47
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  ↳ db/schema.rb:56
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "uid" varchar, "image" varchar)[0m
+  ↳ db/schema.rb:56
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (2.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190721233133)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190713214451),
+(20190721232655),
+(20190713221735),
+(20190713220913),
+(20190713213904),
+(20190714223519),
+(20190721232736),
+(20190721013400),
+(20190713213639),
+(20190714223545),
+(20190713214739),
+(20190721232913),
+(20190721013239),
+(20190713212829);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-21 23:34:42.508671"], ["updated_at", "2019-07-21 23:34:42.508671"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "candidates"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "candidates" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "party_affiliation" varchar, "office_position" varchar, "location" varchar, "platform_outline" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "favorite_counter" integer)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributions"[0m
+  ↳ db/schema.rb:27
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "contributions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" integer, "date" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar, "candidate_id" integer, "contributor_id" integer)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE  INDEX "index_contributions_on_candidate_id" ON "contributions" ("candidate_id")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (19.0ms)[0m  [1m[35mCREATE  INDEX "index_contributions_on_contributor_id" ON "contributions" ("contributor_id")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributors"[0m
+  ↳ db/schema.rb:39
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "contributors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "industry_affiliation" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:39
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:47
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "candidate_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:47
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_candidate_id" ON "favorites" ("candidate_id")[0m
+  ↳ db/schema.rb:47
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  ↳ db/schema.rb:47
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  ↳ db/schema.rb:56
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "uid" varchar, "image" varchar)[0m
+  ↳ db/schema.rb:56
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (15.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190721233133)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (3.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190713214451),
+(20190721232655),
+(20190713221735),
+(20190713220913),
+(20190713213904),
+(20190714223519),
+(20190721232736),
+(20190721013400),
+(20190713213639),
+(20190714223545),
+(20190713214739),
+(20190721232913),
+(20190721013239),
+(20190713212829);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-21 23:34:42.677842"], ["updated_at", "2019-07-21 23:34:42.677842"]]
+  ↳ db/schema.rb:13
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2019-07-21 23:34:42.685108"], ["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[36mCandidate Create (0.5ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "party_affiliation", "office_position", "location", "platform_outline", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "Joseph"], ["last_name", "Biden"], ["party_affiliation", "Democrat"], ["office_position", "President"], ["location", "Former Delaware Senator"], ["platform_outline", "Restoring America’s standing on the global stage; strengthening economic protections for low-income workers in industries like manufacturing and fast food."], ["created_at", "2019-07-21 23:34:42.716471"], ["updated_at", "2019-07-21 23:34:42.716471"]]
+  ↳ db/seeds.rb:9
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCandidate Create (0.3ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "party_affiliation", "office_position", "location", "platform_outline", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "Cory"], ["last_name", "Booker"], ["party_affiliation", "Democrat"], ["office_position", "President"], ["location", "Senator from New Jersey"], ["platform_outline", "Has been one of the leaders in the Senate on criminal justice reform, but his appeal would most likely center on his call to unify the country."], ["created_at", "2019-07-21 23:34:42.719941"], ["updated_at", "2019-07-21 23:34:42.719941"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mCandidate Create (0.4ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "party_affiliation", "office_position", "location", "platform_outline", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "Kamala"], ["last_name", "Harris"], ["party_affiliation", "Democrat"], ["office_position", "President"], ["location", "Senator from California"], ["platform_outline", "Unveiled middle-class tax cut legislation last fall, and has championed a liberal civil rights agenda in the Senate."], ["created_at", "2019-07-21 23:34:42.722697"], ["updated_at", "2019-07-21 23:34:42.722697"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[36mCandidate Create (0.4ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "party_affiliation", "office_position", "location", "platform_outline", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "Donald"], ["last_name", "Trump"], ["party_affiliation", "Republican"], ["office_position", "President"], ["location", "Current President, New York"], ["platform_outline", "Restricting immigration and building a wall at the Mexican border; renegotiating or canceling international deals on trade, arms control and climate change; withdrawing American troops from overseas."], ["created_at", "2019-07-21 23:34:42.725249"], ["updated_at", "2019-07-21 23:34:42.725249"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:13
+  [1m[36mCandidate Create (0.3ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "party_affiliation", "office_position", "location", "platform_outline", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "William"], ["last_name", "Weld"], ["party_affiliation", "Republican"], ["office_position", "President"], ["location", "Former Massachusetts Governor"], ["platform_outline", "Favors fiscal restraint, free trade and moderate immigration reform; has endorsed steps to legalize marijuana."], ["created_at", "2019-07-21 23:34:42.729261"], ["updated_at", "2019-07-21 23:34:42.729261"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "candidates"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "candidates" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "party_affiliation" varchar, "office_position" varchar, "location" varchar, "platform_outline" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "favorite_counter" integer)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributions"[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "contributions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" integer, "date" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar, "candidate_id" integer, "contributor_id" integer)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX "index_contributions_on_candidate_id" ON "contributions" ("candidate_id")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE  INDEX "index_contributions_on_contributor_id" ON "contributions" ("contributor_id")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributors"[0m
+  ↳ db/schema.rb:39
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "contributors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "industry_affiliation" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:39
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:47
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "candidate_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:47
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_candidate_id" ON "favorites" ("candidate_id")[0m
+  ↳ db/schema.rb:47
+  [1m[35m (53.0ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  ↳ db/schema.rb:47
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  ↳ db/schema.rb:56
+  [1m[35m (10.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "uid" varchar, "image" varchar)[0m
+  ↳ db/schema.rb:56
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190721233133)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190713214451),
+(20190713221735),
+(20190713220913),
+(20190713213904),
+(20190721013400),
+(20190713213639),
+(20190713214739),
+(20190721232913),
+(20190721013239),
+(20190713212829);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-21 23:35:46.865655"], ["updated_at", "2019-07-21 23:35:46.865655"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "candidates"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE TABLE "candidates" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "party_affiliation" varchar, "office_position" varchar, "location" varchar, "platform_outline" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "favorite_counter" integer)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributions"[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "contributions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" integer, "date" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar, "candidate_id" integer, "contributor_id" integer)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE  INDEX "index_contributions_on_candidate_id" ON "contributions" ("candidate_id")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE  INDEX "index_contributions_on_contributor_id" ON "contributions" ("contributor_id")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributors"[0m
+  ↳ db/schema.rb:39
+  [1m[35m (14.5ms)[0m  [1m[35mCREATE TABLE "contributors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "industry_affiliation" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:39
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:47
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "candidate_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:47
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_candidate_id" ON "favorites" ("candidate_id")[0m
+  ↳ db/schema.rb:47
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  ↳ db/schema.rb:47
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  ↳ db/schema.rb:56
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "uid" varchar, "image" varchar)[0m
+  ↳ db/schema.rb:56
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190721233133)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190713214451),
+(20190713221735),
+(20190713220913),
+(20190713213904),
+(20190721013400),
+(20190713213639),
+(20190713214739),
+(20190721232913),
+(20190721013239),
+(20190713212829);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-21 23:35:46.942185"], ["updated_at", "2019-07-21 23:35:46.942185"]]
+  ↳ db/schema.rb:13
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2019-07-21 23:35:46.946715"], ["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[36mCandidate Create (0.4ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "party_affiliation", "office_position", "location", "platform_outline", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "Joseph"], ["last_name", "Biden"], ["party_affiliation", "Democrat"], ["office_position", "President"], ["location", "Former Delaware Senator"], ["platform_outline", "Restoring America’s standing on the global stage; strengthening economic protections for low-income workers in industries like manufacturing and fast food."], ["created_at", "2019-07-21 23:35:47.048382"], ["updated_at", "2019-07-21 23:35:47.048382"]]
+  ↳ db/seeds.rb:9
+  [1m[35m (4.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCandidate Create (2.2ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "party_affiliation", "office_position", "location", "platform_outline", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "Cory"], ["last_name", "Booker"], ["party_affiliation", "Democrat"], ["office_position", "President"], ["location", "Senator from New Jersey"], ["platform_outline", "Has been one of the leaders in the Senate on criminal justice reform, but his appeal would most likely center on his call to unify the country."], ["created_at", "2019-07-21 23:35:47.055935"], ["updated_at", "2019-07-21 23:35:47.055935"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mCandidate Create (1.3ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "party_affiliation", "office_position", "location", "platform_outline", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "Kamala"], ["last_name", "Harris"], ["party_affiliation", "Democrat"], ["office_position", "President"], ["location", "Senator from California"], ["platform_outline", "Unveiled middle-class tax cut legislation last fall, and has championed a liberal civil rights agenda in the Senate."], ["created_at", "2019-07-21 23:35:47.062218"], ["updated_at", "2019-07-21 23:35:47.062218"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (3.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[36mCandidate Create (0.5ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "party_affiliation", "office_position", "location", "platform_outline", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "Donald"], ["last_name", "Trump"], ["party_affiliation", "Republican"], ["office_position", "President"], ["location", "Current President, New York"], ["platform_outline", "Restricting immigration and building a wall at the Mexican border; renegotiating or canceling international deals on trade, arms control and climate change; withdrawing American troops from overseas."], ["created_at", "2019-07-21 23:35:47.069875"], ["updated_at", "2019-07-21 23:35:47.069875"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:13
+  [1m[36mCandidate Create (1.6ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "party_affiliation", "office_position", "location", "platform_outline", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "William"], ["last_name", "Weld"], ["party_affiliation", "Republican"], ["office_position", "President"], ["location", "Former Massachusetts Governor"], ["platform_outline", "Favors fiscal restraint, free trade and moderate immigration reform; has endorsed steps to legalize marijuana."], ["created_at", "2019-07-21 23:35:47.075366"], ["updated_at", "2019-07-21 23:35:47.075366"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Started GET "/home" for 127.0.0.1 at 2019-07-21 19:36:23 -0400
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 336ms (Views: 330.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 19:36:26 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 19:36:26 -0400
+Started GET "/auth/facebook/callback?code=AQCA_MNjyKbULUBnWb3SUDIurWqGaNOXhFkqsABDGDdVl3YVFQEpf7Hive-URbMHioo_Gos9xoo9hb2jJ1IIITC9d3-NrOaziN59rY9ZhQ2pE0XMHjBYNZ510s6NHvULhUnW0xgNibfyyewS_5nDkJdFVF-RjsItnBXL0P1VxFTNDSW88tqIR1KG_8EMJLB-mg81SA0xHim9CP_wvGidZ9T9PMwcSN0Sx7_fJ833cIbxjMi1vlMWqEgQIX_K6dSECoyH9ugWxgGcgdVQUujv7A_de5TXblCeBvVCRkb6pqhuqy6VN8mcl0vpjjOTj8IhNAzZ4PI3uZ4gggGjyx1YfRZ9&state=d0335848c0ae0a28ba54ae3c7c6126493b823e3192944a4f" for 127.0.0.1 at 2019-07-21 19:36:28 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQCA_MNjyKbULUBnWb3SUDIurWqGaNOXhFkqsABDGDdVl3YVFQEpf7Hive-URbMHioo_Gos9xoo9hb2jJ1IIITC9d3-NrOaziN59rY9ZhQ2pE0XMHjBYNZ510s6NHvULhUnW0xgNibfyyewS_5nDkJdFVF-RjsItnBXL0P1VxFTNDSW88tqIR1KG_8EMJLB-mg81SA0xHim9CP_wvGidZ9T9PMwcSN0Sx7_fJ833cIbxjMi1vlMWqEgQIX_K6dSECoyH9ugWxgGcgdVQUujv7A_de5TXblCeBvVCRkb6pqhuqy6VN8mcl0vpjjOTj8IhNAzZ4PI3uZ4gggGjyx1YfRZ9", "state"=>"d0335848c0ae0a28ba54ae3c7c6126493b823e3192944a4f"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sessions_controller.rb:22
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "LaRaye Johnson"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+  [1m[36mUser Create (5.9ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at", "uid", "image") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["username", "LaRaye Johnson"], ["email", "lnj2105@columbia.edu"], ["password_digest", "$2a$12$y/fWJdVtyr1cz6fHzXq1ouJK95kCSH5xaW18n6NsRMef91HpSfeki"], ["created_at", "2019-07-21 23:36:30.282822"], ["updated_at", "2019-07-21 23:36:30.282822"], ["uid", "2910548335628368"], ["image", "http://graph.facebook.com/v2.10/2910548335628368/picture"]]
+  ↳ app/controllers/sessions_controller.rb:22
+  [1m[35m (2.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 260ms (ActiveRecord: 10.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 19:36:30 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 23ms (Views: 18.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/candidates/new" for 127.0.0.1 at 2019-07-21 19:36:32 -0400
+Processing by CandidatesController#new as HTML
+  Rendering candidates/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.4ms)
+  Rendered candidates/_form.html.erb (11.8ms)
+  Rendered candidates/new.html.erb within layouts/application (13.1ms)
+Completed 200 OK in 45ms (Views: 30.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 19:36:35 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 24ms (Views: 21.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 19:36:37 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.5ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:3
+  Rendered candidates/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 23ms (Views: 21.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/candidates/1" for 127.0.0.1 at 2019-07-21 19:36:38 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCandidate Load (1.6ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  Rendering candidates/show.html.erb within layouts/application
+  Rendered candidates/show.html.erb within layouts/application (25.6ms)
+Completed 200 OK in 47ms (Views: 43.3ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/candidates/1/contributions/new" for 127.0.0.1 at 2019-07-21 19:36:40 -0400
+Processing by ContributionsController#new as HTML
+  Parameters: {"candidate_id"=>"1"}
+  Rendering contributions/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.3ms)
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  Rendered contributions/_form.html.erb (15.4ms)
+  Rendered contributions/new.html.erb within layouts/application (16.4ms)
+Completed 200 OK in 46ms (Views: 32.2ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/contributions" for 127.0.0.1 at 2019-07-21 19:36:49 -0400
+Processing by ContributionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rIC+y6JVtdk39TagOAMXQVm7cgv/oGXvrELuz5F5gyYRfOfbUOCNgZQaUdR2c6LBqiiBwRdN2F6CzcA4D86+lg==", "contribution"=>{"contributor_id"=>"", "contributor_name"=>"Jane Smith", "candidate_id"=>"1", "candidate_name"=>"Joseph Biden", "amount"=>"1000", "date"=>"10/01/2019"}, "commit"=>"Contribute"}
+  [1m[36mContributor Load (0.5ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."name" = ? LIMIT ?[0m  [["name", "Jane Smith"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:27
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/contribution.rb:27
+  [1m[36mContributor Create (0.5ms)[0m  [1m[32mINSERT INTO "contributors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Jane Smith"], ["created_at", "2019-07-21 23:36:49.371251"], ["updated_at", "2019-07-21 23:36:49.371251"]]
+  ↳ app/models/contribution.rb:27
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/contribution.rb:27
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."first_name" = ? AND "candidates"."last_name" = ? LIMIT ?[0m  [["first_name", "Joseph"], ["last_name", "Biden"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:18
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  Rendering contributions/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.5ms)
+  Rendered contributions/_form.html.erb (2.9ms)
+  Rendered contributions/new.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 43ms (Views: 26.6ms | ActiveRecord: 3.2ms)
+
+
