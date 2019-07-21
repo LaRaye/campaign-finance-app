@@ -1,10 +1,11 @@
 class CandidatesController < ApplicationController
+  before_action :find_candidate, only: [:show, :edit, :update, :destroy]
+
   def index
     @candidates = Candidate.all_in_order
   end
 
   def show
-    find_candidate
   end
 
   def new
@@ -21,17 +22,15 @@ class CandidatesController < ApplicationController
   end
 
   def edit
-    find_candidate
   end
 
   def update
-    find_candidate
     @candidate.update(candidate_params)
     redirect_to candidate_path(@candidate)
   end
 
   def destroy
-    find_candidate.destroy
+    @candidate.destroy
     redirect_to candidates_path
   end
 

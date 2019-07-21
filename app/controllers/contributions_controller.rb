@@ -1,4 +1,6 @@
 class ContributionsController < ApplicationController
+  before_action :find_contribution, only: [:show, :edit, :update, :destroy]
+
   def index
     if params[:contributor_id]
       @contributions = Contributor.find(params[:contributor_id]).contributions.all_by_date
@@ -10,7 +12,6 @@ class ContributionsController < ApplicationController
   end
 
   def show
-    find_contribution
   end
 
   def new
@@ -27,17 +28,15 @@ class ContributionsController < ApplicationController
   end
 
   def edit
-    find_contribution
   end
 
   def update
-    find_contribution
     @contribution.update(contribution_params)
     redirect_to contribution_path(@contribution)
   end
 
   def destroy
-    find_contribution.destroy
+    @contribution.destroy
     redirect_to contributions_path
   end
 
