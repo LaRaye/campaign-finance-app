@@ -7,6 +7,7 @@ class Candidate < ApplicationRecord
   validates :last_name, presence: true
 
   scope :all_in_order, -> { order(last_name: :asc)}
+  scope :favorited_by, -> (username) { joins(:favorites).where(favorites: { user: User.where(username: username) }) }
 
   def full_name
       self.first_name + " " + self.last_name
