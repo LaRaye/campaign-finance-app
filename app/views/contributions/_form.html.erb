@@ -1,11 +1,9 @@
 <%= form_for @contribution do |f| %>
   <%= render partial: 'layouts/errors', locals: {object: @contribution} %>
 
-  <%= f.hidden_field :contributor_id %>
   <%= f.label :contributor_name, "Contributor Name" %>
   <%= f.text_field :contributor_name, placeholder: "ex. Jane Smith" %><br><br>
 
-  <%= f.hidden_field :candidate_id %>
   <%= f.label :candidate_name, "Candidate Name" %>
   <%= f.text_field :candidate_name, placeholder: "ex. Jane Smith" %><br><br>
 
