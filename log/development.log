@@ -23611,3 +23611,456 @@ Processing by CandidatesController#show as HTML
 Completed 200 OK in 23ms (Views: 20.7ms | ActiveRecord: 0.1ms)
 
 
+Started GET "/candidates/9/edit" for 127.0.0.1 at 2019-07-21 21:02:10 -0400
+Processing by CandidatesController#edit as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  Rendering candidates/edit.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.9ms)
+  Rendered candidates/_form.html.erb (6.2ms)
+  Rendered candidates/edit.html.erb within layouts/application (8.1ms)
+Completed 200 OK in 78ms (Views: 35.1ms | ActiveRecord: 0.8ms)
+
+
+Started PATCH "/candidates/9" for 127.0.0.1 at 2019-07-21 21:02:14 -0400
+Processing by CandidatesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tDJknLBjht43T7tsxZsfldLvtM3pKC676m9AfSpaOBkJLi+VHfzQ8dFG37bSJoc33THVqx+9SPzqPDCJusotOg==", "candidate"=>{"first_name"=>"Bob", "last_name"=>" Bob", "party_affiliation"=>"", "office_position"=>"", "location"=>"", "platform_outline"=>""}, "commit"=>"List Candidate", "id"=>"9"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/candidates_controller.rb:28
+  [1m[36mCandidate Update (0.4ms)[0m  [1m[33mUPDATE "candidates" SET "last_name" = ?, "party_affiliation" = ?, "office_position" = ?, "location" = ?, "platform_outline" = ?, "updated_at" = ? WHERE "candidates"."id" = ?[0m  [["last_name", " Bob"], ["party_affiliation", ""], ["office_position", ""], ["location", ""], ["platform_outline", ""], ["updated_at", "2019-07-22 01:02:14.969076"], ["id", 9]]
+  ↳ app/controllers/candidates_controller.rb:28
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/candidates_controller.rb:28
+Redirected to http://localhost:3000/candidates/9
+Completed 302 Found in 6ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/candidates/9" for 127.0.0.1 at 2019-07-21 21:02:14 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  Rendering candidates/show.html.erb within layouts/application
+  Rendered candidates/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 69ms (Views: 67.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 21:02:26 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.6ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:3
+  Rendered candidates/index.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 33ms (Views: 28.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/my_page" for 127.0.0.1 at 2019-07-21 21:08:18 -0400
+Processing by UsersController#show as HTML
+Completed 404 Not Found in 8ms (ActiveRecord: 0.8ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  
+app/controllers/users_controller.rb:33:in `find_user'
+Started GET "/home" for 127.0.0.1 at 2019-07-21 21:08:25 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 82ms (Views: 81.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:08:27 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:08:27 -0400
+Started GET "/auth/facebook/callback?code=AQAEAPO5VPwwK-didwpAvQq8U0m9gIKQX3xw0RKGpOcszpgGti2N8Iq5JtnW5UuyKML5EOruhryzsj1DcColPIrO0BfGXK4HyqCq07jIkBM_rTPFKlx4lZt5i_AAegjAogA8S4w5esfYmAoPp9oxi-GzvuhrHv8WO8j77y6I6P-0nP0phHYB_TYw_AUa12F3Zy__hj1MEgfjA8To9IYPBFqV1U3pVpTm-eerKupM9psWO2F0rkPnBrPO2CS3vkYw7ZGm8EnjRc6AmMWNFp5O1602uQUMkA4p1fxAzMrHkipWB4YyCKR0-PWg6F3U_Ep4O8b1kdvC0ezWRyvMStx0voLq&state=a556b62c1cdba4eebfcaad50913fd7adbbc90ab6312d9668" for 127.0.0.1 at 2019-07-21 21:08:30 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQAEAPO5VPwwK-didwpAvQq8U0m9gIKQX3xw0RKGpOcszpgGti2N8Iq5JtnW5UuyKML5EOruhryzsj1DcColPIrO0BfGXK4HyqCq07jIkBM_rTPFKlx4lZt5i_AAegjAogA8S4w5esfYmAoPp9oxi-GzvuhrHv8WO8j77y6I6P-0nP0phHYB_TYw_AUa12F3Zy__hj1MEgfjA8To9IYPBFqV1U3pVpTm-eerKupM9psWO2F0rkPnBrPO2CS3vkYw7ZGm8EnjRc6AmMWNFp5O1602uQUMkA4p1fxAzMrHkipWB4YyCKR0-PWg6F3U_Ep4O8b1kdvC0ezWRyvMStx0voLq", "state"=>"a556b62c1cdba4eebfcaad50913fd7adbbc90ab6312d9668"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 9ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:08:30 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/users/1"):
+  
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+thin (1.7.2) lib/thin/connection.rb:86:in `block in pre_process'
+thin (1.7.2) lib/thin/connection.rb:84:in `catch'
+thin (1.7.2) lib/thin/connection.rb:84:in `pre_process'
+thin (1.7.2) lib/thin/connection.rb:53:in `process'
+thin (1.7.2) lib/thin/connection.rb:39:in `receive_data'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run_machine'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run'
+thin (1.7.2) lib/thin/backends/base.rb:73:in `start'
+thin (1.7.2) lib/thin/server.rb:162:in `start'
+thin (1.7.2) lib/thin/controllers/controller.rb:87:in `start'
+thin (1.7.2) lib/thin/runner.rb:203:in `run_command'
+thin (1.7.2) lib/thin/runner.rb:159:in `run!'
+thin (1.7.2) bin/thin:6:in `<top (required)>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `load'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `<main>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `eval'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `<main>'
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:11:22 -0400
+  
+SyntaxError (/Users/larayejohnson/campaign-finance-app/config/routes.rb:10: syntax error, unexpected tSTRING_BEG, expecting do or '{' or '('
+...rofile', to: 'users#show', as 'user'
+...                              ^
+/Users/larayejohnson/campaign-finance-app/config/routes.rb:19: syntax error, unexpected do (for block), expecting end
+...ails.application.routes.draw do
+...                             ^~
+/Users/larayejohnson/campaign-finance-app/config/routes.rb:30: syntax error, unexpected end, expecting end-of-input
+  end
+  ^~~):
+  
+config/routes.rb:10: syntax error, unexpected tSTRING_BEG, expecting do or '{' or '('
+config/routes.rb:19: syntax error, unexpected do (for block), expecting end
+config/routes.rb:30: syntax error, unexpected end, expecting end-of-input
+Started GET "/auth/facebook/callback?code=AQBJypF3hQQKihma434mkmhdVaMdWwILoEdoX4CvAbwY4OFRkrTv_o2IzBB9NzbYrJOUG0L5K289Kay1GByOtc77ayPxA7JXME6f--3lBxCCQz3iPZ6wBlO1N5f6dmyBpwA_OkoFBT_EKutbw2f3z7E5R7L-s8O46yoRzW2ckVDgtFM2yOKRpMjE68mVDYI6JoA7ke8fmaZO1gloaXhsefQIJq4kfc96ZvNFelnjLS6ZeYFvcM8JJmBiQEBr4vmvEjVBYRw12y3uEA-FGU3C-Te59HIHu167v8lpFTvjL-tqi3JgP5ir25fqkz6yncYxVnNNJ8Uw84MdckJjzYVl0u71&state=a556b62c1cdba4eebfcaad50913fd7adbbc90ab6312d9668" for 127.0.0.1 at 2019-07-21 21:11:26 -0400
+  
+OmniAuth::Strategies::OAuth2::CallbackError (csrf_detected | CSRF detected):
+  
+omniauth (1.9.0) lib/omniauth/failure_endpoint.rb:25:in `raise_out!'
+omniauth (1.9.0) lib/omniauth/failure_endpoint.rb:20:in `call'
+omniauth (1.9.0) lib/omniauth/failure_endpoint.rb:12:in `call'
+omniauth (1.9.0) lib/omniauth/strategy.rb:491:in `fail!'
+omniauth-oauth2 (1.6.0) lib/omniauth/strategies/oauth2.rb:71:in `callback_phase'
+omniauth-facebook (5.0.0) lib/omniauth/strategies/facebook.rb:67:in `block in callback_phase'
+omniauth-facebook (5.0.0) lib/omniauth/strategies/facebook.rb:131:in `with_authorization_code!'
+omniauth-facebook (5.0.0) lib/omniauth/strategies/facebook.rb:66:in `callback_phase'
+omniauth (1.9.0) lib/omniauth/strategy.rb:238:in `callback_call'
+omniauth (1.9.0) lib/omniauth/strategy.rb:189:in `call!'
+omniauth (1.9.0) lib/omniauth/strategy.rb:169:in `call'
+omniauth (1.9.0) lib/omniauth/builder.rb:64:in `call'
+rack (2.0.7) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.7) lib/rack/etag.rb:25:in `call'
+rack (2.0.7) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.7) lib/rack/head.rb:12:in `call'
+actionpack (5.2.3) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.0.7) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.7) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/cookies.rb:670:in `call'
+activerecord (5.2.3) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+thin (1.7.2) lib/thin/connection.rb:86:in `block in pre_process'
+thin (1.7.2) lib/thin/connection.rb:84:in `catch'
+thin (1.7.2) lib/thin/connection.rb:84:in `pre_process'
+thin (1.7.2) lib/thin/connection.rb:53:in `process'
+thin (1.7.2) lib/thin/connection.rb:39:in `receive_data'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run_machine'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run'
+thin (1.7.2) lib/thin/backends/base.rb:73:in `start'
+thin (1.7.2) lib/thin/server.rb:162:in `start'
+thin (1.7.2) lib/thin/controllers/controller.rb:87:in `start'
+thin (1.7.2) lib/thin/runner.rb:203:in `run_command'
+thin (1.7.2) lib/thin/runner.rb:159:in `run!'
+thin (1.7.2) bin/thin:6:in `<top (required)>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `load'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `<main>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `eval'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `<main>'
+Started GET "/auth/facebook/callback?code=AQCrU-rj2NZByG7fxZy7jabKgkW-h4ycBgf-qAT7jARuMkpWK93KxNvGagTNC1l0Laa77DtmBAewlFz3mJyqbRZ1jBn4RSuSjsF3zNySvOdIy8Zm_htpgPlr2NhwMG9J-H5vhNCbllrmFXyymslufHMK2clwQ0FY3h4PH2cZgOVcbhI8TzJEKrT35mBjnYV5ygqXWgGkF65YsIqbjadkMbfj90ki3FElLWfIjndd2XIGv9gkelJmOU_f9KJ0oqBvxP68ooh1hOod7EzSAL5333iq5gDVg6dcu97FV2ZfbbotwLEJYuGgEwYj-SzIj3TQdDPP2aj3iPtM36VWyXxwO4Ef&state=a556b62c1cdba4eebfcaad50913fd7adbbc90ab6312d9668" for 127.0.0.1 at 2019-07-21 21:11:45 -0400
+  
+OmniAuth::Strategies::OAuth2::CallbackError (csrf_detected | CSRF detected):
+  
+omniauth (1.9.0) lib/omniauth/failure_endpoint.rb:25:in `raise_out!'
+omniauth (1.9.0) lib/omniauth/failure_endpoint.rb:20:in `call'
+omniauth (1.9.0) lib/omniauth/failure_endpoint.rb:12:in `call'
+omniauth (1.9.0) lib/omniauth/strategy.rb:491:in `fail!'
+omniauth-oauth2 (1.6.0) lib/omniauth/strategies/oauth2.rb:71:in `callback_phase'
+omniauth-facebook (5.0.0) lib/omniauth/strategies/facebook.rb:67:in `block in callback_phase'
+omniauth-facebook (5.0.0) lib/omniauth/strategies/facebook.rb:131:in `with_authorization_code!'
+omniauth-facebook (5.0.0) lib/omniauth/strategies/facebook.rb:66:in `callback_phase'
+omniauth (1.9.0) lib/omniauth/strategy.rb:238:in `callback_call'
+omniauth (1.9.0) lib/omniauth/strategy.rb:189:in `call!'
+omniauth (1.9.0) lib/omniauth/strategy.rb:169:in `call'
+omniauth (1.9.0) lib/omniauth/builder.rb:64:in `call'
+rack (2.0.7) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.7) lib/rack/etag.rb:25:in `call'
+rack (2.0.7) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.7) lib/rack/head.rb:12:in `call'
+actionpack (5.2.3) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.0.7) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.7) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/cookies.rb:670:in `call'
+activerecord (5.2.3) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+thin (1.7.2) lib/thin/connection.rb:86:in `block in pre_process'
+thin (1.7.2) lib/thin/connection.rb:84:in `catch'
+thin (1.7.2) lib/thin/connection.rb:84:in `pre_process'
+thin (1.7.2) lib/thin/connection.rb:53:in `process'
+thin (1.7.2) lib/thin/connection.rb:39:in `receive_data'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run_machine'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run'
+thin (1.7.2) lib/thin/backends/base.rb:73:in `start'
+thin (1.7.2) lib/thin/server.rb:162:in `start'
+thin (1.7.2) lib/thin/controllers/controller.rb:87:in `start'
+thin (1.7.2) lib/thin/runner.rb:203:in `run_command'
+thin (1.7.2) lib/thin/runner.rb:159:in `run!'
+thin (1.7.2) bin/thin:6:in `<top (required)>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `load'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `<main>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `eval'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `<main>'
+Started GET "/home" for 127.0.0.1 at 2019-07-21 21:11:56 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 39ms (Views: 38.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:11:57 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:11:58 -0400
+Started GET "/auth/facebook/callback?code=AQA7OGJPzKLABXsfrGlwIoe7vB7XsuNJGfKckzJB1Wv8VJHA9WBHzT098nY7DoPc4rUK-IGQkkiD3eB9Y04o1ca2-K3k3gq8gHFhklUFAZRDreBSI-VCMrLlbF2HqxkRSE3dErW1Tv52mmqgGJGvld-bKwLCiCPGd2M2Vehv1iQbQIfnG3sMstpVVzMwymr9cYSDce6hPWEhQe3BCgHFoFdZb_v7tl_6rW_NzJmSk1RfLfhdMU_MiKFNw9ZznSwXcdHaZUCKMMcSmBm8dSrwaMUnG5bOMQTCa8jFgoSErp8vs0stdJl2L0I4ilNyorulDd_RfZbz7fgCYb1mTKiTU8e9&state=1cec9bf47538fe96197e7b33c1beb25771d59c8eb51f4c7b" for 127.0.0.1 at 2019-07-21 21:12:00 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQA7OGJPzKLABXsfrGlwIoe7vB7XsuNJGfKckzJB1Wv8VJHA9WBHzT098nY7DoPc4rUK-IGQkkiD3eB9Y04o1ca2-K3k3gq8gHFhklUFAZRDreBSI-VCMrLlbF2HqxkRSE3dErW1Tv52mmqgGJGvld-bKwLCiCPGd2M2Vehv1iQbQIfnG3sMstpVVzMwymr9cYSDce6hPWEhQe3BCgHFoFdZb_v7tl_6rW_NzJmSk1RfLfhdMU_MiKFNw9ZznSwXcdHaZUCKMMcSmBm8dSrwaMUnG5bOMQTCa8jFgoSErp8vs0stdJl2L0I4ilNyorulDd_RfZbz7fgCYb1mTKiTU8e9", "state"=>"1cec9bf47538fe96197e7b33c1beb25771d59c8eb51f4c7b"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 17ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:12:00 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 43ms (Views: 40.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/logout" for 127.0.0.1 at 2019-07-21 21:12:07 -0400
+Processing by SessionsController#logout as HTML
+Redirected to http://localhost:3000/home
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 21:12:07 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 23ms (Views: 22.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2019-07-21 21:12:08 -0400
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.4ms)
+  Rendered users/new.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 31ms (Views: 27.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2019-07-21 21:12:13 -0400
+Processing by SessionsController#login as HTML
+  Rendering sessions/login.html.erb within layouts/application
+  Rendered sessions/login.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 26ms (Views: 19.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2019-07-21 21:12:19 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zMwGytKrWH+YpJSwIDY7+0ckllXuyRQP9Sbf8BQ+4EuHLFek+x0x3waXZAAwDpfDITbtByR3BkqJypuBOBprhQ==", "user"=>{"username"=>"laraye01", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "laraye01"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:11
+Redirected to http://localhost:3000/login
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2019-07-21 21:12:19 -0400
+Processing by SessionsController#login as HTML
+  Rendering sessions/login.html.erb within layouts/application
+  Rendered sessions/login.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 20ms (Views: 18.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2019-07-21 21:13:52 -0400
+Processing by SessionsController#login as HTML
+  Rendering sessions/login.html.erb within layouts/application
+  Rendered sessions/login.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 26ms (Views: 25.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2019-07-21 21:14:04 -0400
+Processing by SessionsController#login as HTML
+  Rendering sessions/login.html.erb within layouts/application
+  Rendered sessions/login.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 35ms (Views: 33.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2019-07-21 21:14:18 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"47JYcqIAcIU3A+SJ+h0oAF+zg6TmoVWvq4gyC1tYZC6aFuXj2ksn/Y6JOk2iBQpDc3PNHvBtika3k7sOd7amNg==", "user"=>{"username"=>"laraye01", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "laraye01"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:11
+Redirected to http://localhost:3000/login
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2019-07-21 21:14:18 -0400
+Processing by SessionsController#login as HTML
+  Rendering sessions/login.html.erb within layouts/application
+  Rendered sessions/login.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 23ms (Views: 21.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2019-07-21 21:14:23 -0400
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.3ms)
+  Rendered users/new.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 20ms (Views: 18.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/signup" for 127.0.0.1 at 2019-07-21 21:14:33 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"W9CFYJpHnFdMB7dXFxs4GNILn4DNYvYCE/nBoQ/la5xPD1apT5ib0s0rfMmzPh+AB5cAoUTynhg/4maxecValA==", "user"=>{"username"=>"laraye01", "email"=>"laraye@123.com", "password"=>"[FILTERED]"}, "commit"=>"Sign Up"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:14
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "laraye01"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:14
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["username", "laraye01"], ["email", "laraye@123.com"], ["password_digest", "$2a$12$WydMMpRUaOEPo/P6Tu7WAu7i/F2BL2nlY8SzXGrzt39xTMgQauAJe"], ["created_at", "2019-07-22 01:14:33.428886"], ["updated_at", "2019-07-22 01:14:33.428886"]]
+  ↳ app/controllers/users_controller.rb:14
+  [1m[35m (3.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:14
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 230ms (ActiveRecord: 4.0ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2019-07-21 21:14:33 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 25ms (Views: 23.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 21:14:35 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 27ms (Views: 22.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/candidates/9" for 127.0.0.1 at 2019-07-21 21:14:38 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mCandidate Load (0.5ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  Rendering candidates/show.html.erb within layouts/application
+  Rendered candidates/show.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 36ms (Views: 32.7ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/candidates/9" for 127.0.0.1 at 2019-07-21 21:14:44 -0400
+Processing by CandidatesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"dGYcsep1SY/OBYaK2MkA3QUZZdZMWfQ21LiLKLfr07z9tjpSv4zsw4/Jm1LeAxnBtJKpyk9g45kPpXFYJgbLRA==", "id"=>"9"}
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."candidate_id" = ?[0m  [["candidate_id", 9]]
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[36mContribution Destroy (0.4ms)[0m  [1m[31mDELETE FROM "contributions" WHERE "contributions"."id" = ?[0m  [["id", 8]]
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[36mContribution Destroy (0.1ms)[0m  [1m[31mDELETE FROM "contributions" WHERE "contributions"."id" = ?[0m  [["id", 9]]
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."candidate_id" = ?[0m  [["candidate_id", 9]]
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[36mCandidate Destroy (0.1ms)[0m  [1m[31mDELETE FROM "candidates" WHERE "candidates"."id" = ?[0m  [["id", 9]]
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/candidates_controller.rb:33
+Redirected to http://localhost:3000/candidates
+Completed 302 Found in 24ms (ActiveRecord: 3.2ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 21:14:44 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 22ms (Views: 20.5ms | ActiveRecord: 0.2ms)
+
+
