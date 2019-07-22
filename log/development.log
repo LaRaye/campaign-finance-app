@@ -21806,3 +21806,1125 @@ Processing by ContributorsController#index as HTML
 Completed 200 OK in 25ms (Views: 23.3ms | ActiveRecord: 0.1ms)
 
 
+Started GET "/contributions/new" for 127.0.0.1 at 2019-07-21 20:14:03 -0400
+Processing by ContributionsController#new as HTML
+  Rendering contributions/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.4ms)
+  Rendered contributions/_form.html.erb (3.7ms)
+  Rendered contributions/new.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 30ms (Views: 23.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/contributions" for 127.0.0.1 at 2019-07-21 20:14:27 -0400
+Processing by ContributionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Jc3+bUHX2jMrZOkbEPibZpVAnew1IdYZv8jL0/N4ecyYMad9s2Lia4iLjm9eiC7mZtNuJt3Ma6iRR+Ukbc9EfA==", "contribution"=>{"contributor_name"=>"Bob Bob", "candidate_name"=>"Kamala Harris", "amount"=>"3000", "date"=>"03/18/2020"}, "commit"=>"Contribute"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."name" = ? LIMIT ?[0m  [["name", "Bob Bob"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:27
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/contribution.rb:27
+  [1m[36mContributor Create (0.3ms)[0m  [1m[32mINSERT INTO "contributors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Bob Bob"], ["created_at", "2019-07-22 00:14:27.194505"], ["updated_at", "2019-07-22 00:14:27.194505"]]
+  ↳ app/models/contribution.rb:27
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/contribution.rb:27
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."first_name" = ? AND "candidates"."last_name" = ? LIMIT ?[0m  [["first_name", "Kamala"], ["last_name", "Harris"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:18
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[36mContribution Create (0.8ms)[0m  [1m[32mINSERT INTO "contributions" ("amount", "date", "created_at", "updated_at", "candidate_id", "contributor_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["amount", 3000], ["date", "03/18/2020"], ["created_at", "2019-07-22 00:14:27.198111"], ["updated_at", "2019-07-22 00:14:27.198111"], ["candidate_id", 3], ["contributor_id", 3]]
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+Redirected to http://localhost:3000/contributions/5
+Completed 302 Found in 9ms (ActiveRecord: 3.9ms)
+
+
+Started GET "/contributions/5" for 127.0.0.1 at 2019-07-21 20:14:27 -0400
+Processing by ContributionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT  "contributions".* FROM "contributions" WHERE "contributions"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:46
+  Rendering contributions/show.html.erb within layouts/application
+  [1m[36mCandidate Load (0.4ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/show.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 30ms (Views: 26.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/contributors/3" for 127.0.0.1 at 2019-07-21 20:14:30 -0400
+Processing by ContributorsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/show.html.erb within layouts/application
+  Rendered contributors/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 21ms (Views: 18.8ms | ActiveRecord: 0.1ms)
+
+
+Started DELETE "/contributors/3" for 127.0.0.1 at 2019-07-21 20:14:39 -0400
+Processing by ContributorsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"I3PeM7+OCElCs6A8ApCVBwv8UbgtwAesNThuu3S77O4qNQVKU/iWzkt4QTnnBrmmtupwABGOHPi/jR83W9wTYg==", "id"=>"3"}
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributors_controller.rb:33
+  [1m[36mContributor Destroy (0.3ms)[0m  [1m[31mDELETE FROM "contributors" WHERE "contributors"."id" = ?[0m  [["id", 3]]
+  ↳ app/controllers/contributors_controller.rb:33
+  [1m[35m (10.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributors_controller.rb:33
+Redirected to http://localhost:3000/contributors
+Completed 302 Found in 15ms (ActiveRecord: 11.3ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-07-21 20:14:39 -0400
+Processing by ContributorsController#index as HTML
+  Rendering contributors/index.html.erb within layouts/application
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/views/contributors/index.html.erb:4
+  Rendered contributors/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 54ms (Views: 52.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 20:14:46 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/index.html.erb within layouts/application (5.2ms)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"contributors", :id=>nil}, missing required keys: [:id]):
+    17:       <tr>
+    18:         <td><%= link_to c.candidate_name, candidate_path(c.candidate) %></td>
+    19:         <td><%= link_to c.amount, contribution_path(c) %></td>
+    20:         <td><%= link_to c.contributor_name, contributor_path(c.contributor) %></td>
+    21:         <td><%= c.date %></td>
+    22:       </tr>
+    23:     <% end %>
+  
+app/views/contributions/index.html.erb:20:in `block in _app_views_contributions_index_html_erb__2854328334818676463_70130258717140'
+app/views/contributions/index.html.erb:16:in `_app_views_contributions_index_html_erb__2854328334818676463_70130258717140'
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 20:20:24 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/index.html.erb within layouts/application (5.7ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"contributors", :id=>nil}, missing required keys: [:id]):
+    25:         <td><%= link_to c.amount, contribution_path(c) %></td>
+    26:         <td>
+    27:           <% if c.contributor_id %>
+    28:             <%= link_to c.contributor_name, contributor_path(c.contributor) %>
+    29:           <% else %>
+    30:             <%=c .contributor_name %>
+    31:           <% end %>
+  
+app/views/contributions/index.html.erb:28:in `block in _app_views_contributions_index_html_erb__2854328334818676463_70130263672940'
+app/views/contributions/index.html.erb:16:in `_app_views_contributions_index_html_erb__2854328334818676463_70130263672940'
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 20:22:05 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/index.html.erb within layouts/application (4.5ms)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"contributors", :id=>nil}, missing required keys: [:id]):
+    25:         <td><%= link_to c.amount, contribution_path(c) %></td>
+    26:         <td>
+    27:           <% if c.contributor_id != nil %>
+    28:             <%= link_to c.contributor_name, contributor_path(c.contributor) %>
+    29:           <% else %>
+    30:             <%=c .contributor_name %>
+    31:           <% end %>
+  
+app/views/contributions/index.html.erb:28:in `block in _app_views_contributions_index_html_erb__2854328334818676463_70130295258660'
+app/views/contributions/index.html.erb:16:in `_app_views_contributions_index_html_erb__2854328334818676463_70130295258660'
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 20:25:48 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.9ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/index.html.erb within layouts/application (26.6ms)
+Completed 500 Internal Server Error in 44ms (ActiveRecord: 1.2ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"contributors", :id=>nil}, missing required keys: [:id]):
+    25:         <td><%= link_to c.amount, contribution_path(c) %></td>
+    26:         <td>
+    27:           <% if c.contributor_id.present? %>
+    28:             <%= link_to c.contributor_name, contributor_path(c.contributor) %>
+    29:           <% else %>
+    30:             <%= c.contributor_name %>
+    31:           <% end %>
+  
+app/views/contributions/index.html.erb:28:in `block in _app_views_contributions_index_html_erb__2854328334818676463_70130302550800'
+app/views/contributions/index.html.erb:16:in `_app_views_contributions_index_html_erb__2854328334818676463_70130302550800'
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 20:26:17 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mCACHE Contributor Load (0.0ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 33ms (Views: 31.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/contributions/5" for 127.0.0.1 at 2019-07-21 20:26:23 -0400
+Processing by ContributionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mContribution Load (0.3ms)[0m  [1m[34mSELECT  "contributions".* FROM "contributions" WHERE "contributions"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:46
+  Rendering contributions/show.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/show.html.erb within layouts/application (6.0ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"contributors", :id=>nil}, missing required keys: [:id]):
+    1: <h2><%= link_to @contribution.candidate_name, candidate_path(@contribution.candidate) %></h2>
+    2:   <h3>Amount: $<%= @contribution.amount %></h3>
+    3:   <h3>Date: <%= @contribution.date %></h3>
+    4:   <h3>Contributor: <%= link_to @contribution.contributor_name, contributor_path(@contribution.contributor) %></h3>
+    5: 
+    6: <%= button_to "Edit Contribution", edit_contribution_path(@contribution), method: :get %><br>
+    7: <%= button_to 'Delete Contribution', contribution_path(@contribution), method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
+  
+app/views/contributions/show.html.erb:4:in `_app_views_contributions_show_html_erb__486780902220598098_70130302656380'
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 20:27:00 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mCACHE Contributor Load (0.0ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/index.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 28ms (Views: 26.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/contributions/5" for 127.0.0.1 at 2019-07-21 20:27:02 -0400
+Processing by ContributionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT  "contributions".* FROM "contributions" WHERE "contributions"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:46
+  Rendering contributions/show.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/show.html.erb within layouts/application (3.4ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.3ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"contributors", :id=>nil}, missing required keys: [:id]):
+    1: <h2><%= link_to @contribution.candidate_name, candidate_path(@contribution.candidate) %></h2>
+    2:   <h3>Amount: $<%= @contribution.amount %></h3>
+    3:   <h3>Date: <%= @contribution.date %></h3>
+    4:   <h3>Contributor: <%= link_to @contribution.contributor_name, contributor_path(@contribution.contributor) %></h3>
+    5: 
+    6: <%= button_to "Edit Contribution", edit_contribution_path(@contribution), method: :get %><br>
+    7: <%= button_to 'Delete Contribution', contribution_path(@contribution), method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
+  
+app/views/contributions/show.html.erb:4:in `_app_views_contributions_show_html_erb__486780902220598098_70130302682640'
+Started GET "/contributions/5" for 127.0.0.1 at 2019-07-21 20:28:45 -0400
+Processing by ContributionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT  "contributions".* FROM "contributions" WHERE "contributions"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:46
+  Rendering contributions/show.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/show.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 22ms (Views: 19.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 20:28:59 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mCACHE Contributor Load (0.0ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/index.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 36ms (Views: 34.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 20:29:01 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.3ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:3
+  Rendered candidates/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 50ms (Views: 46.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-07-21 20:29:17 -0400
+Processing by ContributorsController#index as HTML
+  Rendering contributors/index.html.erb within layouts/application
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/views/contributors/index.html.erb:4
+  Rendered contributors/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 21ms (Views: 19.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contributions/new" for 127.0.0.1 at 2019-07-21 20:29:40 -0400
+Processing by ContributionsController#new as HTML
+  Rendering contributions/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.8ms)
+  Rendered contributions/_form.html.erb (8.6ms)
+  Rendered contributions/new.html.erb within layouts/application (10.2ms)
+Completed 200 OK in 35ms (Views: 32.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/contributions" for 127.0.0.1 at 2019-07-21 20:30:01 -0400
+Processing by ContributionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"exX+Qfd9VTG/FiL7P+/nyUKnxb/+33oCVA3/qo+1OA7G6adRBchtaRz5RY9xn1JJsTQ2dRYyx7N6gtFdEQIFvg==", "contribution"=>{"contributor_name"=>"Jane Smith", "candidate_name"=>"The Rock", "amount"=>"100", "date"=>"02/02/2020"}, "commit"=>"Contribute"}
+  [1m[36mContributor Load (0.4ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."name" = ? LIMIT ?[0m  [["name", "Jane Smith"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:27
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/contribution.rb:27
+  [1m[36mContributor Create (0.5ms)[0m  [1m[32mINSERT INTO "contributors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Jane Smith"], ["created_at", "2019-07-22 00:30:01.930724"], ["updated_at", "2019-07-22 00:30:01.930724"]]
+  ↳ app/models/contribution.rb:27
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/contribution.rb:27
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."first_name" = ? AND "candidates"."last_name" = ? LIMIT ?[0m  [["first_name", "The"], ["last_name", "Rock"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:18
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/contribution.rb:18
+  [1m[36mCandidate Create (0.4ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "The"], ["last_name", "Rock"], ["created_at", "2019-07-22 00:30:01.936478"], ["updated_at", "2019-07-22 00:30:01.936478"]]
+  ↳ app/models/contribution.rb:18
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/contribution.rb:18
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[36mContribution Create (0.5ms)[0m  [1m[32mINSERT INTO "contributions" ("amount", "date", "created_at", "updated_at", "candidate_id", "contributor_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["amount", 100], ["date", "02/02/2020"], ["created_at", "2019-07-22 00:30:01.940332"], ["updated_at", "2019-07-22 00:30:01.940332"], ["candidate_id", 8], ["contributor_id", 4]]
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+Redirected to http://localhost:3000/contributions/6
+Completed 302 Found in 19ms (ActiveRecord: 5.3ms)
+
+
+Started GET "/contributions/6" for 127.0.0.1 at 2019-07-21 20:30:01 -0400
+Processing by ContributionsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT  "contributions".* FROM "contributions" WHERE "contributions"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:46
+  Rendering contributions/show.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/show.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 31ms (Views: 28.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/candidates/8" for 127.0.0.1 at 2019-07-21 20:30:05 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  Rendering candidates/show.html.erb within layouts/application
+  Rendered candidates/show.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 21ms (Views: 18.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates/8/contributions" for 127.0.0.1 at 2019-07-21 20:30:06 -0400
+Processing by ContributionsController#index as HTML
+  Parameters: {"candidate_id"=>"8"}
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:8
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."candidate_id" = ? ORDER BY "contributions"."date" DESC[0m  [["candidate_id", 8]]
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 24ms (Views: 19.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 20:30:14 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.3ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:3
+  Rendered candidates/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 29ms (Views: 26.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 20:30:20 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.6ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mCACHE Contributor Load (0.0ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/index.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 48ms (Views: 44.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/candidates/8" for 127.0.0.1 at 2019-07-21 20:30:25 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  Rendering candidates/show.html.erb within layouts/application
+  Rendered candidates/show.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 22ms (Views: 20.9ms | ActiveRecord: 0.1ms)
+
+
+Started DELETE "/candidates/8" for 127.0.0.1 at 2019-07-21 20:30:30 -0400
+Processing by CandidatesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"GIA3J/Z9h2cxGW99/r75k3MBEC6gNBHkph7juY29TaKHMWixL4rYHDncBuNU34PM1wGy1sGkPWUO7BgNDi0mIw==", "id"=>"8"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."candidate_id" = ?[0m  [["candidate_id", 8]]
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[36mCandidate Destroy (0.4ms)[0m  [1m[31mDELETE FROM "candidates" WHERE "candidates"."id" = ?[0m  [["id", 8]]
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/candidates_controller.rb:33
+Redirected to http://localhost:3000/candidates
+Completed 302 Found in 20ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 20:30:40 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mCACHE Contributor Load (0.0ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/index.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 45ms (Views: 42.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/contributions/6" for 127.0.0.1 at 2019-07-21 20:30:44 -0400
+Processing by ContributionsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT  "contributions".* FROM "contributions" WHERE "contributions"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:46
+  Rendering contributions/show.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  Rendered contributions/show.html.erb within layouts/application (3.9ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"candidates", :id=>nil}, missing required keys: [:id]):
+    1: <h2><%= link_to @contribution.candidate_name, candidate_path(@contribution.candidate) %></h2>
+    2:   <h3>Amount: $<%= @contribution.amount %></h3>
+    3:   <h3>Date: <%= @contribution.date %></h3>
+    4:   <h3>Contributor:
+  
+app/views/contributions/show.html.erb:1:in `_app_views_contributions_show_html_erb__486780902220598098_70130302813820'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "candidates"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "candidates" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "party_affiliation" varchar, "office_position" varchar, "location" varchar, "platform_outline" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "favorite_counter" integer)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributions"[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "contributions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" integer, "date" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar, "candidate_id" integer, "contributor_id" integer)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX "index_contributions_on_candidate_id" ON "contributions" ("candidate_id")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX "index_contributions_on_contributor_id" ON "contributions" ("contributor_id")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributors"[0m
+  ↳ db/schema.rb:39
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "contributors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "industry_affiliation" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:39
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:47
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "candidate_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:47
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_candidate_id" ON "favorites" ("candidate_id")[0m
+  ↳ db/schema.rb:47
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  ↳ db/schema.rb:47
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  ↳ db/schema.rb:56
+  [1m[35m (7.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "uid" varchar, "image" varchar)[0m
+  ↳ db/schema.rb:56
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (8.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190721233133)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (6.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190713214451),
+(20190713221735),
+(20190713220913),
+(20190713213904),
+(20190721013400),
+(20190713213639),
+(20190713214739),
+(20190721232913),
+(20190721013239),
+(20190713212829);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-22 00:32:46.027122"], ["updated_at", "2019-07-22 00:32:46.027122"]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "candidates"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "candidates" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "party_affiliation" varchar, "office_position" varchar, "location" varchar, "platform_outline" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "favorite_counter" integer)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributions"[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "contributions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "amount" integer, "date" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "size" varchar, "candidate_id" integer, "contributor_id" integer)[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX "index_contributions_on_candidate_id" ON "contributions" ("candidate_id")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX "index_contributions_on_contributor_id" ON "contributions" ("contributor_id")[0m
+  ↳ db/schema.rb:27
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "contributors"[0m
+  ↳ db/schema.rb:39
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "contributors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "category" varchar, "industry_affiliation" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:39
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:47
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "candidate_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:47
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_candidate_id" ON "favorites" ("candidate_id")[0m
+  ↳ db/schema.rb:47
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  ↳ db/schema.rb:47
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  ↳ db/schema.rb:56
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "uid" varchar, "image" varchar)[0m
+  ↳ db/schema.rb:56
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190721233133)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190713214451),
+(20190713221735),
+(20190713220913),
+(20190713213904),
+(20190721013400),
+(20190713213639),
+(20190713214739),
+(20190721232913),
+(20190721013239),
+(20190713212829);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-22 00:32:46.083122"], ["updated_at", "2019-07-22 00:32:46.083122"]]
+  ↳ db/schema.rb:13
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2019-07-22 00:32:46.088315"], ["key", "environment"]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[36mCandidate Create (1.9ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "party_affiliation", "office_position", "location", "platform_outline", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "Joseph"], ["last_name", "Biden"], ["party_affiliation", "Democrat"], ["office_position", "President"], ["location", "Former Delaware Senator"], ["platform_outline", "Restoring America’s standing on the global stage; strengthening economic protections for low-income workers in industries like manufacturing and fast food."], ["created_at", "2019-07-22 00:32:46.243081"], ["updated_at", "2019-07-22 00:32:46.243081"]]
+  ↳ db/seeds.rb:9
+  [1m[35m (2.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[36mCandidate Create (0.5ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "party_affiliation", "office_position", "location", "platform_outline", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "Cory"], ["last_name", "Booker"], ["party_affiliation", "Democrat"], ["office_position", "President"], ["location", "Senator from New Jersey"], ["platform_outline", "Has been one of the leaders in the Senate on criminal justice reform, but his appeal would most likely center on his call to unify the country."], ["created_at", "2019-07-22 00:32:46.251846"], ["updated_at", "2019-07-22 00:32:46.251846"]]
+  ↳ db/seeds.rb:10
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (3.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[36mCandidate Create (0.4ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "party_affiliation", "office_position", "location", "platform_outline", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "Kamala"], ["last_name", "Harris"], ["party_affiliation", "Democrat"], ["office_position", "President"], ["location", "Senator from California"], ["platform_outline", "Unveiled middle-class tax cut legislation last fall, and has championed a liberal civil rights agenda in the Senate."], ["created_at", "2019-07-22 00:32:46.261917"], ["updated_at", "2019-07-22 00:32:46.261917"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[36mCandidate Create (0.5ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "party_affiliation", "office_position", "location", "platform_outline", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "Donald"], ["last_name", "Trump"], ["party_affiliation", "Republican"], ["office_position", "President"], ["location", "Current President, New York"], ["platform_outline", "Restricting immigration and building a wall at the Mexican border; renegotiating or canceling international deals on trade, arms control and climate change; withdrawing American troops from overseas."], ["created_at", "2019-07-22 00:32:46.272020"], ["updated_at", "2019-07-22 00:32:46.272020"]]
+  ↳ db/seeds.rb:12
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:13
+  [1m[36mCandidate Create (0.4ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "party_affiliation", "office_position", "location", "platform_outline", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "William"], ["last_name", "Weld"], ["party_affiliation", "Republican"], ["office_position", "President"], ["location", "Former Massachusetts Governor"], ["platform_outline", "Favors fiscal restraint, free trade and moderate immigration reform; has endorsed steps to legalize marijuana."], ["created_at", "2019-07-22 00:32:46.276697"], ["updated_at", "2019-07-22 00:32:46.276697"]]
+  ↳ db/seeds.rb:13
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:13
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/rubies/ruby-2.6.1/lib/ruby/gems/2.6.0/gems/rake-12.3.2/lib/rake/task.rb:273
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 20:32:54 -0400
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  Rendered contributions/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 279ms (Views: 267.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 20:32:55 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 40ms (Views: 39.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 20:32:58 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 20:32:58 -0400
+Started GET "/auth/facebook/callback?code=AQCzVeRmxYR_9TOsXRoFquEQCaBnp3VxfGrzvbm7zNCdlwZ2iBFPcZExBSfdRhYVqndBRxcPldna-KBEnryDPmZL4AFjgJp_P3bZmX9OsmtH16ZO9MLzhw0D1zfmL9gKURGZ5OL07Znl26PbFWqxHYAGRuC9TIEppftZ6Mqpsm6a8rYaGcOjgxhyiGYUfpMRQoRStIsxLamemw_B2YcYjHJxsVh7iMk6dYqGFMfZDFFwQ33s9lG9nzzGNbrGuFhCdwUnsRSp2wrr78DO0CV1ZLrBB_6fn1dV1aY4lswCWfzaGNEQ0NAO_LwthGS8iWp_PWdLHlmDcudhF-n56ytjP1aj&state=0515df37c4c42a512ba0dbf1cf9c17c590df45ada431ea86" for 127.0.0.1 at 2019-07-21 20:33:01 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQCzVeRmxYR_9TOsXRoFquEQCaBnp3VxfGrzvbm7zNCdlwZ2iBFPcZExBSfdRhYVqndBRxcPldna-KBEnryDPmZL4AFjgJp_P3bZmX9OsmtH16ZO9MLzhw0D1zfmL9gKURGZ5OL07Znl26PbFWqxHYAGRuC9TIEppftZ6Mqpsm6a8rYaGcOjgxhyiGYUfpMRQoRStIsxLamemw_B2YcYjHJxsVh7iMk6dYqGFMfZDFFwQ33s9lG9nzzGNbrGuFhCdwUnsRSp2wrr78DO0CV1ZLrBB_6fn1dV1aY4lswCWfzaGNEQ0NAO_LwthGS8iWp_PWdLHlmDcudhF-n56ytjP1aj", "state"=>"0515df37c4c42a512ba0dbf1cf9c17c590df45ada431ea86"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/sessions_controller.rb:22
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "LaRaye Johnson"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at", "uid", "image") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["username", "LaRaye Johnson"], ["email", "lnj2105@columbia.edu"], ["password_digest", "$2a$12$vR.6AVeJzg1/i.VCogAfaeR3bmsIddPItHzpN3rKV3JdZwLaV2JDK"], ["created_at", "2019-07-22 00:33:01.901154"], ["updated_at", "2019-07-22 00:33:01.901154"], ["uid", "2910548335628368"], ["image", "http://graph.facebook.com/v2.10/2910548335628368/picture"]]
+  ↳ app/controllers/sessions_controller.rb:22
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 247ms (ActiveRecord: 7.5ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 20:33:01 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 26ms (Views: 21.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 20:33:03 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.3ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:3
+  Rendered candidates/index.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 36ms (Views: 26.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/candidates/new" for 127.0.0.1 at 2019-07-21 20:33:06 -0400
+Processing by CandidatesController#new as HTML
+  Rendering candidates/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.4ms)
+  Rendered candidates/_form.html.erb (9.9ms)
+  Rendered candidates/new.html.erb within layouts/application (11.5ms)
+Completed 200 OK in 66ms (Views: 63.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/candidates" for 127.0.0.1 at 2019-07-21 20:33:50 -0400
+Processing by CandidatesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"/eOO5G0c40E8f2D2QMKbcPDjq+XjXOE/GsO1f7sZ02u3Jq3vImzB2xpOssW7t4hhgyLwwMHXNk2uwr20g6dHLw==", "candidate"=>{"first_name"=>"The", "last_name"=>"Rock", "party_affiliation"=>"Wrestlers Turned Actors Party", "office_position"=>"President", "location"=>"Actor from LA", "platform_outline"=>"Smell what's cooking."}, "commit"=>"List Candidate"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/candidates_controller.rb:17
+  [1m[36mCandidate Create (0.4ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "party_affiliation", "office_position", "location", "platform_outline", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["first_name", "The"], ["last_name", "Rock"], ["party_affiliation", "Wrestlers Turned Actors Party"], ["office_position", "President"], ["location", "Actor from LA"], ["platform_outline", "Smell what's cooking."], ["created_at", "2019-07-22 00:33:50.970817"], ["updated_at", "2019-07-22 00:33:50.970817"]]
+  ↳ app/controllers/candidates_controller.rb:17
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/candidates_controller.rb:17
+Redirected to http://localhost:3000/candidates/6
+Completed 302 Found in 6ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/candidates/6" for 127.0.0.1 at 2019-07-21 20:33:50 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  Rendering candidates/show.html.erb within layouts/application
+  Rendered candidates/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 23ms (Views: 20.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/candidates/6/contributions/new" for 127.0.0.1 at 2019-07-21 20:33:53 -0400
+Processing by ContributionsController#new as HTML
+  Parameters: {"candidate_id"=>"6"}
+  Rendering contributions/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.3ms)
+  Rendered contributions/_form.html.erb (10.4ms)
+  Rendered contributions/new.html.erb within layouts/application (11.8ms)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.7ms)
+
+
+  
+ActionView::Template::Error (The :dependent option must be one of [:destroy, :delete_all, :nullify, :restrict_with_error, :restrict_with_exception], but is :destory):
+    2:   <%= render partial: 'layouts/errors', locals: {object: @contribution} %>
+    3: 
+    4:   <%= f.label :contributor_name, "Contributor Name" %>
+    5:   <%= f.text_field :contributor_name, placeholder: "ex. Jane Smith" %><br><br>
+    6: 
+    7:   <%= f.label :candidate_name, "Candidate Name" %>
+    8:   <%= f.text_field :candidate_name, placeholder: "ex. Jane Smith" %><br><br>
+  
+app/models/contributor.rb:2:in `<class:Contributor>'
+app/models/contributor.rb:1:in `<main>'
+app/models/contribution.rb:31:in `contributor_name'
+app/views/contributions/_form.html.erb:5:in `block in _app_views_contributions__form_html_erb__1466758590254375913_70329697214400'
+app/views/contributions/_form.html.erb:1:in `_app_views_contributions__form_html_erb__1466758590254375913_70329697214400'
+app/views/contributions/new.html.erb:3:in `_app_views_contributions_new_html_erb___2145650281501947504_70329704651360'
+Started GET "/candidates/6/contributions/new" for 127.0.0.1 at 2019-07-21 20:34:09 -0400
+Processing by ContributionsController#new as HTML
+  Parameters: {"candidate_id"=>"6"}
+  Rendering contributions/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.5ms)
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  Rendered contributions/_form.html.erb (36.4ms)
+  Rendered contributions/new.html.erb within layouts/application (38.1ms)
+Completed 200 OK in 101ms (Views: 85.6ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/contributions" for 127.0.0.1 at 2019-07-21 20:34:21 -0400
+Processing by ContributionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jP/Wfluq+Y8HLKPZayH8yUPQ8rH+fzJKTVdq+Kqrvv4x45139jWvoOElxwN8nGRrTA6T1wjqVA1NBBoMOjur3Q==", "contribution"=>{"contributor_name"=>"Jane Smith", "candidate_name"=>"The Rock", "amount"=>"1000", "date"=>"05/05/2010"}, "commit"=>"Contribute"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."name" = ? LIMIT ?[0m  [["name", "Jane Smith"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:27
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/contribution.rb:27
+  [1m[36mContributor Create (0.5ms)[0m  [1m[32mINSERT INTO "contributors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Jane Smith"], ["created_at", "2019-07-22 00:34:21.939729"], ["updated_at", "2019-07-22 00:34:21.939729"]]
+  ↳ app/models/contribution.rb:27
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/contribution.rb:27
+  [1m[36mCandidate Load (0.4ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."first_name" = ? AND "candidates"."last_name" = ? LIMIT ?[0m  [["first_name", "The"], ["last_name", "Rock"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:18
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[36mContribution Create (0.5ms)[0m  [1m[32mINSERT INTO "contributions" ("amount", "date", "created_at", "updated_at", "candidate_id", "contributor_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["amount", 1000], ["date", "05/05/2010"], ["created_at", "2019-07-22 00:34:21.945645"], ["updated_at", "2019-07-22 00:34:21.945645"], ["candidate_id", 6], ["contributor_id", 1]]
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[35m (3.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+Redirected to http://localhost:3000/contributions/1
+Completed 302 Found in 17ms (ActiveRecord: 6.4ms)
+
+
+Started GET "/contributions/1" for 127.0.0.1 at 2019-07-21 20:34:21 -0400
+Processing by ContributionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContribution Load (0.3ms)[0m  [1m[34mSELECT  "contributions".* FROM "contributions" WHERE "contributions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:46
+  Rendering contributions/show.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/show.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 38ms (Views: 34.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/contributors/1" for 127.0.0.1 at 2019-07-21 20:34:26 -0400
+Processing by ContributorsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/show.html.erb within layouts/application
+  Rendered contributors/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 20ms (Views: 17.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/contributors/1/contributions" for 127.0.0.1 at 2019-07-21 20:34:29 -0400
+Processing by ContributionsController#index as HTML
+  Parameters: {"contributor_id"=>"1"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:6
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.3ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ? ORDER BY "contributions"."date" DESC[0m  [["contributor_id", 1]]
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  Rendered contributions/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 26ms (Views: 20.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/candidates/6" for 127.0.0.1 at 2019-07-21 20:34:32 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  Rendering candidates/show.html.erb within layouts/application
+  Rendered candidates/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 21ms (Views: 18.5ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/candidates/6" for 127.0.0.1 at 2019-07-21 20:34:35 -0400
+Processing by CandidatesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"NwYO1agI6c1g6tqO/k7BZfSobKLGUhJuF1d1lScxNZZt/5vpigL0PRhvUsOmGAGTNqSBtQ06lCbCErYKB43tcQ==", "id"=>"6"}
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."candidate_id" = ?[0m  [["candidate_id", 6]]
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[36mContribution Destroy (2.8ms)[0m  [1m[31mDELETE FROM "contributions" WHERE "contributions"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."candidate_id" = ?[0m  [["candidate_id", 6]]
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[36mCandidate Destroy (0.1ms)[0m  [1m[31mDELETE FROM "candidates" WHERE "candidates"."id" = ?[0m  [["id", 6]]
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[35m (4.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/candidates_controller.rb:33
+Redirected to http://localhost:3000/candidates
+Completed 302 Found in 20ms (ActiveRecord: 8.5ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 20:34:35 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.4ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:3
+  Rendered candidates/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 28ms (Views: 26.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-07-21 20:34:42 -0400
+Processing by ContributorsController#index as HTML
+  Rendering contributors/index.html.erb within layouts/application
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/views/contributors/index.html.erb:4
+  Rendered contributors/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 57ms (Views: 55.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contributors/1" for 127.0.0.1 at 2019-07-21 20:34:45 -0400
+Processing by ContributorsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/show.html.erb within layouts/application
+  Rendered contributors/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 19ms (Views: 17.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/contributors/1/contributions" for 127.0.0.1 at 2019-07-21 20:34:47 -0400
+Processing by ContributionsController#index as HTML
+  Parameters: {"contributor_id"=>"1"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:6
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ? ORDER BY "contributions"."date" DESC[0m  [["contributor_id", 1]]
+  ↳ app/views/contributions/index.html.erb:16
+  Rendered contributions/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 27ms (Views: 24.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contributions/new" for 127.0.0.1 at 2019-07-21 20:36:04 -0400
+Processing by ContributionsController#new as HTML
+  Rendering contributions/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.7ms)
+  Rendered contributions/_form.html.erb (4.7ms)
+  Rendered contributions/new.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 24ms (Views: 21.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/contributions" for 127.0.0.1 at 2019-07-21 20:36:21 -0400
+Processing by ContributionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4F/Z04aXojGo8qOfXUbL7oVUpRhkeCr6kvp+G/4gMX1do4DDdCKaaQsdxOsTNn5udsdW0oyVl0u8dVDsYJcMzQ==", "contribution"=>{"contributor_name"=>"Jane Smith", "candidate_name"=>"The Rock", "amount"=>"3000", "date"=>"03/03/2003"}, "commit"=>"Contribute"}
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."name" = ? LIMIT ?[0m  [["name", "Jane Smith"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:27
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."first_name" = ? AND "candidates"."last_name" = ? LIMIT ?[0m  [["first_name", "The"], ["last_name", "Rock"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:18
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/contribution.rb:18
+  [1m[36mCandidate Create (0.4ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "The"], ["last_name", "Rock"], ["created_at", "2019-07-22 00:36:21.061426"], ["updated_at", "2019-07-22 00:36:21.061426"]]
+  ↳ app/models/contribution.rb:18
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/contribution.rb:18
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[36mContribution Create (0.5ms)[0m  [1m[32mINSERT INTO "contributions" ("amount", "date", "created_at", "updated_at", "candidate_id", "contributor_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["amount", 3000], ["date", "03/03/2003"], ["created_at", "2019-07-22 00:36:21.065824"], ["updated_at", "2019-07-22 00:36:21.065824"], ["candidate_id", 7], ["contributor_id", 1]]
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+Redirected to http://localhost:3000/contributions/2
+Completed 302 Found in 11ms (ActiveRecord: 3.8ms)
+
+
+Started GET "/contributions/2" for 127.0.0.1 at 2019-07-21 20:36:21 -0400
+Processing by ContributionsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT  "contributions".* FROM "contributions" WHERE "contributions"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:46
+  Rendering contributions/show.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:31
+  Rendered contributions/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 21ms (Views: 19.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contributors/1" for 127.0.0.1 at 2019-07-21 20:36:24 -0400
+Processing by ContributorsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/show.html.erb within layouts/application
+  Rendered contributors/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 17ms (Views: 15.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contributors/1/contributions" for 127.0.0.1 at 2019-07-21 20:36:28 -0400
+Processing by ContributionsController#index as HTML
+  Parameters: {"contributor_id"=>"1"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:6
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ? ORDER BY "contributions"."date" DESC[0m  [["contributor_id", 1]]
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:23
+  Rendered contributions/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 39ms (Views: 36.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/candidates/7" for 127.0.0.1 at 2019-07-21 20:36:29 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  Rendering candidates/show.html.erb within layouts/application
+  Rendered candidates/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 27ms (Views: 24.2ms | ActiveRecord: 0.1ms)
+
+
+Started DELETE "/candidates/7" for 127.0.0.1 at 2019-07-21 20:36:32 -0400
+Processing by CandidatesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"OM4MthuPaTYbSuXOYVakl6CmgG0Il5WowIC5EQ+ixGRTOuUfuOWD2dkr0jhtRgXoud5T/we1uUyCbbvHHWjafA==", "id"=>"7"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."candidate_id" = ?[0m  [["candidate_id", 7]]
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[36mContribution Destroy (6.3ms)[0m  [1m[31mDELETE FROM "contributions" WHERE "contributions"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."candidate_id" = ?[0m  [["candidate_id", 7]]
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[36mCandidate Destroy (0.2ms)[0m  [1m[31mDELETE FROM "candidates" WHERE "candidates"."id" = ?[0m  [["id", 7]]
+  ↳ app/controllers/candidates_controller.rb:33
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/candidates_controller.rb:33
+Redirected to http://localhost:3000/candidates
+Completed 302 Found in 16ms (ActiveRecord: 8.5ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 20:36:32 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:3
+  Rendered candidates/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 32ms (Views: 30.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-07-21 20:36:37 -0400
+Processing by ContributorsController#index as HTML
+  Rendering contributors/index.html.erb within layouts/application
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/views/contributors/index.html.erb:4
+  Rendered contributors/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 24ms (Views: 22.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/contributors/1" for 127.0.0.1 at 2019-07-21 20:36:39 -0400
+Processing by ContributorsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/show.html.erb within layouts/application
+  Rendered contributors/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 25ms (Views: 23.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/contributors/1/contributions" for 127.0.0.1 at 2019-07-21 20:36:40 -0400
+Processing by ContributionsController#index as HTML
+  Parameters: {"contributor_id"=>"1"}
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:6
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ? ORDER BY "contributions"."date" DESC[0m  [["contributor_id", 1]]
+  ↳ app/views/contributions/index.html.erb:16
+  Rendered contributions/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 20ms (Views: 17.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-07-21 20:36:46 -0400
+Processing by ContributorsController#index as HTML
+  Rendering contributors/index.html.erb within layouts/application
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/views/contributors/index.html.erb:4
+  Rendered contributors/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 37ms (Views: 35.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 20:36:48 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  Rendered contributions/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 60ms (Views: 58.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 20:36:54 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 51ms (Views: 29.4ms | ActiveRecord: 1.7ms)
+
+
