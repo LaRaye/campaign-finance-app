@@ -1,6 +1,5 @@
 <h2><%= @contributor.name %></h2>
   <h3>Industry: <%= @contributor.industry_affiliation %></h3>
-  <h3>Classification: <%= @contributor.category %></h3>
   <p><%= link_to "See All Contributions", contributor_contributions_path(@contributor)%></p>
   <p><%= link_to 'List a New Contribution', new_contributor_contribution_path(@contributor) %></p><br>
 
