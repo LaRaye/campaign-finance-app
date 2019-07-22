@@ -31,7 +31,7 @@ class ContributorsController < ApplicationController
 
   def destroy
     @contributor.destroy
-    redirect_to contributor_path
+    redirect_to contributors_path
   end
 
   private

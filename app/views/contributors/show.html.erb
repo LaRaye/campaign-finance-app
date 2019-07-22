@@ -5,6 +5,4 @@
   <p><%= link_to 'List a New Contribution', new_contributor_contribution_path(@contributor) %></p><br>
 
 <%= button_to 'Edit Contributor', edit_contributor_path(@contributor), method: :get %><br>
-<%= form_tag contributor_path(@contributor.id), method: "delete" do %>
-  <%= submit_tag "Delete Contributor" %>
-<% end %>
+<%= button_to 'Delete Contributor', contributor_path(@contributor), method: :delete, data: {confirm: "Are you sure you want to delete?"} %>

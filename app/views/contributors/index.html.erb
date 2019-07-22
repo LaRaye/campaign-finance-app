@@ -1,4 +1,5 @@
 <h1>Contributors</h1>
+<%= link_to 'List A Contributor', new_contribution_path %><br><br>
 
 <% @contributors.each do |contributor| %>
   <li><%= link_to contributor.name, contributor_path(contributor) %></li>

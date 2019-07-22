@@ -2,7 +2,7 @@ class Contribution < ApplicationRecord
   belongs_to :candidate, optional: true
   belongs_to :contributor, optional: true
 
-  after_commit :assign_size
+  after_save :assign_size
 
   validates :amount, presence: true, numericality: {only_integer: true, greater_than: 0}
   validates :date, presence: true, format: {with: /\d{2}\/\d{2}\/\d{4}/}

@@ -4,6 +4,4 @@
   <h3>Contributor: <%= link_to @contribution.contributor_name, contributor_path(@contribution.contributor) %></h3>
 
 <%= button_to "Edit Contribution", edit_contribution_path(@contribution), method: :get %><br>
-<%= form_tag contribution_path(@contribution.id), method: "delete" do %>
-  <%= submit_tag "Delete Contribution" %>
-<% end %>
+<%= button_to 'Delete Contribution', contribution_path(@contribution), method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
