@@ -1,4 +1,9 @@
-<h1><img src="<%= @user.image %>"> Welcome, <%= @user.username %>!</h1>
+<h1>
+  <% if @user.image.present? %>
+    <img src="<%= @user.image %>">
+  <% end %>
+  Welcome, <%= @user.username %>!
+</h1>
   <h2>What would you like to do?</h2>
     <h3>Explore:</h3>
       <%= link_to 'Candidates', candidates_path %><br>
@@ -8,4 +13,3 @@
     <%= link_to 'Candidate', new_candidate_path %><br>
     <%= link_to 'Contributor', new_contributor_path %><br>
     <%= link_to 'Contribution', new_contribution_path %><br><br><br>
-<%= button_to 'Log Out', logout_path, method: :get %>

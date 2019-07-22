@@ -24164,3 +24164,2620 @@ Processing by UsersController#show as HTML
 Completed 200 OK in 28ms (Views: 26.7ms | ActiveRecord: 0.1ms)
 
 
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 21:21:40 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 23ms (Views: 21.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates/1" for 127.0.0.1 at 2019-07-21 21:21:45 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  Rendering candidates/show.html.erb within layouts/application
+  Rendered candidates/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 28ms (Views: 25.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/candidates/3" for 127.0.0.1 at 2019-07-21 21:21:52 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  Rendering candidates/show.html.erb within layouts/application
+  Rendered candidates/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 29ms (Views: 27.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates/3/contributions" for 127.0.0.1 at 2019-07-21 21:21:57 -0400
+Processing by ContributionsController#index as HTML
+  Parameters: {"candidate_id"=>"3"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:8
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."candidate_id" = ? ORDER BY "contributions"."date" DESC[0m  [["candidate_id", 3]]
+  ↳ app/views/contributions/index.html.erb:16
+  Rendered contributions/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 36ms (Views: 32.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contributions/new" for 127.0.0.1 at 2019-07-21 21:21:59 -0400
+Processing by ContributionsController#new as HTML
+  Rendering contributions/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.6ms)
+  Rendered contributions/_form.html.erb (6.4ms)
+  Rendered contributions/new.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 25ms (Views: 23.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/contributions" for 127.0.0.1 at 2019-07-21 21:22:28 -0400
+Processing by ContributionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KVpDhHJl03It0liQWdkRq42BQ5QYr6wh/OV/IikeFaiH0/RV9F16gtU7RPlZC3kGfzhuJPW4zda7FySXoS2KdQ==", "contribution"=>{"contributor_name"=>"Alphabet, Inc.", "candidate_name"=>"Kamala Harris", "amount"=>"5000", "date"=>"07/01/2019"}, "commit"=>"Contribute"}
+  [1m[36mContributor Load (0.3ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."name" = ? LIMIT ?[0m  [["name", "Alphabet, Inc."], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:39
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/contribution.rb:39
+  [1m[36mContributor Create (0.4ms)[0m  [1m[32mINSERT INTO "contributors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Alphabet, Inc."], ["created_at", "2019-07-22 01:22:28.790331"], ["updated_at", "2019-07-22 01:22:28.790331"]]
+  ↳ app/models/contribution.rb:39
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/contribution.rb:39
+  [1m[36mCandidate Load (0.4ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."first_name" = ? AND "candidates"."last_name" = ? LIMIT ?[0m  [["first_name", "Kamala"], ["last_name", "Harris"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:30
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[36mContribution Create (0.5ms)[0m  [1m[32mINSERT INTO "contributions" ("amount", "date", "created_at", "updated_at", "candidate_id", "contributor_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["amount", 5000], ["date", "07/01/2019"], ["created_at", "2019-07-22 01:22:28.796874"], ["updated_at", "2019-07-22 01:22:28.796874"], ["candidate_id", 3], ["contributor_id", 4]]
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+Redirected to http://localhost:3000/contributions/10
+Completed 302 Found in 14ms (ActiveRecord: 3.9ms)
+
+
+Started GET "/contributions/10" for 127.0.0.1 at 2019-07-21 21:22:28 -0400
+Processing by ContributionsController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT  "contributions".* FROM "contributions" WHERE "contributions"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:46
+  Rendering contributions/show.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/show.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 28ms (Views: 25.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/contributors/4" for 127.0.0.1 at 2019-07-21 21:22:32 -0400
+Processing by ContributorsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/show.html.erb within layouts/application
+  Rendered contributors/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 18ms (Views: 17.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/contributors/4/edit" for 127.0.0.1 at 2019-07-21 21:22:35 -0400
+Processing by ContributorsController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/edit.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.3ms)
+  Rendered contributors/_form.html.erb (2.4ms)
+  Rendered contributors/edit.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 30ms (Views: 28.0ms | ActiveRecord: 0.1ms)
+
+
+Started PATCH "/contributors/4" for 127.0.0.1 at 2019-07-21 21:22:39 -0400
+Processing by ContributorsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"oyDh0lZwfD9Jl+kVX0drRG2r87Flr9uhKOn7iQl0TvHahFxDLjsrR/AdN9EHX0kHQWu9C3NjBEg08nKMJZqM6Q==", "contributor"=>{"name"=>"Alphabet, Inc.", "industry_affiliation"=>"Technology"}, "commit"=>"List Contributor", "id"=>"4"}
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributors_controller.rb:28
+  [1m[36mContributor Update (0.5ms)[0m  [1m[33mUPDATE "contributors" SET "industry_affiliation" = ?, "updated_at" = ? WHERE "contributors"."id" = ?[0m  [["industry_affiliation", "Technology"], ["updated_at", "2019-07-22 01:22:39.153132"], ["id", 4]]
+  ↳ app/controllers/contributors_controller.rb:28
+  [1m[35m (2.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributors_controller.rb:28
+Redirected to http://localhost:3000/contributors/4
+Completed 302 Found in 8ms (ActiveRecord: 3.4ms)
+
+
+Started GET "/contributors/4" for 127.0.0.1 at 2019-07-21 21:22:39 -0400
+Processing by ContributorsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/show.html.erb within layouts/application
+  Rendered contributors/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 39ms (Views: 20.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contributors/4/contributions" for 127.0.0.1 at 2019-07-21 21:22:45 -0400
+Processing by ContributionsController#index as HTML
+  Parameters: {"contributor_id"=>"4"}
+  [1m[36mContributor Load (0.3ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:6
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ? ORDER BY "contributions"."date" DESC[0m  [["contributor_id", 4]]
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  Rendered contributions/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 23ms (Views: 19.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/contributions/new" for 127.0.0.1 at 2019-07-21 21:22:50 -0400
+Processing by ContributionsController#new as HTML
+  Rendering contributions/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.5ms)
+  Rendered contributions/_form.html.erb (3.6ms)
+  Rendered contributions/new.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 28ms (Views: 26.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/contributions" for 127.0.0.1 at 2019-07-21 21:23:16 -0400
+Processing by ContributionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Tg7y06oV6AsoNcx69cow0iliNqq2A5TYvEv73AsLAibgh0UCLC1B+9Dc0BP1GFh/29sbGlsU9S/7uaBpgzid+w==", "contribution"=>{"contributor_name"=>"Harris for Present!", "candidate_name"=>"Kamala Harris", "amount"=>"10000", "date"=>"01/01/2019"}, "commit"=>"Contribute"}
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."name" = ? LIMIT ?[0m  [["name", "Harris for Present!"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:39
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/contribution.rb:39
+  [1m[36mContributor Create (0.5ms)[0m  [1m[32mINSERT INTO "contributors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Harris for Present!"], ["created_at", "2019-07-22 01:23:16.686524"], ["updated_at", "2019-07-22 01:23:16.686524"]]
+  ↳ app/models/contribution.rb:39
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/contribution.rb:39
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."first_name" = ? AND "candidates"."last_name" = ? LIMIT ?[0m  [["first_name", "Kamala"], ["last_name", "Harris"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:30
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[36mContribution Create (0.6ms)[0m  [1m[32mINSERT INTO "contributions" ("amount", "date", "created_at", "updated_at", "candidate_id", "contributor_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["amount", 10000], ["date", "01/01/2019"], ["created_at", "2019-07-22 01:23:16.695416"], ["updated_at", "2019-07-22 01:23:16.695416"], ["candidate_id", 3], ["contributor_id", 5]]
+  ↳ app/controllers/contributions_controller.rb:23
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributions_controller.rb:23
+Redirected to http://localhost:3000/contributions/11
+Completed 302 Found in 18ms (ActiveRecord: 6.4ms)
+
+
+Started GET "/contributions/11" for 127.0.0.1 at 2019-07-21 21:23:16 -0400
+Processing by ContributionsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mContribution Load (0.3ms)[0m  [1m[34mSELECT  "contributions".* FROM "contributions" WHERE "contributions"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:46
+  Rendering contributions/show.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  [1m[36mContributor Load (0.4ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/show.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 40ms (Views: 35.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/contributors/5" for 127.0.0.1 at 2019-07-21 21:23:20 -0400
+Processing by ContributorsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/show.html.erb within layouts/application
+  Rendered contributors/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 29ms (Views: 26.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contributors/5/edit" for 127.0.0.1 at 2019-07-21 21:23:21 -0400
+Processing by ContributorsController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mContributor Load (0.3ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/edit.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.3ms)
+  Rendered contributors/_form.html.erb (2.3ms)
+  Rendered contributors/edit.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 23ms (Views: 20.4ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/contributors/5" for 127.0.0.1 at 2019-07-21 21:23:30 -0400
+Processing by ContributorsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OjMeIhgVL81Bd70+5BYxooPeNUXhUmjnvaMie9iSdyxDl6OzYF54tfj9Y/q8DhPhrx57//eetw6huKt+9Hy1NA==", "contributor"=>{"name"=>"Harris for President!", "industry_affiliation"=>""}, "commit"=>"List Contributor", "id"=>"5"}
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributors_controller.rb:28
+  [1m[36mContributor Update (0.7ms)[0m  [1m[33mUPDATE "contributors" SET "name" = ?, "industry_affiliation" = ?, "updated_at" = ? WHERE "contributors"."id" = ?[0m  [["name", "Harris for President!"], ["industry_affiliation", ""], ["updated_at", "2019-07-22 01:23:30.962051"], ["id", 5]]
+  ↳ app/controllers/contributors_controller.rb:28
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributors_controller.rb:28
+Redirected to http://localhost:3000/contributors/5
+Completed 302 Found in 8ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/contributors/5" for 127.0.0.1 at 2019-07-21 21:23:30 -0400
+Processing by ContributorsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/show.html.erb within layouts/application
+  Rendered contributors/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 24ms (Views: 21.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contributors/5/edit" for 127.0.0.1 at 2019-07-21 21:23:34 -0400
+Processing by ContributorsController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/edit.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.3ms)
+  Rendered contributors/_form.html.erb (2.6ms)
+  Rendered contributors/edit.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 23ms (Views: 21.1ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/contributors/5" for 127.0.0.1 at 2019-07-21 21:23:49 -0400
+Processing by ContributorsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"o2jaWTJeHIeTx/wwUu2AmdHcrPIDAq/A8vzdAz/776/azGfIShVL/ypNIvQK9aLa/RziSBXOcCnu51QGExUttw==", "contributor"=>{"name"=>"Harris for President!", "industry_affiliation"=>"Ideology/Single-Issue"}, "commit"=>"List Contributor", "id"=>"5"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributors_controller.rb:28
+  [1m[36mContributor Update (0.3ms)[0m  [1m[33mUPDATE "contributors" SET "industry_affiliation" = ?, "updated_at" = ? WHERE "contributors"."id" = ?[0m  [["industry_affiliation", "Ideology/Single-Issue"], ["updated_at", "2019-07-22 01:23:49.809965"], ["id", 5]]
+  ↳ app/controllers/contributors_controller.rb:28
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributors_controller.rb:28
+Redirected to http://localhost:3000/contributors/5
+Completed 302 Found in 4ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/contributors/5" for 127.0.0.1 at 2019-07-21 21:23:49 -0400
+Processing by ContributorsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mContributor Load (0.3ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/show.html.erb within layouts/application
+  Rendered contributors/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 23ms (Views: 20.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contributors/5/contributions" for 127.0.0.1 at 2019-07-21 21:23:54 -0400
+Processing by ContributionsController#index as HTML
+  Parameters: {"contributor_id"=>"5"}
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:6
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ? ORDER BY "contributions"."date" DESC[0m  [["contributor_id", 5]]
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  Rendered contributions/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 38ms (Views: 34.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/candidates/3" for 127.0.0.1 at 2019-07-21 21:23:58 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  Rendering candidates/show.html.erb within layouts/application
+  Rendered candidates/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 22ms (Views: 18.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/candidates/3/contributions" for 127.0.0.1 at 2019-07-21 21:24:00 -0400
+Processing by ContributionsController#index as HTML
+  Parameters: {"candidate_id"=>"3"}
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:8
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."candidate_id" = ? ORDER BY "contributions"."date" DESC[0m  [["candidate_id", 3]]
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 23ms (Views: 20.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/candidates/3/contributions" for 127.0.0.1 at 2019-07-21 21:41:31 -0400
+Processing by ContributionsController#index as HTML
+  Parameters: {"candidate_id"=>"3"}
+  [1m[36mCandidate Load (0.3ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:8
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.3ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."candidate_id" = ? ORDER BY "contributions"."date" DESC[0m  [["candidate_id", 3]]
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mContributor Load (0.3ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/index.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 68ms (Views: 52.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/candidates/3/contributions" for 127.0.0.1 at 2019-07-21 21:42:01 -0400
+Processing by ContributionsController#index as HTML
+  Parameters: {"candidate_id"=>"3"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:8
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."candidate_id" = ? ORDER BY "contributions"."date" DESC[0m  [["candidate_id", 3]]
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 36ms (Views: 33.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/candidates/3/contributions" for 127.0.0.1 at 2019-07-21 21:42:44 -0400
+Processing by ContributionsController#index as HTML
+  Parameters: {"candidate_id"=>"3"}
+  [1m[36mCandidate Load (0.3ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:8
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."candidate_id" = ? ORDER BY "contributions"."date" DESC[0m  [["candidate_id", 3]]
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 119ms (Views: 115.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 21:42:48 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 30ms (Views: 29.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:44:25 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:44:25 -0400
+Started GET "/auth/facebook/callback?code=AQAspAK0-qXaIV7ZNUeylVX5dfvmhmLN5_I2A_SC-TpINWZEbiFhbRHkg8_ZvkK8dOgZ9zVweNPh5tprbYwIYfsOfOV9eIEAd4K4yt3DW8wIvsxX49L8ankwUAEKoQu4XJKnvoY9PiIOU38bD5AxoZiknw6ScfGcuo5XMPflE-tIQ9i6ZIJbijZCiSQkYf3ET5u_Vj0MZ0ETIZzzpeJZdGCjIyI3ocXkAqMY88WdPjbnFpVJqf1W9tiEYEWF1MoBOLcZ0fkfBKCEtaxGifmex6hz_kzfXHGnxSNMvRMWLCm03RWShyCfIUNt7WlrgliUyASntuh733uWFnTSiSfmSUkY&state=cb47dcdc4302770fe126839b0e666f9dd0d1e06a07865988" for 127.0.0.1 at 2019-07-21 21:44:28 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQAspAK0-qXaIV7ZNUeylVX5dfvmhmLN5_I2A_SC-TpINWZEbiFhbRHkg8_ZvkK8dOgZ9zVweNPh5tprbYwIYfsOfOV9eIEAd4K4yt3DW8wIvsxX49L8ankwUAEKoQu4XJKnvoY9PiIOU38bD5AxoZiknw6ScfGcuo5XMPflE-tIQ9i6ZIJbijZCiSQkYf3ET5u_Vj0MZ0ETIZzzpeJZdGCjIyI3ocXkAqMY88WdPjbnFpVJqf1W9tiEYEWF1MoBOLcZ0fkfBKCEtaxGifmex6hz_kzfXHGnxSNMvRMWLCm03RWShyCfIUNt7WlrgliUyASntuh733uWFnTSiSfmSUkY", "state"=>"cb47dcdc4302770fe126839b0e666f9dd0d1e06a07865988"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:44:29 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 31ms (Views: 29.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:45:09 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 19ms (Views: 17.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:45:26 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 19ms (Views: 17.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 21:45:29 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 33ms (Views: 32.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:45:33 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:45:33 -0400
+Started GET "/auth/facebook/callback?code=AQDb-XCeWdkz7kqkiXGbKddJKaXmPqH2NN79AtbrnODbzA4vj_pc1BecCuK4MOdf1IVnokKFUNqfvStLJPvrHOs2nSDeHDpZ8grCfDyX1AN_d5WY8iShqTwnzZKJyI7U__PzukaSBtKYNAisqRNDxoCgaH8OKA4FGUykBb3PfSmMOVFYuQDt5FlowDqsJcNbmjxcVjPxX2dm2r8Y9yEFcbZ8i8DCu3BUblItLuR_9j9rmZovTNsKFiDBoypBVBtyM5g8j4UlcH-D8_4QwkRR0Lg1tVQZGJtH635u86gTdHijmgKAbBJm6-UXeWBGvfR6EkVTHuJpwH3YKAQuhdhyrkBG&state=70d7708dcbc007b8539172cd06fcc10116a89389e38fb678" for 127.0.0.1 at 2019-07-21 21:45:35 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQDb-XCeWdkz7kqkiXGbKddJKaXmPqH2NN79AtbrnODbzA4vj_pc1BecCuK4MOdf1IVnokKFUNqfvStLJPvrHOs2nSDeHDpZ8grCfDyX1AN_d5WY8iShqTwnzZKJyI7U__PzukaSBtKYNAisqRNDxoCgaH8OKA4FGUykBb3PfSmMOVFYuQDt5FlowDqsJcNbmjxcVjPxX2dm2r8Y9yEFcbZ8i8DCu3BUblItLuR_9j9rmZovTNsKFiDBoypBVBtyM5g8j4UlcH-D8_4QwkRR0Lg1tVQZGJtH635u86gTdHijmgKAbBJm6-UXeWBGvfR6EkVTHuJpwH3YKAQuhdhyrkBG", "state"=>"70d7708dcbc007b8539172cd06fcc10116a89389e38fb678"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:45:36 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 19ms (Views: 17.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:45:56 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 20ms (Views: 17.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 21:46:04 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 24ms (Views: 22.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:46:06 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:46:06 -0400
+Started GET "/auth/facebook/callback?code=AQD9_iiuhUZ2_tgF5mwg9bRGZTMcA43fRIBf-5hmFjvcSy0xsUZIIHOlLuosBZP7ycyXxGy_IK51qiiI1zrIK2VmHmC8hnYhQai7P4RYm4BWzL_48kmvg0ivrAPMHVsio3hSaJTqwRD9RITVLGFMOhCyIH-BOgIaeIwvfdgptuygfjAL6kqS0xPgDQJjj6L91o4e1oj_ipl79QgVm8F-dL_fgZHu38oPD_BudMnRGSqniSJ1KOP52V5oiWBAWGlbwerDKugaUx-lq67yGkYAPwYVJv7qW5-s3eZrEtW7SW5D5xnSm6WnFe81OzEUWEb1qAK2FtBTFUeHRlvDpRcGe0pP&state=b60b634f39a845100305dc7955e4c5bf2bd6cd2f50d168cd" for 127.0.0.1 at 2019-07-21 21:46:08 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQD9_iiuhUZ2_tgF5mwg9bRGZTMcA43fRIBf-5hmFjvcSy0xsUZIIHOlLuosBZP7ycyXxGy_IK51qiiI1zrIK2VmHmC8hnYhQai7P4RYm4BWzL_48kmvg0ivrAPMHVsio3hSaJTqwRD9RITVLGFMOhCyIH-BOgIaeIwvfdgptuygfjAL6kqS0xPgDQJjj6L91o4e1oj_ipl79QgVm8F-dL_fgZHu38oPD_BudMnRGSqniSJ1KOP52V5oiWBAWGlbwerDKugaUx-lq67yGkYAPwYVJv7qW5-s3eZrEtW7SW5D5xnSm6WnFe81OzEUWEb1qAK2FtBTFUeHRlvDpRcGe0pP", "state"=>"b60b634f39a845100305dc7955e4c5bf2bd6cd2f50d168cd"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:46:08 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 20ms (Views: 18.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:46:37 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 19ms (Views: 17.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:46:47 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 22ms (Views: 21.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:47:29 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 20ms (Views: 17.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/user/:id" for 127.0.0.1 at 2019-07-21 21:47:30 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/user/:id"):
+  
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+thin (1.7.2) lib/thin/connection.rb:86:in `block in pre_process'
+thin (1.7.2) lib/thin/connection.rb:84:in `catch'
+thin (1.7.2) lib/thin/connection.rb:84:in `pre_process'
+thin (1.7.2) lib/thin/connection.rb:53:in `process'
+thin (1.7.2) lib/thin/connection.rb:39:in `receive_data'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run_machine'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run'
+thin (1.7.2) lib/thin/backends/base.rb:73:in `start'
+thin (1.7.2) lib/thin/server.rb:162:in `start'
+thin (1.7.2) lib/thin/controllers/controller.rb:87:in `start'
+thin (1.7.2) lib/thin/runner.rb:203:in `run_command'
+thin (1.7.2) lib/thin/runner.rb:159:in `run!'
+thin (1.7.2) bin/thin:6:in `<top (required)>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `load'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `<main>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `eval'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `<main>'
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:48:14 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 52ms (Views: 49.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:48:15 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 47ms (Views: 45.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/user_path" for 127.0.0.1 at 2019-07-21 21:48:16 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"user_path"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=user_path):
+  
+app/controllers/users_controller.rb:33:in `find_user'
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:48:30 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 35ms (Views: 33.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:48:31 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 22ms (Views: 21.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/user_path(@user)" for 127.0.0.1 at 2019-07-21 21:48:32 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"user_path(@user)"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+Completed 404 Not Found in 4ms (ActiveRecord: 0.2ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=user_path(@user)):
+  
+app/controllers/users_controller.rb:33:in `find_user'
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:48:41 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 62ms (Views: 59.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:48:41 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 45ms (Views: 43.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/user_path(:id)" for 127.0.0.1 at 2019-07-21 21:48:42 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"user_path(:id)"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+Completed 404 Not Found in 1ms (ActiveRecord: 0.1ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=user_path(:id)):
+  
+app/controllers/users_controller.rb:33:in `find_user'
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:48:55 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 31ms (Views: 29.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:48:55 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 20ms (Views: 18.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/user_path(params[:id])" for 127.0.0.1 at 2019-07-21 21:48:56 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"user_path(params[:id])"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+Completed 404 Not Found in 2ms (ActiveRecord: 0.1ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=user_path(params[:id])):
+  
+app/controllers/users_controller.rb:33:in `find_user'
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:49:05 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 25ms (Views: 22.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:49:05 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (28.6ms)
+Completed 200 OK in 50ms (Views: 48.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:49:15 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 21ms (Views: 19.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 21:49:25 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.3ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 22ms (Views: 20.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:49:31 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 25ms (Views: 22.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:49:50 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 23ms (Views: 21.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/logout" for 127.0.0.1 at 2019-07-21 21:50:03 -0400
+Processing by SessionsController#logout as HTML
+Redirected to http://localhost:3000/home
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 21:50:03 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 22ms (Views: 21.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:50:50 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 41ms (Views: 38.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:50:53 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 32ms (Views: 28.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 21:51:07 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 19ms (Views: 18.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:51:10 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:51:10 -0400
+Started GET "/auth/facebook/callback?code=AQDjV0m99bEDbFcFwGul0KSDkdWA4wNUhJU8ApGDcc12jZol78PBu78rX5aUNHXiMjgfld0pU57WefOX44C1K9XrgFSCw2qYJHucUwQNHwXyY6xDUjDLnx8byUhz9huS7Dv8NT9ywQl2XVG15GGxaEkvJaRTIR7WLnKFcL6i_wz9IoIwd-aAY7amnF9h2BwMrDLJDt7AZn9YFJhlZJzlM4a31yZ3GKQXB6KxmUsv6kQcgw6VSXiKu3P8kr8qWQ8XCjAROCdkECft2en1x6Ib4FHw-1sD8Ip_IqJ1kiWLoHZBiS-SIjEoCDPkamjfUOD06Ii5nol8QKw-n1Sa_-df614M&state=4fb422047827abea22bd8d34f55e7bc40dbb4de5967238c6" for 127.0.0.1 at 2019-07-21 21:51:13 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQDjV0m99bEDbFcFwGul0KSDkdWA4wNUhJU8ApGDcc12jZol78PBu78rX5aUNHXiMjgfld0pU57WefOX44C1K9XrgFSCw2qYJHucUwQNHwXyY6xDUjDLnx8byUhz9huS7Dv8NT9ywQl2XVG15GGxaEkvJaRTIR7WLnKFcL6i_wz9IoIwd-aAY7amnF9h2BwMrDLJDt7AZn9YFJhlZJzlM4a31yZ3GKQXB6KxmUsv6kQcgw6VSXiKu3P8kr8qWQ8XCjAROCdkECft2en1x6Ib4FHw-1sD8Ip_IqJ1kiWLoHZBiS-SIjEoCDPkamjfUOD06Ii5nol8QKw-n1Sa_-df614M", "state"=>"4fb422047827abea22bd8d34f55e7bc40dbb4de5967238c6"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:51:13 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 44ms (Views: 42.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 21:51:30 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 25ms (Views: 24.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 21:55:55 -0400
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 407ms (Views: 401.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:55:57 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:55:57 -0400
+Started GET "/auth/facebook/callback?code=AQADLOI8bh6a3qX-sUQDPKW3rZibw18z_Zxb9aMOeH69LLA8j9MSvPfPD8fVXlYHgEKW2B8hHaJbSXWPkQ0qtQYfMok9WuqZG5BPjZ8hvvhO8b-1IplXkmZPpnCFZB4NBFXw0dpXx5zmwOPUaODlOCS5Xn9KJ3s5oxrB7x9OOpbrn5KKVRO8_Wnd228igfeK8WmLR5NpYpJ9n-eBINro7EybU1AXy7FGDGpotcNHhdRPIkugNuuXF8Z3yCFsL167bdKLv7fhMMaqRMO4qa5E92cmCOboLc4Moyean-5l5QT6avbvD8IoNSABi4BVkn2UaAlbnCh-zEAlHVUs6JF7aCce&state=f710abca51d263da3ac2e96a6d116ee11a56ee8b81ea510a" for 127.0.0.1 at 2019-07-21 21:56:00 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQADLOI8bh6a3qX-sUQDPKW3rZibw18z_Zxb9aMOeH69LLA8j9MSvPfPD8fVXlYHgEKW2B8hHaJbSXWPkQ0qtQYfMok9WuqZG5BPjZ8hvvhO8b-1IplXkmZPpnCFZB4NBFXw0dpXx5zmwOPUaODlOCS5Xn9KJ3s5oxrB7x9OOpbrn5KKVRO8_Wnd228igfeK8WmLR5NpYpJ9n-eBINro7EybU1AXy7FGDGpotcNHhdRPIkugNuuXF8Z3yCFsL167bdKLv7fhMMaqRMO4qa5E92cmCOboLc4Moyean-5l5QT6avbvD8IoNSABi4BVkn2UaAlbnCh-zEAlHVUs6JF7aCce", "state"=>"f710abca51d263da3ac2e96a6d116ee11a56ee8b81ea510a"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 22ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:56:00 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 33ms (Views: 29.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:56:40 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 46ms (Views: 32.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/auth/facebook/callback?code=AQAotBce71FtlRPd0Lef1rAUmTB4erN0mFRokZnrNTnmkkf63wHq1gPoe59KZslzrK7pMwrOXLz-QVETqvkCXX9kQc_ajeZLNXystXxdzPwpcfB6b86QkiJ_6TikrB4A0rlVEn6Y59bPbivlduGraiiC6X9rf2lZi4VE5vAx8SuCLixMhoJFymHZaNxGrYCEZHPdY0sDP7IgT1oCNxO5ojWrKDH1nO7b0KpquydOKsA8S7GlfQNSDP3yp3jzIHNP6GOgNYDKyjMTBgOVpXU6zV34nl94rbENePZJZ2hzJBemhMdBISV6cwaVVEGLJfD-qC_AbL1y8QD_wvwj7Ow12iEr&state=f710abca51d263da3ac2e96a6d116ee11a56ee8b81ea510a" for 127.0.0.1 at 2019-07-21 21:56:44 -0400
+  
+OmniAuth::Strategies::OAuth2::CallbackError (csrf_detected | CSRF detected):
+  
+omniauth (1.9.0) lib/omniauth/failure_endpoint.rb:25:in `raise_out!'
+omniauth (1.9.0) lib/omniauth/failure_endpoint.rb:20:in `call'
+omniauth (1.9.0) lib/omniauth/failure_endpoint.rb:12:in `call'
+omniauth (1.9.0) lib/omniauth/strategy.rb:491:in `fail!'
+omniauth-oauth2 (1.6.0) lib/omniauth/strategies/oauth2.rb:71:in `callback_phase'
+omniauth-facebook (5.0.0) lib/omniauth/strategies/facebook.rb:67:in `block in callback_phase'
+omniauth-facebook (5.0.0) lib/omniauth/strategies/facebook.rb:131:in `with_authorization_code!'
+omniauth-facebook (5.0.0) lib/omniauth/strategies/facebook.rb:66:in `callback_phase'
+omniauth (1.9.0) lib/omniauth/strategy.rb:238:in `callback_call'
+omniauth (1.9.0) lib/omniauth/strategy.rb:189:in `call!'
+omniauth (1.9.0) lib/omniauth/strategy.rb:169:in `call'
+omniauth (1.9.0) lib/omniauth/builder.rb:64:in `call'
+rack (2.0.7) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.7) lib/rack/etag.rb:25:in `call'
+rack (2.0.7) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.7) lib/rack/head.rb:12:in `call'
+actionpack (5.2.3) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.0.7) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.7) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/cookies.rb:670:in `call'
+activerecord (5.2.3) lib/active_record/migration.rb:559:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+thin (1.7.2) lib/thin/connection.rb:86:in `block in pre_process'
+thin (1.7.2) lib/thin/connection.rb:84:in `catch'
+thin (1.7.2) lib/thin/connection.rb:84:in `pre_process'
+thin (1.7.2) lib/thin/connection.rb:53:in `process'
+thin (1.7.2) lib/thin/connection.rb:39:in `receive_data'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run_machine'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run'
+thin (1.7.2) lib/thin/backends/base.rb:73:in `start'
+thin (1.7.2) lib/thin/server.rb:162:in `start'
+thin (1.7.2) lib/thin/controllers/controller.rb:87:in `start'
+thin (1.7.2) lib/thin/runner.rb:203:in `run_command'
+thin (1.7.2) lib/thin/runner.rb:159:in `run!'
+thin (1.7.2) bin/thin:6:in `<top (required)>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `load'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `<main>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `eval'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `<main>'
+Started GET "/home" for 127.0.0.1 at 2019-07-21 21:56:51 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 28ms (Views: 27.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:56:52 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:56:53 -0400
+Started GET "/auth/facebook/callback?code=AQCFCijzfr7fEvrrnwXwKnxcxhH4-IfgnGw28j22wal7fGOe-1CiOaeGYNS54jDFS3ANV2EPDMQ64OccX34mb0gU4xLmjWPvNHfdKLnhHC1Z2Y8bAcZ_eR5LetrMuj9jQeyyNz3rjNe1VyiuJWL-PmZaFOf5kSZgA6RXPP3ALTz9Delp1szy-Y8XPYm28SpNgSvMKMwafHfKp0gC31I39DVC1jyBJ5SIWvH1OmIk7VAR1JW11o73LL9wZvfCxK0aSH5pvbiKAHS7uOXoGoLan9e_VTPBFfQVSl7vo7or49Jvl4JJKlS2yFjTJh72mP2b8IBnfGAHR1EzPo5IY3XHgXJ3&state=3fe436c1c5403c4527fcaa9809498775dab9e5b1c6a56298" for 127.0.0.1 at 2019-07-21 21:56:55 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQCFCijzfr7fEvrrnwXwKnxcxhH4-IfgnGw28j22wal7fGOe-1CiOaeGYNS54jDFS3ANV2EPDMQ64OccX34mb0gU4xLmjWPvNHfdKLnhHC1Z2Y8bAcZ_eR5LetrMuj9jQeyyNz3rjNe1VyiuJWL-PmZaFOf5kSZgA6RXPP3ALTz9Delp1szy-Y8XPYm28SpNgSvMKMwafHfKp0gC31I39DVC1jyBJ5SIWvH1OmIk7VAR1JW11o73LL9wZvfCxK0aSH5pvbiKAHS7uOXoGoLan9e_VTPBFfQVSl7vo7or49Jvl4JJKlS2yFjTJh72mP2b8IBnfGAHR1EzPo5IY3XHgXJ3", "state"=>"3fe436c1c5403c4527fcaa9809498775dab9e5b1c6a56298"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:56:55 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 24ms (Views: 22.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2019-07-21 21:57:05 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/profile"):
+  
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+thin (1.7.2) lib/thin/connection.rb:86:in `block in pre_process'
+thin (1.7.2) lib/thin/connection.rb:84:in `catch'
+thin (1.7.2) lib/thin/connection.rb:84:in `pre_process'
+thin (1.7.2) lib/thin/connection.rb:53:in `process'
+thin (1.7.2) lib/thin/connection.rb:39:in `receive_data'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run_machine'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run'
+thin (1.7.2) lib/thin/backends/base.rb:73:in `start'
+thin (1.7.2) lib/thin/server.rb:162:in `start'
+thin (1.7.2) lib/thin/controllers/controller.rb:87:in `start'
+thin (1.7.2) lib/thin/runner.rb:203:in `run_command'
+thin (1.7.2) lib/thin/runner.rb:159:in `run!'
+thin (1.7.2) bin/thin:6:in `<top (required)>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `load'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `<main>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `eval'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `<main>'
+Started GET "/profile" for 127.0.0.1 at 2019-07-21 21:57:44 -0400
+  
+ArgumentError (Invalid route name: 'users_:id'):
+  
+config/routes.rb:9:in `block in <main>'
+config/routes.rb:1:in `<main>'
+Started GET "/profile" for 127.0.0.1 at 2019-07-21 21:57:57 -0400
+Processing by UsersController#show as HTML
+Completed 404 Not Found in 6ms (ActiveRecord: 0.6ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  
+app/controllers/users_controller.rb:33:in `find_user'
+Started GET "/home" for 127.0.0.1 at 2019-07-21 21:58:17 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 20ms (Views: 19.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:58:25 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:58:25 -0400
+Started GET "/auth/facebook/callback?code=AQBdLpTzCloZiVKXJEJ2dBdBgPjRRhNUMCLeVdxq3rQDcGaJNcDa_6kQ-mAHdXm77HE9WE6zBJATPDTwEKWctspsIhQZK2qgrf5loRc-vCUaEej6OpOzJ9dNN6m79YHBQmqxW8NoVSK8J51-_e9dIBY8lx1IrY8M20vfh-_snfr26qJsla-iyumfhLyX2X7KQUskOKzLRgxDU8w8ND53WOufmd5ySx66bPZokX3MT-IMSMoGE4K3DLzTu8ETWprYag56PPhuKZ-l0pWR2nV8v6Vvk3uwFHXuuD_Oyvu2VGCbJtnsBqJd9CBV_FM8upF3mz2mGRcqTnELHjx3B-vpmIQU&state=520e3e85375be365fb346e2a431b797a14b0875bf0ebd19b" for 127.0.0.1 at 2019-07-21 21:58:27 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQBdLpTzCloZiVKXJEJ2dBdBgPjRRhNUMCLeVdxq3rQDcGaJNcDa_6kQ-mAHdXm77HE9WE6zBJATPDTwEKWctspsIhQZK2qgrf5loRc-vCUaEej6OpOzJ9dNN6m79YHBQmqxW8NoVSK8J51-_e9dIBY8lx1IrY8M20vfh-_snfr26qJsla-iyumfhLyX2X7KQUskOKzLRgxDU8w8ND53WOufmd5ySx66bPZokX3MT-IMSMoGE4K3DLzTu8ETWprYag56PPhuKZ-l0pWR2nV8v6Vvk3uwFHXuuD_Oyvu2VGCbJtnsBqJd9CBV_FM8upF3mz2mGRcqTnELHjx3B-vpmIQU", "state"=>"520e3e85375be365fb346e2a431b797a14b0875bf0ebd19b"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 10ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:58:27 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 21ms (Views: 18.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:59:54 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:59:54 -0400
+Started GET "/auth/facebook/callback?code=AQBHSCqx0Qa9STtW5Z-A1uZ6vbI_PjoomjvaPkWyqTGEN8J1vqZLc63YcFLWo8H3g8PCJFp_5QLoa5bWojgvJATYyaAYi8BmMVqBh2855j0ILAMdAHh_jtkbxWQilML37vtoeHchWLXC3L5djF5pDaFW2W5cMPdEMvKb3GoS7U7ClQAaFalBHlX_nVHji50ehm2X3SALEbjiYmez1y1BMcwdEUDzyDDM95wi2qdI6R-PSleIRQhVMncGs_Jbl9XT8ebIPmSHnvpbVa2qw7ZDQrPNPXPzZqkmC944s6_s73P7vPRXgBBM8lXj9EhqRzFV6XJ2c4PSJbffQNWn7sn69QMG&state=2b58ebf13f42cc9a57c151ebe07f83644e36e3fb216ea6b1" for 127.0.0.1 at 2019-07-21 21:59:57 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQBHSCqx0Qa9STtW5Z-A1uZ6vbI_PjoomjvaPkWyqTGEN8J1vqZLc63YcFLWo8H3g8PCJFp_5QLoa5bWojgvJATYyaAYi8BmMVqBh2855j0ILAMdAHh_jtkbxWQilML37vtoeHchWLXC3L5djF5pDaFW2W5cMPdEMvKb3GoS7U7ClQAaFalBHlX_nVHji50ehm2X3SALEbjiYmez1y1BMcwdEUDzyDDM95wi2qdI6R-PSleIRQhVMncGs_Jbl9XT8ebIPmSHnvpbVa2qw7ZDQrPNPXPzZqkmC944s6_s73P7vPRXgBBM8lXj9EhqRzFV6XJ2c4PSJbffQNWn7sn69QMG", "state"=>"2b58ebf13f42cc9a57c151ebe07f83644e36e3fb216ea6b1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 14ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:59:57 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 21ms (Views: 19.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2019-07-21 22:00:05 -0400
+Processing by UsersController#show as HTML
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  
+app/controllers/users_controller.rb:33:in `find_user'
+Started GET "/profile" for 127.0.0.1 at 2019-07-21 22:00:32 -0400
+Processing by UsersController#show as HTML
+Completed 404 Not Found in 6ms (ActiveRecord: 0.7ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  
+app/controllers/users_controller.rb:33:in `find_user'
+Started GET "/profile_" for 127.0.0.1 at 2019-07-21 22:13:25 -0400
+  
+SyntaxError (/Users/larayejohnson/campaign-finance-app/config/routes.rb:9: syntax error, unexpected tIDENTIFIER, expecting end
+  get '/profile' to: 'users#show'
+                 ^~):
+  
+config/routes.rb:9: syntax error, unexpected tIDENTIFIER, expecting end
+Started GET "/profile_" for 127.0.0.1 at 2019-07-21 22:13:44 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/profile_"):
+  
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+thin (1.7.2) lib/thin/connection.rb:86:in `block in pre_process'
+thin (1.7.2) lib/thin/connection.rb:84:in `catch'
+thin (1.7.2) lib/thin/connection.rb:84:in `pre_process'
+thin (1.7.2) lib/thin/connection.rb:53:in `process'
+thin (1.7.2) lib/thin/connection.rb:39:in `receive_data'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run_machine'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run'
+thin (1.7.2) lib/thin/backends/base.rb:73:in `start'
+thin (1.7.2) lib/thin/server.rb:162:in `start'
+thin (1.7.2) lib/thin/controllers/controller.rb:87:in `start'
+thin (1.7.2) lib/thin/runner.rb:203:in `run_command'
+thin (1.7.2) lib/thin/runner.rb:159:in `run!'
+thin (1.7.2) bin/thin:6:in `<top (required)>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `load'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `<main>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `eval'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `<main>'
+Started GET "/profile" for 127.0.0.1 at 2019-07-21 22:13:48 -0400
+Processing by UsersController#show as HTML
+Completed 404 Not Found in 10ms (ActiveRecord: 0.8ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  
+app/controllers/users_controller.rb:37:in `find_user'
+Started GET "/profile" for 127.0.0.1 at 2019-07-21 22:14:09 -0400
+Processing by UsersController#show as HTML
+Completed 404 Not Found in 4ms (ActiveRecord: 0.6ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  
+app/controllers/users_controller.rb:37:in `find_user'
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:15:30 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 38ms (Views: 37.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2019-07-21 22:15:33 -0400
+Processing by SessionsController#login as HTML
+  Rendering sessions/login.html.erb within layouts/application
+  Rendered sessions/login.html.erb within layouts/application (9.4ms)
+Completed 200 OK in 55ms (Views: 42.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2019-07-21 22:15:38 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SYl9YKOL9L4MOKjq4QtLnqhWR+h29zwketWm1lWPwRtuvQmaVm/0UqUvQliSoVKEtR4mdHQ3zaDl9TzorZ8pCg==", "user"=>{"username"=>"laraye01", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "laraye01"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:11
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 234ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2019-07-21 22:15:38 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/users/2"):
+  
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+thin (1.7.2) lib/thin/connection.rb:86:in `block in pre_process'
+thin (1.7.2) lib/thin/connection.rb:84:in `catch'
+thin (1.7.2) lib/thin/connection.rb:84:in `pre_process'
+thin (1.7.2) lib/thin/connection.rb:53:in `process'
+thin (1.7.2) lib/thin/connection.rb:39:in `receive_data'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run_machine'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run'
+thin (1.7.2) lib/thin/backends/base.rb:73:in `start'
+thin (1.7.2) lib/thin/server.rb:162:in `start'
+thin (1.7.2) lib/thin/controllers/controller.rb:87:in `start'
+thin (1.7.2) lib/thin/runner.rb:203:in `run_command'
+thin (1.7.2) lib/thin/runner.rb:159:in `run!'
+thin (1.7.2) bin/thin:6:in `<top (required)>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `load'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `<main>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `eval'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `<main>'
+Started GET "/login" for 127.0.0.1 at 2019-07-21 22:15:56 -0400
+Processing by SessionsController#login as HTML
+  Rendering sessions/login.html.erb within layouts/application
+  Rendered sessions/login.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 39ms (Views: 25.7ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2019-07-21 22:15:59 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8Y+kiCirYzkypXzjFsh4znErOllUSAVcEpvCZ5YUG9gDK1Cln/bSsKyTNc08rnFidJQMO9FOy4V4muU2KHHSZQ==", "user"=>{"username"=>"laraye01", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "laraye01"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:11
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 224ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2019-07-21 22:15:59 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:37
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 19ms (Views: 16.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2019-07-21 22:16:10 -0400
+Processing by UsersController#show as HTML
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User without an ID):
+  
+app/controllers/users_controller.rb:37:in `find_user'
+Started GET "/users/2" for 127.0.0.1 at 2019-07-21 22:19:30 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 32ms (Views: 18.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/logout" for 127.0.0.1 at 2019-07-21 22:19:46 -0400
+Processing by SessionsController#logout as HTML
+Redirected to http://localhost:3000/home
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:19:46 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 20ms (Views: 19.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 22:19:48 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 22:19:48 -0400
+Started GET "/auth/facebook/callback?code=AQBsd9fA2Z6x5u4mtHnt17iea4MmqrBdK-BLUsyoYXS8H9dqZZpVpOASBrtTM9GhlmgkbpOppW_aILzGRDSRdQ8LWDJ30cUPSJ9bXZ7zEFiF2eCFhYfyd0EJrbtbX_RlXFBKG8PgUzgXl3j0kl7v5yoUR4UcjvDb7tFkLZGyYgcZSCJIdDGnUeHyueAPqlDjCS4G4Dd1K4v-XA4HFmMZvAx6mgFRHmxtOGg3klw-eEBV5MGSIKPAQ1VoMp7S1U9uP-HiLHMAdQ9eSIDjsJN6LmpccH1WKwF4D8Avzn-5Eo6DRD705beHq71SbyCnc38d1_E-Vn4e-PxpI-dIOAiklVBZ&state=27a541415e56bdad7d570659886e0193a3361ee413823d8f" for 127.0.0.1 at 2019-07-21 22:19:50 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQBsd9fA2Z6x5u4mtHnt17iea4MmqrBdK-BLUsyoYXS8H9dqZZpVpOASBrtTM9GhlmgkbpOppW_aILzGRDSRdQ8LWDJ30cUPSJ9bXZ7zEFiF2eCFhYfyd0EJrbtbX_RlXFBKG8PgUzgXl3j0kl7v5yoUR4UcjvDb7tFkLZGyYgcZSCJIdDGnUeHyueAPqlDjCS4G4Dd1K4v-XA4HFmMZvAx6mgFRHmxtOGg3klw-eEBV5MGSIKPAQ1VoMp7S1U9uP-HiLHMAdQ9eSIDjsJN6LmpccH1WKwF4D8Avzn-5Eo6DRD705beHq71SbyCnc38d1_E-Vn4e-PxpI-dIOAiklVBZ", "state"=>"27a541415e56bdad7d570659886e0193a3361ee413823d8f"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:19:51 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 86ms (Views: 84.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:20:14 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 33ms (Views: 25.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:20:19 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 35ms (Views: 32.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:21:51 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 26ms (Views: 23.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:22:02 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 23ms (Views: 21.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:22:28 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 44ms (Views: 41.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:23:15 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 30ms (Views: 28.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:23:36 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 25ms (Views: 21.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:23:39 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (2.6ms)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+    13:     <h2><a href="/home">Dollars for Change</a></h2>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(@user) %>
+    17:         </ul>
+    18:       </div>
+    19: 
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___173959152961719383_70224420508920'
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:23:46 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 20ms (Views: 18.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-07-21 22:23:48 -0400
+Processing by ContributorsController#index as HTML
+  Rendering contributors/index.html.erb within layouts/application
+  [1m[36mContributor Load (0.3ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/views/contributors/index.html.erb:4
+  Rendered contributors/index.html.erb within layouts/application (7.2ms)
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 0.9ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+    13:     <h2><a href="/home">Dollars for Change</a></h2>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(@user) %>
+    17:         </ul>
+    18:       </div>
+    19: 
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___173959152961719383_70224420769200'
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:23:49 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 20ms (Views: 18.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:23:51 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 25ms (Views: 23.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:23:53 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 25ms (Views: 22.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:23:54 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.8ms)
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+    13:     <h2><a href="/home">Dollars for Change</a></h2>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(@user) %>
+    17:         </ul>
+    18:       </div>
+    19: 
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___173959152961719383_70224429466020'
+app/controllers/sessions_controller.rb:3:in `home'
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:24:45 -0400
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (1.2ms)
+Completed 500 Internal Server Error in 291ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+    13:     <h2><a href="/home">Dollars for Change</a></h2>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(@user) %>
+    17:         </ul>
+    18:       </div>
+    19: 
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___286609701114497821_70278220055440'
+app/controllers/sessions_controller.rb:3:in `home'
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:24:47 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 48ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+    13:     <h2><a href="/home">Dollars for Change</a></h2>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(@user) %>
+    17:         </ul>
+    18:       </div>
+    19: 
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___286609701114497821_70278269981540'
+app/controllers/sessions_controller.rb:3:in `home'
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:26:32 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 50ms (Views: 28.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:26:34 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 39ms (Views: 36.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:26:37 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.3ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (29.9ms)
+Completed 500 Internal Server Error in 55ms (ActiveRecord: 1.1ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+    13:     <h2><a href="/home">Dollars for Change</a></h2>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(@user) %>
+    17:         </ul>
+    18:       </div>
+    19: 
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___286609701114497821_70278274334300'
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:26:46 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 22ms (Views: 20.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:27:05 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 29ms (Views: 27.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:27:05 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 44ms (Views: 42.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:27:06 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 21ms (Views: 18.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:27:08 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (1.9ms)
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users"}, missing required keys: [:id]):
+    13:     <h2><a href="/home">Dollars for Change</a></h2>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path %>
+    17:         </ul>
+    18:       </div>
+    19: 
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___286609701114497821_70278221558760'
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:27:11 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 39ms (Views: 37.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:29:19 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `[]' for nil:NilClass):
+    13:     <h2><a href="/home">Dollars for Change</a></h2>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(params[:user][:id]) %>
+    17:         </ul>
+    18:       </div>
+    19: 
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___286609701114497821_70278220906240'
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:30:05 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (1.2ms)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `[]' for nil:NilClass):
+    13:     <h2><a href="/home">Dollars for Change</a></h2>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(params[:session][:user_id]) %>
+    17:         </ul>
+    18:       </div>
+    19: 
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___286609701114497821_70278273613160'
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:30:30 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 23ms (Views: 22.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:30:37 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 26ms (Views: 24.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-07-21 22:30:43 -0400
+Processing by ContributorsController#index as HTML
+  Rendering contributors/index.html.erb within layouts/application
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/views/contributors/index.html.erb:4
+  Rendered contributors/index.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 40ms (Views: 30.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:30:57 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 54ms (Views: 49.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:31:51 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 20ms (Views: 18.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:32:02 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 20ms (Views: 18.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:32:12 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 31ms (Views: 28.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:32:12 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 22ms (Views: 20.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:32:26 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 23ms (Views: 20.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:32:34 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 20ms (Views: 18.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:33:09 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 41ms (Views: 39.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:33:16 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 20ms (Views: 19.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:33:30 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 23ms (Views: 21.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:33:54 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 20ms (Views: 18.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:34:01 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 23ms (Views: 20.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:38:22 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 28ms (Views: 26.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:38:44 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 24ms (Views: 23.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/logout" for 127.0.0.1 at 2019-07-21 22:38:50 -0400
+Processing by SessionsController#logout as HTML
+Redirected to http://localhost:3000/home
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:38:50 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.7ms)
+Completed 500 Internal Server Error in 66ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+    13:     <h3><a href="/home">Dollars for Change</a></h3>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(session[:user_id]) %> |
+    17:           <%= link_to "Candidates", candidates_path %> |
+    18:           <%= link_to "Contributions", contributions_path %> |
+    19:           <%= link_to "Contributors", contributors_path %> |
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___286609701114497821_70278277539100'
+app/controllers/sessions_controller.rb:3:in `home'
+Started GET "/logout" for 127.0.0.1 at 2019-07-21 22:39:12 -0400
+Processing by SessionsController#logout as HTML
+Redirected to http://localhost:3000/home
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:39:12 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.6ms)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+    13:     <h3><a href="/home">Dollars for Change</a></h3>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(session[:user_id]) %> |
+    17:           <%= link_to "Candidates", candidates_path %> |
+    18:           <%= link_to "Contributions", contributions_path %> |
+    19:           <%= link_to "Contributors", contributors_path %> |
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___286609701114497821_70278273188500'
+app/controllers/sessions_controller.rb:3:in `home'
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:39:14 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.6ms)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+    13:     <h3><a href="/home">Dollars for Change</a></h3>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(session[:user_id]) %> |
+    17:           <%= link_to "Candidates", candidates_path %> |
+    18:           <%= link_to "Contributions", contributions_path %> |
+    19:           <%= link_to "Contributors", contributors_path %> |
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___286609701114497821_70278251568620'
+app/controllers/sessions_controller.rb:3:in `home'
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:39:42 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.6ms)
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+    13:     <h3><a href="/home">Dollars for Change</a></h3>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(session[:user_id]) %> |
+    17:           <%= link_to "Candidates", candidates_path %> |
+    18:           <%= link_to "Contributions", contributions_path %> |
+    19:           <%= link_to "Contributors", contributors_path %> |
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___286609701114497821_70278221594220'
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:39:44 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (1.8ms)
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 0.1ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+    13:     <h3><a href="/home">Dollars for Change</a></h3>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(session[:user_id]) %> |
+    17:           <%= link_to "Candidates", candidates_path %> |
+    18:           <%= link_to "Contributions", contributions_path %> |
+    19:           <%= link_to "Contributors", contributors_path %> |
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___286609701114497821_70278233767440'
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:39:59 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.7ms)
+Completed 500 Internal Server Error in 71ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+    13:     <h3><a href="/home">Dollars for Change</a></h3>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(session[:user_id]) %> |
+    17:           <%= link_to "Candidates", candidates_path %> |
+    18:           <%= link_to "Contributions", contributions_path %> |
+    19:           <%= link_to "Contributors", contributors_path %> |
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___286609701114497821_70278273823180'
+app/controllers/sessions_controller.rb:3:in `home'
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:40:24 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (1.1ms)
+Completed 500 Internal Server Error in 215ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+    13:     <h3><a href="/home">Dollars for Change</a></h3>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(session[:user_id]) %> |
+    17:           <%= link_to "Candidates", candidates_path %> |
+    18:           <%= link_to "Contributions", contributions_path %> |
+    19:           <%= link_to "Contributors", contributors_path %> |
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___4410052278734603603_70199789970940'
+app/controllers/sessions_controller.rb:3:in `home'
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:40:26 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 48ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+    13:     <h3><a href="/home">Dollars for Change</a></h3>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(session[:user_id]) %> |
+    17:           <%= link_to "Candidates", candidates_path %> |
+    18:           <%= link_to "Contributions", contributions_path %> |
+    19:           <%= link_to "Contributors", contributors_path %> |
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___4410052278734603603_70199813526240'
+app/controllers/sessions_controller.rb:3:in `home'
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:40:58 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 32ms (Views: 31.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 22:41:08 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 22:41:09 -0400
+Started GET "/auth/facebook/callback?code=AQDthQf1dqVgDRl0wZaGz2TU0lTNnNbO4zuyp-YrTv66nXkMf_OdepGeFPuNCGRK9HW1Dnjt9loYMX_7OlcbBk5CmFa8OKs9ziG5GyecS2ab8z7YTHOsqnVFalWT1Txs46_X68-NyTNj7AP1GwHzWWVer3TOG2xxBNRHr629hXe21gjwHZ1i8XsE8E6s0t-86o8agdw2q3U3i3l1fkp8ggiSs0-uh5AhblIV-8pbkaLYlcauuiRRWEGS5U1o1ZXYx58VF5HwPw1EFue6EGLZ7S4l9hsluWbRre7OXdtdk2dj-lHZHiV1futahM74eRYVMZlndhRd7zYqpzhzqqKkYsXD&state=abd0ec54429a3ff48a2d8998b25ca449ae2dc090f2602a9e" for 127.0.0.1 at 2019-07-21 22:41:12 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQDthQf1dqVgDRl0wZaGz2TU0lTNnNbO4zuyp-YrTv66nXkMf_OdepGeFPuNCGRK9HW1Dnjt9loYMX_7OlcbBk5CmFa8OKs9ziG5GyecS2ab8z7YTHOsqnVFalWT1Txs46_X68-NyTNj7AP1GwHzWWVer3TOG2xxBNRHr629hXe21gjwHZ1i8XsE8E6s0t-86o8agdw2q3U3i3l1fkp8ggiSs0-uh5AhblIV-8pbkaLYlcauuiRRWEGS5U1o1ZXYx58VF5HwPw1EFue6EGLZ7S4l9hsluWbRre7OXdtdk2dj-lHZHiV1futahM74eRYVMZlndhRd7zYqpzhzqqKkYsXD", "state"=>"abd0ec54429a3ff48a2d8998b25ca449ae2dc090f2602a9e"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 30ms (ActiveRecord: 1.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:41:12 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 68ms (Views: 64.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:44:57 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 27ms (Views: 24.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:44:59 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.3ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 41ms (Views: 32.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/candidates/1" for 127.0.0.1 at 2019-07-21 22:45:00 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:40
+  Rendering candidates/show.html.erb within layouts/application
+  Rendered candidates/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 26ms (Views: 22.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:45:02 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 35ms (Views: 31.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 22:45:04 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.3ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/index.html.erb within layouts/application (27.1ms)
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 2.5ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"candidates", :id=>nil}, missing required keys: [:id]):
+    15:   <tbody>
+    16:     <% @contributions.each do |c| %>
+    17:       <tr>
+    18:         <td><%= link_to c.candidate_name, candidate_path(c.candidate) %></td>
+    19:         <td><%= link_to c.amount, contribution_path(c) %></td>
+    20:         <td><%= link_to c.contributor_name, contributor_path(c.contributor) %></td>
+    21:         <td><%= c.date %></td>
+  
+app/views/contributions/index.html.erb:18:in `block in _app_views_contributions_index_html_erb__4325301742574591523_70199828373860'
+app/views/contributions/index.html.erb:16:in `_app_views_contributions_index_html_erb__4325301742574591523_70199828373860'
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:45:23 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 22ms (Views: 19.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 22:45:28 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/index.html.erb within layouts/application (4.7ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"candidates", :id=>nil}, missing required keys: [:id]):
+    15:   <tbody>
+    16:     <% @contributions.each do |c| %>
+    17:       <tr>
+    18:         <td><%= link_to c.candidate_name, candidate_path(c.candidate) %></td>
+    19:         <td><%= link_to c.amount, contribution_path(c) %></td>
+    20:         <td><%= link_to c.contributor_name, contributor_path(c.contributor) %></td>
+    21:         <td><%= c.date %></td>
+  
+app/views/contributions/index.html.erb:18:in `block in _app_views_contributions_index_html_erb__4325301742574591523_70199828200820'
+app/views/contributions/index.html.erb:16:in `_app_views_contributions_index_html_erb__4325301742574591523_70199828200820'
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:45:59 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 30ms (Views: 27.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:46:31 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 29ms (Views: 25.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-07-21 22:46:34 -0400
+Processing by ContributorsController#index as HTML
+  Rendering contributors/index.html.erb within layouts/application
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/views/contributors/index.html.erb:4
+  Rendered contributors/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 21ms (Views: 18.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contributors/2" for 127.0.0.1 at 2019-07-21 22:46:40 -0400
+Processing by ContributorsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/show.html.erb within layouts/application
+  Rendered contributors/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 27ms (Views: 24.6ms | ActiveRecord: 0.1ms)
+
+
+Started DELETE "/contributors/2" for 127.0.0.1 at 2019-07-21 22:46:43 -0400
+Processing by ContributorsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"el5h/qtt+0mprAZsTvHMq5E/WunyTYco1nEfQXHr8SiXRYMzjFfyzGkfIX7N93iarR0BEcvkjn+LmQKBBh6G2A==", "id"=>"2"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributors_controller.rb:33
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 2]]
+  ↳ app/controllers/contributors_controller.rb:33
+  [1m[36mContribution Destroy (0.6ms)[0m  [1m[31mDELETE FROM "contributions" WHERE "contributions"."id" = ?[0m  [["id", 5]]
+  ↳ app/controllers/contributors_controller.rb:33
+  [1m[36mContribution Destroy (0.1ms)[0m  [1m[31mDELETE FROM "contributions" WHERE "contributions"."id" = ?[0m  [["id", 6]]
+  ↳ app/controllers/contributors_controller.rb:33
+  [1m[36mContributor Destroy (0.1ms)[0m  [1m[31mDELETE FROM "contributors" WHERE "contributors"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/contributors_controller.rb:33
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributors_controller.rb:33
+Redirected to http://localhost:3000/contributors
+Completed 302 Found in 10ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-07-21 22:46:43 -0400
+Processing by ContributorsController#index as HTML
+  Rendering contributors/index.html.erb within layouts/application
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/views/contributors/index.html.erb:4
+  Rendered contributors/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 20ms (Views: 18.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/contributors/3" for 127.0.0.1 at 2019-07-21 22:46:45 -0400
+Processing by ContributorsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/show.html.erb within layouts/application
+  Rendered contributors/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 33ms (Views: 31.4ms | ActiveRecord: 0.1ms)
+
+
+Started DELETE "/contributors/3" for 127.0.0.1 at 2019-07-21 22:46:47 -0400
+Processing by ContributorsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"GhNHzLW23wCB6iZ6iQRecgPZq9cQ17mttovIB8N93vhBkpjKppCSk3bSTf7ho+WuT83l/wLiT7KG14zo9LjxKw==", "id"=>"3"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributors_controller.rb:33
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 3]]
+  ↳ app/controllers/contributors_controller.rb:33
+  [1m[36mContributor Destroy (0.4ms)[0m  [1m[31mDELETE FROM "contributors" WHERE "contributors"."id" = ?[0m  [["id", 3]]
+  ↳ app/controllers/contributors_controller.rb:33
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributors_controller.rb:33
+Redirected to http://localhost:3000/contributors
+Completed 302 Found in 7ms (ActiveRecord: 2.8ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-07-21 22:46:47 -0400
+Processing by ContributorsController#index as HTML
+  Rendering contributors/index.html.erb within layouts/application
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/views/contributors/index.html.erb:4
+  Rendered contributors/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 31ms (Views: 30.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 22:46:50 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  [1m[36mCACHE Candidate Load (0.0ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 30ms (Views: 26.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:46:56 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 25ms (Views: 23.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:46:59 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.3ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 30ms (Views: 28.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 22:47:01 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  [1m[36mCACHE Candidate Load (0.0ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/index.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 41ms (Views: 36.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/contributions/10" for 127.0.0.1 at 2019-07-21 22:47:11 -0400
+Processing by ContributionsController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT  "contributions".* FROM "contributions" WHERE "contributions"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:46
+  Rendering contributions/show.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/show.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 53ms (Views: 49.3ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/contributions/10" for 127.0.0.1 at 2019-07-21 22:47:16 -0400
+Processing by ContributionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"16HFKxkwxu2rym82Y1wvhL+HHJGErFEK+AN+l7AVdt9axlV29Z6E0VYoyU2y/C1aqluoACjIf0Hbbk+sz1TOLw==", "id"=>"10"}
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT  "contributions".* FROM "contributions" WHERE "contributions"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:46
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributions_controller.rb:39
+  [1m[36mContribution Destroy (0.3ms)[0m  [1m[31mDELETE FROM "contributions" WHERE "contributions"."id" = ?[0m  [["id", 10]]
+  ↳ app/controllers/contributions_controller.rb:39
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributions_controller.rb:39
+Redirected to http://localhost:3000/contributions
+Completed 302 Found in 4ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 22:47:16 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.3ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 22ms (Views: 19.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 22:47:18 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 22ms (Views: 19.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-07-21 22:47:19 -0400
+Processing by ContributorsController#index as HTML
+  Rendering contributors/index.html.erb within layouts/application
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/views/contributors/index.html.erb:4
+  Rendered contributors/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 23ms (Views: 21.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/contributors/1" for 127.0.0.1 at 2019-07-21 22:47:21 -0400
+Processing by ContributorsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/show.html.erb within layouts/application
+  Rendered contributors/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 19ms (Views: 17.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contributors/1/edit" for 127.0.0.1 at 2019-07-21 22:47:25 -0400
+Processing by ContributorsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/edit.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.3ms)
+  Rendered contributors/_form.html.erb (18.1ms)
+  Rendered contributors/edit.html.erb within layouts/application (19.2ms)
+Completed 200 OK in 39ms (Views: 36.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:47:28 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 19ms (Views: 16.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/logout" for 127.0.0.1 at 2019-07-21 22:47:33 -0400
+Processing by SessionsController#logout as HTML
+Redirected to http://localhost:3000/home
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:47:33 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.7ms)
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users", :id=>nil}, missing required keys: [:id]):
+    13:     <h3><a href="/home">Dollars for Change</a></h3>
+    14:       <div class="navigation">
+    15:         <ul>
+    16:           <%= link_to "Return to Explore", user_path(session[:user_id]) %>
+    17:           <%= link_to "Candidates", candidates_path %> |
+    18:           <%= link_to "Contributions", contributions_path %> |
+    19:           <%= link_to "Contributors", contributors_path %> |
+  
+app/views/layouts/application.html.erb:16:in `_app_views_layouts_application_html_erb___4410052278734603603_70199811572500'
+app/controllers/sessions_controller.rb:3:in `home'
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:48:33 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 28ms (Views: 26.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/logout" for 127.0.0.1 at 2019-07-21 22:48:34 -0400
+Processing by SessionsController#logout as HTML
+Redirected to http://localhost:3000/home
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:48:34 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 37ms (Views: 36.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:49:13 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 28ms (Views: 28.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 22:49:19 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 22:49:19 -0400
+Started GET "/auth/facebook/callback?code=AQDmdqgUNaHZWLTzMBys62sE86cRHeMsW1MxwDTkgKUxMwi3z7vTw71bzjKCbyYVwgK1jrU_2CgCys1yWO2cgEAXOxvaE3RS-CUXCHEHZCdwjExKUzKfg-AmS7KtibpwpkKJISfhOopoYyEvkAtmLITgJ8v3FAlYH2PkqnZeTTUnMWM5Q4vplzk7Bgr4Ts3mMn_ee-AQ6fd0VDy3xlVK694cxotLdsVj5tqyUf3_zfDsL5QATxtZ2ajPW0ctOU-FzFi83DWIgdOCwVtkxyqPsUygU-vwTk765M9hiS1i8QGIHD7RSdAvMVLTKfvCEw4kpXcmzz15QF2pPzK71MwzIn1I&state=95875ad38512dec3ca4add16491b7691ef5d9a900e62850e" for 127.0.0.1 at 2019-07-21 22:49:21 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQDmdqgUNaHZWLTzMBys62sE86cRHeMsW1MxwDTkgKUxMwi3z7vTw71bzjKCbyYVwgK1jrU_2CgCys1yWO2cgEAXOxvaE3RS-CUXCHEHZCdwjExKUzKfg-AmS7KtibpwpkKJISfhOopoYyEvkAtmLITgJ8v3FAlYH2PkqnZeTTUnMWM5Q4vplzk7Bgr4Ts3mMn_ee-AQ6fd0VDy3xlVK694cxotLdsVj5tqyUf3_zfDsL5QATxtZ2ajPW0ctOU-FzFi83DWIgdOCwVtkxyqPsUygU-vwTk765M9hiS1i8QGIHD7RSdAvMVLTKfvCEw4kpXcmzz15QF2pPzK71MwzIn1I", "state"=>"95875ad38512dec3ca4add16491b7691ef5d9a900e62850e"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:49:21 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 26ms (Views: 24.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/logout" for 127.0.0.1 at 2019-07-21 22:49:24 -0400
+Processing by SessionsController#logout as HTML
+Redirected to http://localhost:3000/home
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:49:24 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 20ms (Views: 19.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 22:49:27 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 22:49:27 -0400
+Started GET "/auth/facebook/callback?code=AQBcXaqly09dS1ildJY7WASAiaEvsXSZALQlSZdq2Ijn57dsbC0XXhIMTteqcGRjbPRRbZUNk5ihPmYPwI0NtnvPXi-otPBNl2lMQis-vSwe6FHeKBKAiI-3WH4BPLRs13nZrNE8hRubv9jhIP-Ss-rvuEvTizkPHpQUPc8BofxuuD0ZD41mO21FhP2FnHnFAtFK78KlEZPe-0AcO89fbdr3F0SVzBhHQmAzy9XLmLB05-pushuZlZmcfKDqaUf110-2AmF7XaGqfuYW1ug7gmf_ia4ZHxrJpl5UCFSUPWM9lJXW6lsKy_e5dBqLuQUGWpl-6SpKWUZbHOnRLHJH05RE&state=7b3bfda6297ce9a01923d204d994f56c7e87bd49d7211a67" for 127.0.0.1 at 2019-07-21 22:49:30 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQBcXaqly09dS1ildJY7WASAiaEvsXSZALQlSZdq2Ijn57dsbC0XXhIMTteqcGRjbPRRbZUNk5ihPmYPwI0NtnvPXi-otPBNl2lMQis-vSwe6FHeKBKAiI-3WH4BPLRs13nZrNE8hRubv9jhIP-Ss-rvuEvTizkPHpQUPc8BofxuuD0ZD41mO21FhP2FnHnFAtFK78KlEZPe-0AcO89fbdr3F0SVzBhHQmAzy9XLmLB05-pushuZlZmcfKDqaUf110-2AmF7XaGqfuYW1ug7gmf_ia4ZHxrJpl5UCFSUPWM9lJXW6lsKy_e5dBqLuQUGWpl-6SpKWUZbHOnRLHJH05RE", "state"=>"7b3bfda6297ce9a01923d204d994f56c7e87bd49d7211a67"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:49:30 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 24ms (Views: 22.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/logout" for 127.0.0.1 at 2019-07-21 22:52:10 -0400
+Processing by SessionsController#logout as HTML
+Redirected to http://localhost:3000/home
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 22:52:10 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/sessions
+  Rendered sessions/home.html.erb within layouts/sessions (0.7ms)
+Completed 200 OK in 21ms (Views: 20.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 22:52:20 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 22:52:20 -0400
+Started GET "/auth/facebook/callback?code=AQDvUONjWpU3xGCvObH9y0XlH5HA0ZgqhljErD_t_BmNb7PQIUG1v4TjupTr1elZxbXJ20PfqfCZ3hovUG6UVp6lfZXzJfgl2diRvmXK1S76oZymG5fBegY34XW-xbHGym9Chcl3-Na9c2aWJeWn92RAUIszE6KKLGbXS0HNSzx62Nm4hs_EGD2t8wRpXHR98JNRRwGu5m_GUdKTS-ch7BMu_sRd0bujnJgVN0im6y6jIyapl7Zn92Me1IcsjKZ1XYLMw_LqYd7OZK3rBQ3qV8qrvDG-Ier-uOcIC9MNTBAHN4JsfgoKnS-jYjp7dDaT_-Fz-cZKlwMF4AW-DmR8x434&state=3894d90b62a60da28d960074bc3ec3b9c830ae3ab160ea6d" for 127.0.0.1 at 2019-07-21 22:52:23 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQDvUONjWpU3xGCvObH9y0XlH5HA0ZgqhljErD_t_BmNb7PQIUG1v4TjupTr1elZxbXJ20PfqfCZ3hovUG6UVp6lfZXzJfgl2diRvmXK1S76oZymG5fBegY34XW-xbHGym9Chcl3-Na9c2aWJeWn92RAUIszE6KKLGbXS0HNSzx62Nm4hs_EGD2t8wRpXHR98JNRRwGu5m_GUdKTS-ch7BMu_sRd0bujnJgVN0im6y6jIyapl7Zn92Me1IcsjKZ1XYLMw_LqYd7OZK3rBQ3qV8qrvDG-Ier-uOcIC9MNTBAHN4JsfgoKnS-jYjp7dDaT_-Fz-cZKlwMF4AW-DmR8x434", "state"=>"3894d90b62a60da28d960074bc3ec3b9c830ae3ab160ea6d"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:52:23 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 49ms (Views: 47.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:52:39 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 17ms (Views: 15.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 22:52:43 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 25ms (Views: 23.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 22:53:14 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 30ms (Views: 28.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 22:53:16 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 22ms (Views: 20.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-07-21 22:53:17 -0400
+Processing by ContributorsController#index as HTML
+  Rendering contributors/index.html.erb within layouts/application
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/views/contributors/index.html.erb:4
+  Rendered contributors/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 24ms (Views: 21.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 22:53:19 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  [1m[36mContributor Load (0.4ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 33ms (Views: 30.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-07-21 22:53:21 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/index.html.erb:5
+  Rendered candidates/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 45ms (Views: 41.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-07-21 22:53:22 -0400
+Processing by ContributionsController#index as HTML
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:35
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 25ms (Views: 23.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-07-21 22:53:23 -0400
+Processing by ContributorsController#index as HTML
+  Rendering contributors/index.html.erb within layouts/application
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/views/contributors/index.html.erb:4
+  Rendered contributors/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 24ms (Views: 21.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:53:25 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 48ms (Views: 46.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 22:53:39 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 19ms (Views: 17.3ms | ActiveRecord: 0.1ms)
+
+

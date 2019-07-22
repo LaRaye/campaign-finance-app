@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CampaignFinanceApp</title>
+    <title>Dollars for Change</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,23 @@
   </head>
 
   <body>
+    <h3><a href="/home">Dollars for Change</a></h3>
+      <div class="navigation">
+        <ul>
+          <% if session[:user_id].present? %>
+            <%= link_to "Return to Explore", user_path(session[:user_id]) %> |
+          <% end %>
+          <%= link_to "Candidates", candidates_path %> |
+          <%= link_to "Contributions", contributions_path %> |
+          <%= link_to "Contributors", contributors_path %> |
+          <% if session[:user_id].present? %>
+            <%= link_to 'Log Out', logout_path %>
+          <% end %>
+        </ul>
+      </div>
+
+
     <%= yield %>
+
   </body>
 </html>
