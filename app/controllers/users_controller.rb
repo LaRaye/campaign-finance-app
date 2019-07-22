@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user.destroy
     redirect_to "/home"
   end
 
