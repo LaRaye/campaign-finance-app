@@ -24074,3 +24074,93 @@ Processing by CandidatesController#show as HTML
 Completed 200 OK in 74ms (Views: 57.5ms | ActiveRecord: 0.6ms)
 
 
+Started GET "/candidates/1/contributions" for 127.0.0.1 at 2019-07-21 21:17:09 -0400
+Processing by ContributionsController#index as HTML
+  Parameters: {"candidate_id"=>"1"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:8
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.4ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."candidate_id" = ? ORDER BY "contributions"."date" DESC[0m  [["candidate_id", 1]]
+  ↳ app/views/contributions/index.html.erb:16
+  Rendered contributions/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 29ms (Views: 22.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-07-21 21:17:16 -0400
+Processing by ContributorsController#index as HTML
+  Rendering contributors/index.html.erb within layouts/application
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/views/contributors/index.html.erb:4
+  Rendered contributors/index.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 32ms (Views: 25.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/contributors/1" for 127.0.0.1 at 2019-07-21 21:17:17 -0400
+Processing by ContributorsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContributor Load (0.3ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contributors_controller.rb:40
+  Rendering contributors/show.html.erb within layouts/application
+  Rendered contributors/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 22ms (Views: 19.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contributors/1/contributions" for 127.0.0.1 at 2019-07-21 21:17:21 -0400
+Processing by ContributionsController#index as HTML
+  Parameters: {"contributor_id"=>"1"}
+  [1m[36mContributor Load (0.3ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:6
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.3ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ? ORDER BY "contributions"."date" DESC[0m  [["contributor_id", 1]]
+  ↳ app/views/contributions/index.html.erb:16
+  Rendered contributions/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 25ms (Views: 20.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-07-21 21:20:44 -0400
+Processing by ContributorsController#index as HTML
+  Rendering contributors/index.html.erb within layouts/application
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/views/contributors/index.html.erb:4
+  Rendered contributors/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 38ms (Views: 36.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-07-21 21:20:46 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/application
+  Rendered sessions/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 31ms (Views: 30.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:20:48 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-07-21 21:20:48 -0400
+Started GET "/auth/facebook/callback?code=AQB2b9MsFI_Y0G_ciHVv6QGiTAv6hbHHf8Rv1DjTE6tLDXUpNU6pthXi8bD7atyZek-wdXVt4OdnH1OJ740SD1GUOn1aMbArIHXT9psytY27Bl1xBi-39_cgkJhzZjj9JyDd4vbkQQFCUfChev-cnWVmBixGNwAqBHri5NYqUDqKome7tXxsjsYrMHy0XymfIzkEjkgCU_kKKSKQBh9J92bs_WUsgRJF2xXIKRAqA5GHDgmjcKUaN-VmsFNRWpGF0nyloM5O-nobVYNKCqI-ayY_jJB5D-iypsSQ000-edTK6XnFX9QgjT3zJ3PN5-Uq-jEjZWLolpWm7UkOHb7KVhMv&state=69fa129fdafd3148aa8c26ea2c665b7f448ad538cdbd8989" for 127.0.0.1 at 2019-07-21 21:20:52 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQB2b9MsFI_Y0G_ciHVv6QGiTAv6hbHHf8Rv1DjTE6tLDXUpNU6pthXi8bD7atyZek-wdXVt4OdnH1OJ740SD1GUOn1aMbArIHXT9psytY27Bl1xBi-39_cgkJhzZjj9JyDd4vbkQQFCUfChev-cnWVmBixGNwAqBHri5NYqUDqKome7tXxsjsYrMHy0XymfIzkEjkgCU_kKKSKQBh9J92bs_WUsgRJF2xXIKRAqA5GHDgmjcKUaN-VmsFNRWpGF0nyloM5O-nobVYNKCqI-ayY_jJB5D-iypsSQ000-edTK6XnFX9QgjT3zJ3PN5-Uq-jEjZWLolpWm7UkOHb7KVhMv", "state"=>"69fa129fdafd3148aa8c26ea2c665b7f448ad538cdbd8989"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:20:52 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 54ms (Views: 52.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-07-21 21:21:15 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 28ms (Views: 26.7ms | ActiveRecord: 0.1ms)
+
+
