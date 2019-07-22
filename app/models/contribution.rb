@@ -22,12 +22,17 @@ class Contribution < ApplicationRecord
     if !candidate_name.nil? && candidate_name != ""
       first_name = candidate_name.split(" ")[0]
       last_name = candidate_name.split(" ")[1]
+
+      if last_name == nil
+        last_name = " "
+      end
+
       self.candidate = Candidate.find_or_create_by(first_name: first_name, last_name: last_name)
     end
   end
 
   def candidate_name
-    self.candidate ? (self.candidate.first_name + " " + self.candidate.last_name) : nil
+    self.candidate ? self.candidate.full_name : nil
   end
 
   def contributor_name=(contributor_name)
