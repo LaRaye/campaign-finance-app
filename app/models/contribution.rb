@@ -8,13 +8,13 @@ class Contribution < ApplicationRecord
   validates :candidate_name, presence: true
   validates :contributor_name, presence: true
   validates :date, presence: true, format: {with: /\d{2}\/\d{2}\/\d{4}/}
-  validates_each :date do |record, attr, value|
-    begin
-      Date.parse(value)
-    rescue
-      record.errors.add(attr, "Invalid date")
-    end
-  end
+  # validates_each :date do |record, attr, value|
+  #   begin
+  #     Date.parse(value)
+  #   rescue
+  #     record.errors.add(attr, "Invalid date")
+  #   end
+  # end
 
   scope :all_by_date, -> { order(date: :desc)}
 
