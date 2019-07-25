@@ -15,4 +15,15 @@ class Candidate < ApplicationRecord
       self.first_name
     end
   end
+
+  def favorited_candidates(current_user)
+    @current_user = current_user
+    @candidates = []
+
+    @current_user.favorites.each do |fav|
+      @candidates << Candidate.find_by(id: fav.candidate_id)
+    end
+
+    @candidates.all_in_order
+  end
 end
