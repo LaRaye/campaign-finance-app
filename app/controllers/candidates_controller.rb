@@ -4,7 +4,8 @@ class CandidatesController < ApplicationController
 
   def index
     if params[:favorited]
-      favorited_candidates(@current_user)
+      @candidates = Candidate.favorited_by(@current_user.id)
+      # favorited_candidates(@current_user)
     else
       @candidates = Candidate.all_in_order
     end
