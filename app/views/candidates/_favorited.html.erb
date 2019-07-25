@@ -1,0 +1,12 @@
+<% if @current_user.favorited?(@candidate) %>
+  Favorited.
+  <%= link_to " Remove from Favorites?", candidate_favorite_path(@candidate), method: :delete %>
+<% else %>
+  <%= link_to "Add to Favorites.", candidate_favorite_path(@candidate), method: :post %>
+<% end %>
+
+<% if @candidate.favorites_count.nil? %>
+  This candidate has no favorites.
+<% else %>
+  This candidate has <%= @candidate.favorites_count %> favorites.
+<% end %>
