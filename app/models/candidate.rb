@@ -24,6 +24,6 @@ class Candidate < ApplicationRecord
       @candidates << Candidate.find_by(id: fav.candidate_id)
     end
 
-    @candidates
+    @candidates.sort_by(&:last_name)
   end
 end

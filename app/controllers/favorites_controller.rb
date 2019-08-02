@@ -3,9 +3,8 @@ class FavoritesController < ApplicationController
   before_action :find_candidate
 
   def create
-    if @current_user.favorite(@candidate)
-      redirect_to candidate_path(@candidate), notice: "Candidate has been favorited"
-    end 
+    @current_user.favorite(@candidate)
+    redirect_to candidate_path(@candidate), notice: "Candidate has been favorited"
   end
 
   def destroy
@@ -20,6 +19,6 @@ class FavoritesController < ApplicationController
   end
 
   def find_candidate
-    @candidate = Candidate.find_by(params[:id])
+    @candidate = Candidate.find(params[:candidate_id])
   end
 end
