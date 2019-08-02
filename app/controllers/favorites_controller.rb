@@ -4,12 +4,12 @@ class FavoritesController < ApplicationController
 
   def create
     @current_user.favorite(@candidate)
-    redirect_to candidate_path(@candidate), notice: "Candidate has been favorited"
+    redirect_to candidate_path(@candidate)
   end
 
   def destroy
     @current_user.unfavorite(@candidate)
-    redirect_to candidate_path(@candidate), notice: "Candidate has been unfavorited"
+    redirect_to candidate_path(@candidate)
   end
 
   private

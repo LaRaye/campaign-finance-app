@@ -31793,3 +31793,865 @@ Processing by SessionsController#home as HTML
 Completed 200 OK in 24ms (Views: 23.0ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/signup" for 127.0.0.1 at 2019-08-02 12:26:38 -0400
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered layouts/_errors.html.erb (0.5ms)
+  Rendered users/new.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 52ms (Views: 40.7ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/signup" for 127.0.0.1 at 2019-08-02 12:26:53 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"A6TxIwT9m//tZrmCOKpX8PHkB+lamxCUHn32Q50Lmry/NR6OGPNPykpEtrjGttImcpXACzLCdn+iJ8b+AF1i2g==", "user"=>{"username"=>"laraye2019", "email"=>"lj@123.com", "password"=>"[FILTERED]"}, "commit"=>"Sign Up"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:14
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "laraye2019"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:14
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["username", "laraye2019"], ["email", "lj@123.com"], ["password_digest", "$2a$12$iAMoXxtJlg2INUVB7fcQcOhRPZmmqPhpjzsSAwJvIAFvY8X0OQd2a"], ["created_at", "2019-08-02 16:26:53.549052"], ["updated_at", "2019-08-02 16:26:53.549052"]]
+  ↳ app/controllers/users_controller.rb:14
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:14
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 244ms (ActiveRecord: 6.8ms)
+
+
+Started GET "/users/4" for 127.0.0.1 at 2019-08-02 12:26:53 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 23ms (Views: 20.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2019-08-02 12:26:57 -0400
+Processing by CandidatesController#favorites as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:50
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/models/candidate.rb:23
+Redirected to http://localhost:3000/candidates
+Completed 302 Found in 10ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-08-02 12:26:57 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/_index.html.erb:3
+  Rendered candidates/_index.html.erb (13.3ms)
+  Rendered candidates/index.html.erb within layouts/application (18.3ms)
+Completed 200 OK in 49ms (Views: 45.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users/4" for 127.0.0.1 at 2019-08-02 12:28:27 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 46ms (Views: 34.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2019-08-02 12:28:28 -0400
+Processing by CandidatesController#favorites as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:50
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/models/candidate.rb:23
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.4ms)
+
+
+  
+TypeError (no implicit conversion of Symbol into String):
+  
+app/controllers/candidates_controller.rb:13:in `favorites'
+Started GET "/users/4" for 127.0.0.1 at 2019-08-02 12:29:13 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 24ms (Views: 14.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2019-08-02 12:29:15 -0400
+Processing by CandidatesController#favorites as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:51
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/models/candidate.rb:23
+Redirected to http://localhost:3000/candidates
+Completed 302 Found in 9ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-08-02 12:29:15 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/_index.html.erb:3
+  Rendered candidates/_index.html.erb (12.5ms)
+  Rendered candidates/index.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 32ms (Views: 29.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2019-08-02 12:29:18 -0400
+Processing by CandidatesController#favorites as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:51
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/models/candidate.rb:23
+Redirected to http://localhost:3000/candidates
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-08-02 12:29:18 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/_index.html.erb:3
+  Rendered candidates/_index.html.erb (1.5ms)
+  Rendered candidates/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 35ms (Views: 33.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/4" for 127.0.0.1 at 2019-08-02 12:29:22 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 22ms (Views: 21.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2019-08-02 12:29:31 -0400
+Processing by CandidatesController#favorites as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:51
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/models/candidate.rb:23
+Redirected to http://localhost:3000/candidates
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-08-02 12:29:31 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/_index.html.erb:3
+  Rendered candidates/_index.html.erb (1.3ms)
+  Rendered candidates/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 36ms (Views: 35.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/4" for 127.0.0.1 at 2019-08-02 12:31:12 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 69ms (Views: 21.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2019-08-02 12:31:13 -0400
+Processing by CandidatesController#favorites as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:50
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/models/candidate.rb:23
+Redirected to http://localhost:3000/candidates
+Completed 302 Found in 14ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-08-02 12:31:13 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.3ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/_index.html.erb:3
+  Rendered candidates/_index.html.erb (10.7ms)
+  Rendered candidates/index.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 35ms (Views: 32.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-08-02 12:36:33 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/sessions
+  Rendered sessions/home.html.erb within layouts/sessions (1.5ms)
+Completed 200 OK in 24ms (Views: 23.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-08-02 12:36:35 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-08-02 12:36:35 -0400
+Started GET "/auth/facebook/callback?code=AQALafQAac4H6GmG0XeBH93sf8zFnKQZG8L8MXUA2AZ7EC8XTkouJZFPd9JpDJePRH_cXu8C-4zVLFc4JM_rFATc3awD_anKhpjXOkG_mC86vZQ1rVtuwaA7jtYQVwcoKhD8xEBjZCV_WEMCevEWPfJoMFnxkqmOm3ezoOIHiWXqXj5b2vvEZsR14T92YDa_kUz5YAJX5V5pxSPlQIab6KWAbbLZZK_6r-ph7Vp3TAm4UoZ1Y_PGepoEDZ8obP-nyZn371IujISB5zBJ3hDI11EJXdwXFvp_C9bpR73T4SwNGttO1IEQ2fKWw5zQmmSIdQWIe4eMKven8JbAf2cMtjWn&state=d7c02cd8c31dd200febecb3bd08dc668c54cfd9e72caa391" for 127.0.0.1 at 2019-08-02 12:36:36 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQALafQAac4H6GmG0XeBH93sf8zFnKQZG8L8MXUA2AZ7EC8XTkouJZFPd9JpDJePRH_cXu8C-4zVLFc4JM_rFATc3awD_anKhpjXOkG_mC86vZQ1rVtuwaA7jtYQVwcoKhD8xEBjZCV_WEMCevEWPfJoMFnxkqmOm3ezoOIHiWXqXj5b2vvEZsR14T92YDa_kUz5YAJX5V5pxSPlQIab6KWAbbLZZK_6r-ph7Vp3TAm4UoZ1Y_PGepoEDZ8obP-nyZn371IujISB5zBJ3hDI11EJXdwXFvp_C9bpR73T4SwNGttO1IEQ2fKWw5zQmmSIdQWIe4eMKven8JbAf2cMtjWn", "state"=>"d7c02cd8c31dd200febecb3bd08dc668c54cfd9e72caa391"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-08-02 12:36:36 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.1ms)
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (Missing partial users/_header, application/_header with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/Users/larayejohnson/campaign-finance-app/app/views"
+):
+    11: 
+    12:   <body>
+    13: 
+    14:     <%= render 'header' %>
+    15: 
+    16:     <div class="container">
+    17:       <% flash.each do |key, value| %>
+  
+app/views/layouts/application.html.erb:14:in `_app_views_layouts_application_html_erb__3128551606723206240_70196748564820'
+Started GET "/users/1" for 127.0.0.1 at 2019-08-02 12:37:05 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_header.html.erb (1.7ms)
+Completed 200 OK in 41ms (Views: 36.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/logout" for 127.0.0.1 at 2019-08-02 12:37:09 -0400
+Processing by SessionsController#logout as HTML
+Redirected to http://localhost:3000/home
+Completed 302 Found in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-08-02 12:37:09 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/sessions
+  Rendered sessions/home.html.erb within layouts/sessions (0.9ms)
+Completed 200 OK in 37ms (Views: 36.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-08-02 12:37:10 -0400
+Started GET "/auth/facebook" for 127.0.0.1 at 2019-08-02 12:37:10 -0400
+Started GET "/auth/facebook/callback?code=AQC21ugpFHeBlebT-zEzzR210ZvWqw74Zu1S_I-92coDQSkjWprGNiia2tWfENCWq-w-qLCnjFRlnpiXcgmVvTl7zCZOWTLPWruot-EGXYUukxN6kSCZzldEMrG0lHO4uGFwF3T0HVxJ_crsH6FqTSa2Ijm7I_auhbpxsuQBa9S98mkYgMcl_AvIuliEi_iNDF8YEi4vkjCOw3e3sn_QcJAjOaLdsvwJMtadHAmjn8MosrbjJiZKRXdsS8BaHxhKrXgVgVxjFBB--zF3CBUiA2qCgUt696itLPuP--BhyoCsUTdwORT2zWjNRE6N743iqnQ0vaGPBnyf80WHY2opjTc0&state=e1ff21d7bfea0447f6a3b904cb25a734915575fc4a5971f3" for 127.0.0.1 at 2019-08-02 12:37:11 -0400
+Processing by SessionsController#fb_create as HTML
+  Parameters: {"code"=>"AQC21ugpFHeBlebT-zEzzR210ZvWqw74Zu1S_I-92coDQSkjWprGNiia2tWfENCWq-w-qLCnjFRlnpiXcgmVvTl7zCZOWTLPWruot-EGXYUukxN6kSCZzldEMrG0lHO4uGFwF3T0HVxJ_crsH6FqTSa2Ijm7I_auhbpxsuQBa9S98mkYgMcl_AvIuliEi_iNDF8YEi4vkjCOw3e3sn_QcJAjOaLdsvwJMtadHAmjn8MosrbjJiZKRXdsS8BaHxhKrXgVgVxjFBB--zF3CBUiA2qCgUt696itLPuP--BhyoCsUTdwORT2zWjNRE6N743iqnQ0vaGPBnyf80WHY2opjTc0", "state"=>"e1ff21d7bfea0447f6a3b904cb25a734915575fc4a5971f3"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."uid" = ? LIMIT ?[0m  [["uid", "2910548335628368"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:22
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2019-08-02 12:37:13 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 23ms (Views: 20.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2019-08-02 12:37:16 -0400
+Processing by CandidatesController#favorites as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:50
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/candidate.rb:23
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/candidate.rb:24
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/candidate.rb:24
+  Rendering candidates/favorites.html.erb within layouts/application
+  Rendered candidates/_index.html.erb (0.8ms)
+  Rendered candidates/favorites.html.erb within layouts/application (2.1ms)
+  Rendered layouts/_header.html.erb (1.3ms)
+Completed 200 OK in 43ms (Views: 27.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/candidates/1" for 127.0.0.1 at 2019-08-02 12:37:19 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:54
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:50
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:18
+  Rendering candidates/show.html.erb within layouts/application
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ? LIMIT ?[0m  [["user_id", 1], ["candidate_id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21
+  Rendered candidates/_favorited.html.erb (2.3ms)
+  Rendered candidates/show.html.erb within layouts/application (5.2ms)
+  Rendered layouts/_header.html.erb (1.8ms)
+Completed 200 OK in 35ms (Views: 29.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/candidates/1/contributions" for 127.0.0.1 at 2019-08-02 12:37:21 -0400
+Processing by ContributionsController#index as HTML
+  Parameters: {"candidate_id"=>"1"}
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contributions_controller.rb:8
+  Rendering contributions/index.html.erb within layouts/application
+  [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."candidate_id" = ? ORDER BY "contributions"."date" DESC[0m  [["candidate_id", 1]]
+  ↳ app/views/contributions/index.html.erb:16
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:43
+  Rendered contributions/index.html.erb within layouts/application (20.9ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 63ms (Views: 52.3ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/logout" for 127.0.0.1 at 2019-08-02 12:37:31 -0400
+Processing by SessionsController#logout as HTML
+Redirected to http://localhost:3000/home
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-08-02 12:37:31 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/sessions
+  Rendered sessions/home.html.erb within layouts/sessions (0.6ms)
+Completed 200 OK in 21ms (Views: 20.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2019-08-02 12:37:34 -0400
+Processing by SessionsController#login as HTML
+  Rendering sessions/login.html.erb within layouts/sessions
+  Rendered sessions/login.html.erb within layouts/sessions (2.4ms)
+Completed 200 OK in 35ms (Views: 27.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2019-08-02 12:37:39 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"6vnPMTPAhZe+kYXQRQ6zc62KOktQTqKCJvDN9sqBFSrkxGXH5NNRjz7SqVUTNFAAOdnLPxbW68/Qv8EpZqSZ/w==", "user"=>{"username"=>"laraye2019", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "laraye2019"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:11
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 244ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/4" for 127.0.0.1 at 2019-08-02 12:37:39 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 21ms (Views: 18.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2019-08-02 12:37:41 -0400
+Processing by CandidatesController#favorites as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:50
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/models/candidate.rb:23
+Redirected to http://localhost:3000/candidates
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-08-02 12:37:41 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.4ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/_index.html.erb:3
+  Rendered candidates/_index.html.erb (2.2ms)
+  Rendered candidates/index.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 20ms (Views: 18.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/candidates/8" for 127.0.0.1 at 2019-08-02 12:39:14 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:54
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:50
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:18
+  Rendering candidates/show.html.erb within layouts/application
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ? LIMIT ?[0m  [["user_id", 4], ["candidate_id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21
+  Rendered candidates/_favorited.html.erb (4.5ms)
+  Rendered candidates/show.html.erb within layouts/application (6.6ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 45ms (Views: 22.1ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/candidates/8/favorite" for 127.0.0.1 at 2019-08-02 12:39:15 -0400
+  
+SyntaxError (/Users/larayejohnson/campaign-finance-app/app/controllers/favorites_controller.rb:12: syntax error, unexpected ':', expecting end
+...idate_path(@candidate), flash : {notice: "Candidate has been...
+...                              ^):
+  
+app/controllers/favorites_controller.rb:12: syntax error, unexpected ':', expecting end
+Started GET "/candidates/8/favorite" for 127.0.0.1 at 2019-08-02 12:39:40 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/candidates/8/favorite"):
+  
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+thin (1.7.2) lib/thin/connection.rb:86:in `block in pre_process'
+thin (1.7.2) lib/thin/connection.rb:84:in `catch'
+thin (1.7.2) lib/thin/connection.rb:84:in `pre_process'
+thin (1.7.2) lib/thin/connection.rb:53:in `process'
+thin (1.7.2) lib/thin/connection.rb:39:in `receive_data'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run_machine'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run'
+thin (1.7.2) lib/thin/backends/base.rb:73:in `start'
+thin (1.7.2) lib/thin/server.rb:162:in `start'
+thin (1.7.2) lib/thin/controllers/controller.rb:87:in `start'
+thin (1.7.2) lib/thin/runner.rb:203:in `run_command'
+thin (1.7.2) lib/thin/runner.rb:159:in `run!'
+thin (1.7.2) bin/thin:6:in `<top (required)>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `load'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `<main>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `eval'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `<main>'
+Started GET "/candidates/8/favorite" for 127.0.0.1 at 2019-08-02 12:39:48 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/candidates/8/favorite"):
+  
+actionpack (5.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.7) lib/rack/method_override.rb:22:in `call'
+rack (2.0.7) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.7) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.3) lib/rails/engine.rb:524:in `call'
+thin (1.7.2) lib/thin/connection.rb:86:in `block in pre_process'
+thin (1.7.2) lib/thin/connection.rb:84:in `catch'
+thin (1.7.2) lib/thin/connection.rb:84:in `pre_process'
+thin (1.7.2) lib/thin/connection.rb:53:in `process'
+thin (1.7.2) lib/thin/connection.rb:39:in `receive_data'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run_machine'
+eventmachine (1.2.7) lib/eventmachine.rb:195:in `run'
+thin (1.7.2) lib/thin/backends/base.rb:73:in `start'
+thin (1.7.2) lib/thin/server.rb:162:in `start'
+thin (1.7.2) lib/thin/controllers/controller.rb:87:in `start'
+thin (1.7.2) lib/thin/runner.rb:203:in `run_command'
+thin (1.7.2) lib/thin/runner.rb:159:in `run!'
+thin (1.7.2) bin/thin:6:in `<top (required)>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `load'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/thin:23:in `<main>'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `eval'
+/Users/larayejohnson/.rvm/gems/ruby-2.6.1/bin/ruby_executable_hooks:24:in `<main>'
+Started POST "/candidates/8/favorite" for 127.0.0.1 at 2019-08-02 12:39:52 -0400
+Processing by FavoritesController#create as HTML
+  Parameters: {"authenticity_token"=>"71X6u7yVKVNaIt0VNLGnG8yUc6+Y95iQlRN2cmuaAJA/V1ui3bbkWbyA3mST41MVzNHP2HI5PdA/cU6F1XiKIg==", "candidate_id"=>"8"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:18
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:22
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ? LIMIT ?[0m  [["user_id", 4], ["candidate_id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:12
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:12
+  [1m[36mFavorite Create (0.5ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "candidate_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 4], ["candidate_id", 8], ["created_at", "2019-08-02 16:39:52.388381"], ["updated_at", "2019-08-02 16:39:52.388381"]]
+  ↳ app/models/user.rb:12
+  [1m[36mCandidate Update All (0.2ms)[0m  [1m[33mUPDATE "candidates" SET "favorites_count" = COALESCE("favorites_count", 0) + 1 WHERE "candidates"."id" = ?[0m  [["id", 8]]
+  ↳ app/models/user.rb:12
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:12
+Redirected to http://localhost:3000/candidates/8
+Completed 302 Found in 45ms (ActiveRecord: 3.9ms)
+
+
+Started GET "/candidates/8" for 127.0.0.1 at 2019-08-02 12:39:52 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:54
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:50
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:18
+  Rendering candidates/show.html.erb within layouts/application
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ? LIMIT ?[0m  [["user_id", 4], ["candidate_id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21
+  Rendered candidates/_favorited.html.erb (2.0ms)
+  Rendered candidates/show.html.erb within layouts/application (4.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 28ms (Views: 24.6ms | ActiveRecord: 0.4ms)
+
+
+Started DELETE "/candidates/8/favorite" for 127.0.0.1 at 2019-08-02 12:39:57 -0400
+Processing by FavoritesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"D+glQIZZImTXJD4+zJk2Tju5P1YnUICB6PmlrWy1Stnf6oRZ53rvbjGGPU9ry8JAO/yDIc2eJcFCm51a0lfAaw==", "candidate_id"=>"8"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:18
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:22
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ?[0m  [["user_id", 4], ["candidate_id", 8]]
+  ↳ app/models/user.rb:16
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[36mFavorite Destroy (0.3ms)[0m  [1m[31mDELETE FROM "favorites" WHERE "favorites"."id" = ?[0m  [["id", 18]]
+  ↳ app/models/user.rb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16
+  [1m[36mCandidate Update All (0.1ms)[0m  [1m[33mUPDATE "candidates" SET "favorites_count" = COALESCE("favorites_count", 0) - 1 WHERE "candidates"."id" = ?[0m  [["id", 8]]
+  ↳ app/models/user.rb:16
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17
+Redirected to http://localhost:3000/candidates/8
+Completed 302 Found in 11ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/candidates/8" for 127.0.0.1 at 2019-08-02 12:39:57 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:54
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:50
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:18
+  Rendering candidates/show.html.erb within layouts/application
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ? LIMIT ?[0m  [["user_id", 4], ["candidate_id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21
+  Rendered candidates/_favorited.html.erb (2.7ms)
+  Rendered candidates/show.html.erb within layouts/application (4.6ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 23ms (Views: 21.1ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/candidates/8/favorite" for 127.0.0.1 at 2019-08-02 12:40:02 -0400
+Processing by FavoritesController#create as HTML
+  Parameters: {"authenticity_token"=>"ASkDjYshv0X/UuVHrlonQi2Fp2HjQG9RBxJcVWufnd/RK6KU6gJyTxnw5jYJCNNMLcAbFgmOyhGtcGSi1X0XbQ==", "candidate_id"=>"8"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:18
+  [1m[36mCandidate Load (1.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:22
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ? LIMIT ?[0m  [["user_id", 4], ["candidate_id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:12
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:12
+  [1m[36mFavorite Create (0.7ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "candidate_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 4], ["candidate_id", 8], ["created_at", "2019-08-02 16:40:02.884771"], ["updated_at", "2019-08-02 16:40:02.884771"]]
+  ↳ app/models/user.rb:12
+  [1m[36mCandidate Update All (0.2ms)[0m  [1m[33mUPDATE "candidates" SET "favorites_count" = COALESCE("favorites_count", 0) + 1 WHERE "candidates"."id" = ?[0m  [["id", 8]]
+  ↳ app/models/user.rb:12
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:12
+Redirected to http://localhost:3000/candidates/8
+Completed 302 Found in 13ms (ActiveRecord: 3.4ms)
+
+
+Started GET "/candidates/8" for 127.0.0.1 at 2019-08-02 12:40:02 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:54
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:50
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:18
+  Rendering candidates/show.html.erb within layouts/application
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ? LIMIT ?[0m  [["user_id", 4], ["candidate_id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21
+  Rendered candidates/_favorited.html.erb (1.3ms)
+  Rendered candidates/show.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 46ms (Views: 43.7ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/candidates/8/favorite" for 127.0.0.1 at 2019-08-02 12:40:10 -0400
+Processing by FavoritesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"TqAVRoTFnebk47g4t5po4kQd0BMl+gr5EnkRfYzAnCueorRf5eZQ7AJBu0kQyJzsRFhsZM80r7m4GymKMiIWmQ==", "candidate_id"=>"8"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:18
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:22
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ?[0m  [["user_id", 4], ["candidate_id", 8]]
+  ↳ app/models/user.rb:16
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[36mFavorite Destroy (0.5ms)[0m  [1m[31mDELETE FROM "favorites" WHERE "favorites"."id" = ?[0m  [["id", 19]]
+  ↳ app/models/user.rb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16
+  [1m[36mCandidate Update All (0.2ms)[0m  [1m[33mUPDATE "candidates" SET "favorites_count" = COALESCE("favorites_count", 0) - 1 WHERE "candidates"."id" = ?[0m  [["id", 8]]
+  ↳ app/models/user.rb:16
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17
+Redirected to http://localhost:3000/candidates/8
+Completed 302 Found in 12ms (ActiveRecord: 3.7ms)
+
+
+Started GET "/candidates/8" for 127.0.0.1 at 2019-08-02 12:40:10 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:54
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:50
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:18
+  Rendering candidates/show.html.erb within layouts/application
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ? LIMIT ?[0m  [["user_id", 4], ["candidate_id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21
+  Rendered candidates/_favorited.html.erb (2.1ms)
+  Rendered candidates/show.html.erb within layouts/application (4.5ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 32ms (Views: 29.8ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/candidates/8/favorite" for 127.0.0.1 at 2019-08-02 12:40:12 -0400
+Processing by FavoritesController#create as HTML
+  Parameters: {"authenticity_token"=>"xDRvFo7WIxV4FThieIYKX178ju17fa7Z+75piCtqy+sUNs4P7/XuH563OxPf1P5RXrkympGzC5lR3FF/lYhBWQ==", "candidate_id"=>"8"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:18
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:22
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ? LIMIT ?[0m  [["user_id", 4], ["candidate_id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:12
+  [1m[35m (0.7ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:12
+  [1m[36mFavorite Create (0.8ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "candidate_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 4], ["candidate_id", 8], ["created_at", "2019-08-02 16:40:12.973773"], ["updated_at", "2019-08-02 16:40:12.973773"]]
+  ↳ app/models/user.rb:12
+  [1m[36mCandidate Update All (0.2ms)[0m  [1m[33mUPDATE "candidates" SET "favorites_count" = COALESCE("favorites_count", 0) + 1 WHERE "candidates"."id" = ?[0m  [["id", 8]]
+  ↳ app/models/user.rb:12
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:12
+Redirected to http://localhost:3000/candidates/8
+Completed 302 Found in 13ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/candidates/8" for 127.0.0.1 at 2019-08-02 12:40:12 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:54
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:50
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:18
+  Rendering candidates/show.html.erb within layouts/application
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ? LIMIT ?[0m  [["user_id", 4], ["candidate_id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21
+  Rendered candidates/_favorited.html.erb (1.8ms)
+  Rendered candidates/show.html.erb within layouts/application (17.3ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 44ms (Views: 39.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/logout" for 127.0.0.1 at 2019-08-02 12:40:31 -0400
+Processing by SessionsController#logout as HTML
+Redirected to http://localhost:3000/home
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/home" for 127.0.0.1 at 2019-08-02 12:40:31 -0400
+Processing by SessionsController#home as HTML
+  Rendering sessions/home.html.erb within layouts/sessions
+  Rendered sessions/home.html.erb within layouts/sessions (0.5ms)
+Completed 200 OK in 15ms (Views: 14.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2019-08-02 12:40:32 -0400
+Processing by SessionsController#login as HTML
+  Rendering sessions/login.html.erb within layouts/sessions
+  Rendered sessions/login.html.erb within layouts/sessions (1.4ms)
+Completed 200 OK in 32ms (Views: 16.5ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2019-08-02 12:40:37 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ISpzCwXFumucbT05S1uFkrRcZ7HeA5tXFzRVfx4b8b8+23Q2o4yEJx+SKLKKIz1XLqZpKDkTpx/dCjLSwk9h4Q==", "user"=>{"username"=>"laraye2019", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "laraye2019"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:11
+Redirected to http://localhost:3000/login
+Completed 302 Found in 223ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2019-08-02 12:40:37 -0400
+Processing by SessionsController#login as HTML
+  Rendering sessions/login.html.erb within layouts/sessions
+  Rendered sessions/login.html.erb within layouts/sessions (2.0ms)
+Completed 200 OK in 17ms (Views: 15.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2019-08-02 12:40:59 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"H7vRb8szMMmLhf4SN8cLCaF9Te4KkGeouEdvYYsUatflQ7Usf6+S/qNLfD3DgvY94eq+9a8k0saa85dxy2P/Ag==", "user"=>{"username"=>"laraye2019", "password"=>"[FILTERED]"}, "commit"=>"Log In"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "laraye2019"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:11
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 221ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users/4" for 127.0.0.1 at 2019-08-02 12:41:00 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 46ms (Views: 43.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2019-08-02 12:41:02 -0400
+Processing by CandidatesController#favorites as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:50
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/models/candidate.rb:23
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/candidate.rb:24
+  Rendering candidates/favorites.html.erb within layouts/application
+  Rendered candidates/_index.html.erb (0.5ms)
+  Rendered candidates/favorites.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 42ms (Views: 16.6ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/candidates/8" for 127.0.0.1 at 2019-08-02 12:41:06 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:54
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:50
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:18
+  Rendering candidates/show.html.erb within layouts/application
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ? LIMIT ?[0m  [["user_id", 4], ["candidate_id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21
+  Rendered candidates/_favorited.html.erb (1.5ms)
+  Rendered candidates/show.html.erb within layouts/application (3.7ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 27ms (Views: 23.4ms | ActiveRecord: 0.4ms)
+
+
+Started DELETE "/candidates/8/favorite" for 127.0.0.1 at 2019-08-02 12:41:07 -0400
+Processing by FavoritesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"p5QwB2Jruab72khj979TVagQsRwoeyD+BeJ+ToYD9ixdbFRE1vcbkdMUykwD+q5h6IdCB43PlZAnVoZexnRj+Q==", "candidate_id"=>"8"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:18
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:22
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ?[0m  [["user_id", 4], ["candidate_id", 8]]
+  ↳ app/models/user.rb:16
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[36mFavorite Destroy (0.3ms)[0m  [1m[31mDELETE FROM "favorites" WHERE "favorites"."id" = ?[0m  [["id", 20]]
+  ↳ app/models/user.rb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16
+  [1m[36mCandidate Update All (0.2ms)[0m  [1m[33mUPDATE "candidates" SET "favorites_count" = COALESCE("favorites_count", 0) - 1 WHERE "candidates"."id" = ?[0m  [["id", 8]]
+  ↳ app/models/user.rb:16
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/user.rb:16
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17
+Redirected to http://localhost:3000/candidates/8
+Completed 302 Found in 8ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/candidates/8" for 127.0.0.1 at 2019-08-02 12:41:07 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mCandidate Load (0.3ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:54
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:50
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:18
+  Rendering candidates/show.html.erb within layouts/application
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ? LIMIT ?[0m  [["user_id", 4], ["candidate_id", 8], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21
+  Rendered candidates/_favorited.html.erb (1.2ms)
+  Rendered candidates/show.html.erb within layouts/application (2.7ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 43ms (Views: 40.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/4" for 127.0.0.1 at 2019-08-02 12:41:08 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.8ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 24ms (Views: 21.2ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/favorites" for 127.0.0.1 at 2019-08-02 12:41:09 -0400
+Processing by CandidatesController#favorites as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:50
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 4]]
+  ↳ app/models/candidate.rb:23
+Redirected to http://localhost:3000/candidates
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-08-02 12:41:09 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/_index.html.erb:3
+  Rendered candidates/_index.html.erb (1.3ms)
+  Rendered candidates/index.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 23ms (Views: 21.0ms | ActiveRecord: 0.2ms)
+
+

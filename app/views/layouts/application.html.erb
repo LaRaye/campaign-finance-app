@@ -10,23 +10,17 @@
   </head>
 
   <body>
-    <h3><a href="/home">Dollars for Change</a></h3>
-      <div class="navigation">
-        <ul>
-          <% if session[:user_id].present? %>
-            <%= link_to "Return to Explore", user_path(session[:user_id]) %> |
-          <% end %>
-          <%= link_to "Candidates", candidates_path %> |
-          <%= link_to "Contributions", contributions_path %> |
-          <%= link_to "Contributors", contributors_path %> |
-          <% if session[:user_id].present? %>
-            <%= link_to 'Log Out', logout_path %>
-          <% end %>
-        </ul>
-      </div>
 
+    <%= render 'layouts/header' %>
+
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
 
     <%= yield %>
+
+    </div>
 
   </body>
 </html>

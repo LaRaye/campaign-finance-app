@@ -10,7 +10,7 @@ class CandidatesController < ApplicationController
     @candidates = Candidate.favorited_candidates(@current_user)
 
     if @candidates.empty?
-      redirect_to candidates_path, notice: "You currently have no favorites."
+      redirect_to candidates_path, flash: {notice: "You currently have no favorites."}
     end
   end
 
