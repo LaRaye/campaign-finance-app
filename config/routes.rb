@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   get '/profile', to: 'users#show'
 
+  get '/favorites', to: 'candidates#favorites'
+
   get '/auth/facebook/callback', to: 'sessions#fb_create'
 
   resources :contributors
@@ -25,7 +27,7 @@ Rails.application.routes.draw do
       resources :contributions, only: [:show, :index, :new]
     end
 
-    root 'contributions#index'
+    # root 'contributions#index'
   end
 
   Rails.application.routes.draw do

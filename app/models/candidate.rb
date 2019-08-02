@@ -16,7 +16,7 @@ class Candidate < ApplicationRecord
     end
   end
 
-  def favorited_candidates(current_user)
+  def self.favorited_candidates(current_user)
     @current_user = current_user
     @candidates = []
 
@@ -24,6 +24,6 @@ class Candidate < ApplicationRecord
       @candidates << Candidate.find_by(id: fav.candidate_id)
     end
 
-    @candidates.all_in_order
+    @candidates
   end
 end

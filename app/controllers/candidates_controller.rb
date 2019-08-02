@@ -1,14 +1,17 @@
 class CandidatesController < ApplicationController
   before_action :find_candidate, only: [:show, :edit, :update, :destroy]
-  before_action :current_user, only: [:index]
+  before_action :current_user, only: [:favorites]
 
   def index
-    if params[:favorited]
-      @candidates = Candidate.favorited_by(@current_user.id)
-      # favorited_candidates(@current_user)
-    else
       @candidates = Candidate.all_in_order
-    end
+  end
+
+  def favorites
+    @candidates = Candidate.favorited_candidates(@current_user)
+
+    if @candidates.empty?
+      redirect_to candidates_path, notice: "You currently have no favorites."
+    end 
   end
 
   def show
