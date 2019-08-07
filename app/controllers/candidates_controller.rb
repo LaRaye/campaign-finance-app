@@ -3,7 +3,11 @@ class CandidatesController < ApplicationController
   before_action :current_user, only: [:favorites, :show]
 
   def index
+    if params[:last_name]
+      @candidates = Candidate.where('last_name LIKE ?', "%#{params[:last_name]}%")
+    else
       @candidates = Candidate.all_in_order
+    end
   end
 
   def favorites

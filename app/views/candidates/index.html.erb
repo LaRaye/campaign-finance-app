@@ -1,3 +1,8 @@
 <h1>Candidates</h1>
 
+<%= form_tag("/candidates", method: :get) do %>
+  Candidate Last Name <%= text_field_tag :last_name, params[:last_name] %>
+  <%= submit_tag 'Search' %>
+<% end %><br>
+
 <%= render 'index' %>
