@@ -8,6 +8,11 @@ class CandidatesController < ApplicationController
     else
       @candidates = Candidate.all_in_order
     end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @candidates }
+    end
   end
 
   def favorites
