@@ -31,7 +31,28 @@ function displayCreateForm() {
   contributionFormDiv.innerHTML = html;
 }
 
-
+function createContribution() {
+  const contribution = {
+    // creating new contributors/candidates objects from form???
+    contributor: document.getElementById('contributor_name').value,
+    candidate: document.getElementById('candidate_name').value,
+    amount: document.getElementById('amount').value,
+    date: document.getElementById('date').value
+  }
+  fetch('/contributions', {
+    method: 'POST'
+    body: JSON.stringify({ contribution }),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  }).then(resp => resp.json())
+  .then(contribution => {
+    document.querySelector("#main ul").innerHTML += '<li>${contribution.amount}</li>';
+    let contributionFormDiv = document.getElementById('contribution-form');
+    contributionFormDiv.innerHTML = '';
+  })
+}
 
 function getCandidateContributions() {
   let main = document.getElementById('main');
