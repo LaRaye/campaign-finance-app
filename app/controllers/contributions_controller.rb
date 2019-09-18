@@ -10,6 +10,8 @@ class ContributionsController < ApplicationController
       @contributions = Contribution.all_by_date
     end
 
+    render json: @contributions 
+
     # respond_to do |format|
     #   format.html
     #   format.json { render json: @contributions }

@@ -2,9 +2,9 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
-// const BASE_URL = 'http://localhost:3000'
+const BASE_URL = 'http://localhost:3000'
 
-class Contrib {
+class CnTrbn {
   constructor(contribution) {
     this.id = contribution.id
     this.amount = contribution.amount
@@ -16,17 +16,18 @@ class Contrib {
 
 function displayCreateForm() {
   let contributionFormDiv = document.getElementById('contribution-form');
-  let html `
+  let html = `
+    <p>Fill In Below to List a New Contribution</p>
     <form onsubmit="createContribution(); return false;">
       <label>Contributor Name: </label>
-      <input type="text" id="contributor_name"<br/>
+      <input type="text" id="contributor_name"<br><br>
       <label>Candidate Name: </label>
-      <input type="text" id="candidate_name"<br/>
+      <input type="text" id="candidate_name"<br><br>
       <label>Amount: </label>
-      <input type="text" id="amount"<br/>
+      <input type="text" id="amount"<br><br>
       <label>Date: </label>
-      <input type="text" id="date"<br/>
-    </form>
+      <input type="text" id="date"<br><br>
+    </form><br><br>
   `
   contributionFormDiv.innerHTML = html;
 }
@@ -40,7 +41,7 @@ function createContribution() {
     date: document.getElementById('date').value
   }
   fetch('/contributions', {
-    method: 'POST'
+    method: 'POST',
     body: JSON.stringify({ contribution }),
     headers: {
       'Content-Type': 'application/json',
@@ -54,25 +55,19 @@ function createContribution() {
   })
 }
 
-function getCandidateContributions() {
-  let main = document.getElementById('main');
-  main.innerHTML = '<ul>';
-  fetch('/contributions')
-  .then(resp => resp.json())
-  .then(contributions => {
-    main.innerHTML += contributions.map(contribution => '<li>${contribution.amount}</li>')
-    main.innerHTML += '</ul>'
-  })
-}
-
 function getContributions() {
-
+  let link = document.querySelector(".contribution_link")
   let main = document.getElementById('main');
-  main.innerHTML = '<ul>';
-  fetch(BASE_URL + '/contributions.json')
-  .then(resp => resp.json())
-  .then(contributions => {
-    main.innerHTML += contributions.map(contribution => '<li>${contribution.amount}</li>')
-    main.innerHTML += '</ul>'
+
+  link.addEventListener("click", function(event){
+    event.preventDefault();
+
+    fetch('/contributions')
+      .then(resp => resp.json())
+      .then(contributions => {
+        main.innerHTML = '<ul>';
+        main.innerHTML += contributions.map(contribution => `<li>${contribution.amount}</li>`)
+        main.innerHTML += '</ul>'
+      })
   })
 }

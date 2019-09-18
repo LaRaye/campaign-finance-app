@@ -9,7 +9,13 @@
     <h3>Explore:</h3>
       <%= link_to 'Candidates', candidates_path %><br>
       <%= link_to 'Contributors', contributors_path %><br>
-      <%= link_to 'Contributions', contributions_path %><br>
+
+
+      <a href="#" class="contribution_link" onclick="getContributions(); return false;">Contributions</a><br><br>
+      <div id="main"></div>
+
+
+
     <h3>List A New:</h3>
     <%= link_to 'Candidate', new_candidate_path %><br>
     <%= link_to 'Contributor', new_contributor_path %><br>
