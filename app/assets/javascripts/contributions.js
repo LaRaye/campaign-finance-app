@@ -2,7 +2,21 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
-const BASE_URL = 'http://localhost:3000'
+// const BASE_URL = 'http://localhost:3000'
+
+function getCandidateContributions() {
+  let main = document.getElementById('main');
+  main.innerHTML = '<ul>';
+  fetch('/contributions')
+  .then(resp => resp.json())
+  .then(contributions => {
+    main.innerHTML += contributions.map(contribution => '<li>${contribution.amount}</li>')
+    main.innerHTML += '</ul>'
+  })
+}
+
+
+
 
 function getContributions() {
 
@@ -11,7 +25,7 @@ function getContributions() {
   fetch(BASE_URL + '/contributions.json')
   .then(resp => resp.json())
   .then(contributions => {
-    main.innerHTML += contributions.map(contribution => '<li><a href ="#" data-id="$(contribution.id)">${contribution.contributor_name} donated ${contribution.amount} on ${contribution.date}</a></li>')
+    main.innerHTML += contributions.map(contribution => '<li>${contribution.amount}</li>')
     main.innerHTML += '</ul>'
   })
 }

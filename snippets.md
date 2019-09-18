@@ -71,3 +71,6 @@ function clearForm() {
   let contributionFormDiv = document.getElementById('contribution-form');
   contributionFormDiv.innerHTML = '';
 }
+
+
+<a href ="#" data-id="$(contribution.id)">${contribution.contributor_name} donated ${contribution.amount} on ${contribution.date}</a>
