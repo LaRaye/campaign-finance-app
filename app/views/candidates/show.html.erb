@@ -3,8 +3,13 @@
   <h3><%= @candidate.location %></h3>
     <p>Running for <%= @candidate.office_position %></p>
     <p>Key Issues: <%= @candidate.platform_outline %></p>
-    <p><%= link_to "See All Contributions", candidate_contributions_path(@candidate) %></p>
+
     <p><%= link_to 'List a New Contribution', new_candidate_contribution_path(@candidate) %></p><br>
+
+    <p><%= link_to "See All Contributions", candidate_contributions_path(@candidate) %></p>
+
+    <a href="#" onclick="getContributions(); return false;">See This Candidate's Contributions with JS</a><br><br>
+    <div id="main"></div>
 
 <%= button_to 'Edit Candidate', edit_candidate_path(@candidate), method: :get %><br>
 <%= button_to 'Delete Candidate', candidate_path(@candidate), method: :delete, data: {confirm: "Are you sure you want to delete?"} %>

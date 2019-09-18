@@ -9,6 +9,11 @@ class ContributionsController < ApplicationController
     else
       @contributions = Contribution.all_by_date
     end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @contributions }
+    end
   end
 
   def show

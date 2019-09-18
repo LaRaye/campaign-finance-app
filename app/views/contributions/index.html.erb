@@ -2,24 +2,26 @@
 
 <p><%= link_to 'List a New Contribution', new_contribution_path %></p>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Candidate</th>
-      <th>Contributon</th>
-      <th>Contributor</th>
-      <th>Date</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @contributions.each do |c| %>
+<div id="main">
+  <table id="table">
+    <thead>
       <tr>
-        <td><%= link_to c.candidate_name, candidate_path(c.candidate) %></td>
-        <td><%= link_to c.amount, contribution_path(c) %></td>
-        <td><%= link_to c.contributor_name, contributor_path(c.contributor) %></td>
-        <td><%= c.date %></td>
+        <th>Candidate</th>
+        <th>Contribution</th>
+        <th>Contributor</th>
+        <th>Date</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @contributions.each do |c| %>
+        <tr>
+          <td><%= link_to c.candidate_name, candidate_path(c.candidate) %></td>
+          <td><%= link_to c.amount, contribution_path(c) %></td>
+          <td><%= link_to c.contributor_name, contributor_path(c.contributor) %></td>
+          <td><%= c.date %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
