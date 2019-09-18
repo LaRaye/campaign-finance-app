@@ -4,6 +4,19 @@
 
 // const BASE_URL = 'http://localhost:3000'
 
+class Contrib {
+  constructor(contribution) {
+    this.id = contribution.id
+    this.amount = contribution.amount
+    this.date = contribution.date
+    this.candidate = contribution.candidate
+    this.contributor = contribution.contributor
+  }
+}
+
+
+
+
 function getCandidateContributions() {
   let main = document.getElementById('main');
   main.innerHTML = '<ul>';
@@ -14,8 +27,6 @@ function getCandidateContributions() {
     main.innerHTML += '</ul>'
   })
 }
-
-
 
 
 function getContributions() {
