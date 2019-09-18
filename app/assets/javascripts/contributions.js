@@ -14,6 +14,22 @@ class Contrib {
   }
 }
 
+function displayCreateForm() {
+  let contributionFormDiv = document.getElementById('contribution-form');
+  let html `
+    <form onsubmit="createContribution(); return false;">
+      <label>Contributor Name: </label>
+      <input type="text" id="contributor_name"<br/>
+      <label>Candidate Name: </label>
+      <input type="text" id="candidate_name"<br/>
+      <label>Amount: </label>
+      <input type="text" id="amount"<br/>
+      <label>Date: </label>
+      <input type="text" id="date"<br/>
+    </form>
+  `
+  contributionFormDiv.innerHTML = html;
+}
 
 
 
@@ -27,7 +43,6 @@ function getCandidateContributions() {
     main.innerHTML += '</ul>'
   })
 }
-
 
 function getContributions() {
 

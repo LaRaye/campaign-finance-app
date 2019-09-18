@@ -5,10 +5,12 @@
     <p>Key Issues: <%= @candidate.platform_outline %></p>
 
     <p><%= link_to 'List a New Contribution', new_candidate_contribution_path(@candidate) %></p><br>
-
     <p><%= link_to "See All Contributions", candidate_contributions_path(@candidate) %></p>
 
+    <a href="#" onclick="displayCreateForm(); return false;">Create New Contribution with JS</a><br><br>
     <a href="#" onclick="getCandidateContributions(); return false;">See This Candidate's Contributions with JS</a><br><br>
+
+    <div id="contribution-form"></div>
     <div id="main"></div>
 
 <%= button_to 'Edit Candidate', edit_candidate_path(@candidate), method: :get %><br>

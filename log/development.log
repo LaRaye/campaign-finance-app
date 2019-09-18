@@ -38545,3 +38545,39 @@ Processing by ContributionsController#index as JSON
 Completed 200 OK in 59ms (Views: 57.3ms | ActiveRecord: 1.0ms)
 
 
+Started GET "/candidates/3" for 127.0.0.1 at 2019-09-18 12:04:05 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mCandidate Load (0.6ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:63
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:59
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:27
+  Rendering candidates/show.html.erb within layouts/application
+  [1m[36mFavorite Load (0.6ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ? LIMIT ?[0m  [["user_id", 2], ["candidate_id", 3], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21
+  Rendered candidates/_favorited.html.erb (10.8ms)
+  Rendered candidates/show.html.erb within layouts/application (15.8ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 121ms (Views: 90.9ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/candidates/3" for 127.0.0.1 at 2019-09-18 12:04:08 -0400
+Processing by CandidatesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:63
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:59
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/candidates_controller.rb:27
+  Rendering candidates/show.html.erb within layouts/application
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ? AND "favorites"."candidate_id" = ? LIMIT ?[0m  [["user_id", 2], ["candidate_id", 3], ["LIMIT", 1]]
+  ↳ app/models/user.rb:21
+  Rendered candidates/_favorited.html.erb (3.0ms)
+  Rendered candidates/show.html.erb within layouts/application (5.5ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 36ms (Views: 32.2ms | ActiveRecord: 0.5ms)
+
+
