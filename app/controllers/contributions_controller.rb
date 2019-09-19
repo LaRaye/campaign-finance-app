@@ -10,12 +10,7 @@ class ContributionsController < ApplicationController
       @contributions = Contribution.all_by_date
     end
 
-    render json: @contributions 
-
-    # respond_to do |format|
-    #   format.html
-    #   format.json { render json: @contributions }
-    # end
+    render json: @contributions
   end
 
   def show
@@ -28,9 +23,9 @@ class ContributionsController < ApplicationController
   def create
     @contribution = Contribution.new(contribution_params)
     if @contribution.save
-      redirect_to contribution_path(@contribution)
+      render json: @contribution, status: 201
     else
-      render :new
+      render json: { errors: @contribution.errors.full_messages }, status: 422
     end
   end
 

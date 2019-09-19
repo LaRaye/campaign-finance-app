@@ -7,11 +7,5 @@
     <p><%= link_to 'List a New Contribution', new_candidate_contribution_path(@candidate) %></p><br>
     <p><%= link_to "See All Contributions", candidate_contributions_path(@candidate) %></p>
 
-    <a href="#" onclick="displayCreateForm(); return false;">Create New Contribution with JS</a><br><br>
-    <div id="contribution-form"></div>
-
-    <a href="#" onclick="getCandidateContributions(); return false;">See This Candidate's Contributions with JS</a><br><br>
-    <div id="main"></div>
-
 <%= button_to 'Edit Candidate', edit_candidate_path(@candidate), method: :get %><br>
 <%= button_to 'Delete Candidate', candidate_path(@candidate), method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
