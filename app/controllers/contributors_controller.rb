@@ -3,9 +3,12 @@ class ContributorsController < ApplicationController
 
   def index
     @contributors = Contributor.all
+
+    render json: @contributors
   end
 
   def show
+    render json: @contributor
   end
 
   def new

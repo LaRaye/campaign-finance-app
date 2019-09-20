@@ -12,7 +12,7 @@ class CnTrbn {
   }
 
   renderContribution() {
-    return `<li> ${this.renderContributorLink()} donated $${this.amount} ${this.renderContributorLink()} to </li>`;
+    return `<li> ${this.renderContributorLink()} donated $${this.amount} to ${this.renderCandidateLink()} on ${this.date}</li>`;
   }
 
   renderContributorLink() {
@@ -82,27 +82,23 @@ function getContributions() {
         main.innerHTML += contributions.map(contribution =>
           {const contrib = new CnTrbn(contribution)
           return contrib.renderContribution()}
-        )
+        ).join('')
         main.innerHTML += '</ul>'
       })
   })
 }
 
 function displayContributor() {
-  let link = document.querySelector(".contributor_link");
-  let main = document.getElementById('main');
-  let id = this.contributor_id
+  let contributors = document.querySelectorAll('a.contributor_link');
 
-  debugger
+  console.log(contributors)
 
-  link.addEventListener("click", function(event){
-    event.preventDefault();
-
-    fetch('/contributors/' + id + '.json')
-      .then(resp => resp.json())
-      .then(contributor => {
-        main.innerHTML = '';
-        main.innerHTML += `${contributor.name} - ${contributor.category}`
-      })
-  })
+  // for (let i = 0; i < contributors.length; i++) {
+  //   contributors[i].addEventListener('click', displayContributor(event))
+  // }
+  // event.preventDefault();
+  // let id = this.dataset.id;
+  // let main = document.getElementById('main');
+  // main.innerHTML = '';
+  // debugger
 }
