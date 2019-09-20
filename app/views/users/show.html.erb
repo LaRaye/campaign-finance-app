@@ -6,18 +6,14 @@
 </h1>
   <h2>What would you like to do?</h2>
     <h3> See Your <%= link_to "Favorites", favorites_path %></h3>
-    <h3>Explore:</h3>
-      <%= link_to 'Candidates', candidates_path %><br>
-      <%= link_to 'Contributors', contributors_path %><br>
 
+    <a href="#" onclick="displayCreateForm(); return false;"><h3>List a New Contribution</h3></a>
+    <div id="contribution_form"></div>
 
-      <a href="#" class="contribution_link" onclick="getContributions(); return false;">Contributions</a><br><br>
-      <div id="main"></div>
-
-      <a href="#" onclick="displayCreateForm(); return false;">Create New Contribution with JS</a><br><br>
-      <div id="contribution_form"></div>
+    <a href="#" class="contribution_link" onclick="getContributions(); return false;"><h3>Explore Contributions</h3></a><br><br>
+    <div id="main"></div>
 
     <h3>List A New:</h3>
     <%= link_to 'Candidate', new_candidate_path %><br>
     <%= link_to 'Contributor', new_contributor_path %><br>
-    <%= link_to 'Contribution', new_contribution_path %><br><br><br>
+    <%= link_to 'Contribution', new_contribution_path %><br>

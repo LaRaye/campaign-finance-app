@@ -12,6 +12,10 @@ class CnTrbn {
     this.candidate = contribution.candidate
     this.contributor = contribution.contributor
   }
+
+  renderContribution() {
+    return `<li>${this.contributor.name} donated ${this.amount}</li>`;
+  }
 }
 
 function displayCreateForm() {
@@ -69,7 +73,10 @@ function getContributions() {
       .then(resp => resp.json())
       .then(contributions => {
         main.innerHTML = '<ul>';
-        main.innerHTML += contributions.map(contribution => `<li>${contribution.contributor.name} donated ${contribution.amount}</li>`)
+        main.innerHTML += contributions.map(contribution =>
+          {const contrib = new CnTrbn(contribution)
+          return contrib.renderContribution()}
+        )
         main.innerHTML += '</ul>'
       })
   })
