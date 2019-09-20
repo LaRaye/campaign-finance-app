@@ -14,6 +14,10 @@ class ContributionsController < ApplicationController
   end
 
   def show
+    respond_to do |f|
+      f.html {render :show}
+      f.json {render json: @contribution}
+    end
   end
 
   def new
@@ -34,12 +38,15 @@ class ContributionsController < ApplicationController
 
   def update
     @contribution.update(contribution_params)
-    redirect_to contribution_path(@contribution)
+    respond_to do |f|
+      f.html {render :show}
+      f.json {render json: @contribution}
+    end
   end
 
   def destroy
     @contribution.destroy
-    redirect_to contributions_path
+    render json: @contributions
   end
 
   private
