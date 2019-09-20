@@ -2,8 +2,6 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
-const BASE_URL = 'http://localhost:3000'
-
 class CnTrbn {
   constructor(contribution) {
     this.id = contribution.id
@@ -14,7 +12,15 @@ class CnTrbn {
   }
 
   renderContribution() {
-    return `<li>${this.contributor.name} donated ${this.amount}</li>`;
+    return `<li> ${this.renderContributorLink()} donated $${this.amount} ${this.renderContributorLink()} to </li>`;
+  }
+
+  renderContributorLink() {
+    return `<a href="#" class="contributor_link" onclick="displayContributor(); return false;">${this.contributor.name}</a>`
+  }
+
+  renderCandidateLink() {
+    return `<a href="#" class="candidate_link" onclick="displayCandidate(); return false;">${this.candidate.first_name + " " + this.candidate.last_name}</a>`
   }
 }
 
@@ -63,7 +69,7 @@ function createContribution() {
 }
 
 function getContributions() {
-  let link = document.querySelector(".contribution_link")
+  let link = document.querySelector(".contribution_link");
   let main = document.getElementById('main');
 
   link.addEventListener("click", function(event){
@@ -78,6 +84,25 @@ function getContributions() {
           return contrib.renderContribution()}
         )
         main.innerHTML += '</ul>'
+      })
+  })
+}
+
+function displayContributor() {
+  let link = document.querySelector(".contributor_link");
+  let main = document.getElementById('main');
+  let id = this.contributor_id
+
+  debugger
+
+  link.addEventListener("click", function(event){
+    event.preventDefault();
+
+    fetch('/contributors/' + id + '.json')
+      .then(resp => resp.json())
+      .then(contributor => {
+        main.innerHTML = '';
+        main.innerHTML += `${contributor.name} - ${contributor.category}`
       })
   })
 }
