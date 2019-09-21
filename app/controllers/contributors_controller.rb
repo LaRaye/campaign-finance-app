@@ -4,7 +4,10 @@ class ContributorsController < ApplicationController
   def index
     @contributors = Contributor.all
 
-    render json: @contributors
+    respond_to do |format|
+      format.html
+      format.json { render json: @contributors }
+    end
   end
 
   def show
