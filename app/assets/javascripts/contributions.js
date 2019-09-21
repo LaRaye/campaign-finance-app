@@ -20,7 +20,7 @@ class CnTrbn {
   }
 
   renderCandidateLink() {
-    return `<a href="#" class="candidate_link" onclick="displayCandidate(); return false;">${this.candidate.first_name} ${this.candidate.last_name}</a>`
+    return `<a href="#" data-id="${this.id}" class="candidate_link" onclick="displayCandidate(); return false;">${this.candidate.first_name} ${this.candidate.last_name}</a>`
   }
 
   renderContributor() {
@@ -34,6 +34,15 @@ class CnTrbn {
     } else {
       return `<p><strong>Industry Affiliation:</strong> ${this.contributor.industry_affiliation}</p>`
     }
+  }
+
+  renderCandidate() {
+    return `
+      <p><strong>Candidate:</strong> ${this.candidate.first_name} ${this.candidate.last_name} - ${this.candidate.location}</p>
+      <p><strong>Party Affiliation:</strong> ${this.candidate.party_affiliation}</p>
+      <p><strong>Running For:</strong> ${this.candidate.office_position}</p>
+      <p><strong>Key Issues:</strong> ${this.candidate.platform_outline}</p>
+    `
   }
 
 }
@@ -124,5 +133,22 @@ function displayContributor() {
 }
 
 function displayCandidate() {
+  let links = document.querySelectorAll('a.candidate_link');
+  let main = document.getElementById('main');
 
+  links.forEach( function(link) {
+    link.addEventListener("click", function(event){
+      event.preventDefault();
+
+      let linkId = link.getAttribute('data-id');
+
+      fetch('/contributions/' + linkId)
+        .then(resp => resp.json())
+        .then(contribution => {
+          const contrib = new CnTrbn(contribution)
+          main.innerHTML = "";
+          main.innerHTML += contrib.renderCandidate()
+        })
+    })
+  })
 }
