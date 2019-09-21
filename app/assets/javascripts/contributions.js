@@ -40,7 +40,7 @@ function displayCreateForm() {
       <label>Date: </label>
       <input type="text" id="date"><br><br>
       <input type="submit" value="New Contribution">
-    </form><br><br>
+    </form>
   `
   contributionFormDiv.innerHTML = html;
 }
