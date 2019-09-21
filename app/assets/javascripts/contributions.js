@@ -89,18 +89,28 @@ function getContributions() {
 }
 
 function displayContributor() {
-  let contributors = document.querySelectorAll('a.contributor_link');
+  let links = document.querySelectorAll('a.contributor_link');
+  let main = document.getElementById('main');
 
-  console.log(contributors)
+  links.forEach( function(link) {
+    link.addEventListener("click", function(event){
+      event.preventDefault();
 
-  // for (let i = 0; i < contributors.length; i++) {
-  //   contributors[i].addEventListener('click', displayContributor(event))
-  // }
-  // event.preventDefault();
-  // let id = this.dataset.id;
-  // let main = document.getElementById('main');
-  // main.innerHTML = '';
-  // debugger
+      let linkValue = link.innerHTML;
+
+      function checkContributor(contribution) {
+        return contribution.contributor.name === linkValue;
+      }
+
+      fetch('/contributions')
+        .then(resp => resp.json())
+        .then(contributions => {
+          let thisContribution = contributions.find(checkContributor);
+          main.innerHTML = "";
+          main.innerHTML += `${thisContribution.contributor.name} - ${thisContribution.contributor.industry_affiliation}`;
+        })
+    })
+  })
 }
 
 function displayCandidate() {

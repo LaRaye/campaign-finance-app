@@ -20,6 +20,7 @@ class ContributorsController < ApplicationController
 
   def create
     @contributor = Contributor.new(contributor_params)
+    
     if @contributor.save
       redirect_to contributor_path(@contributor)
     else
