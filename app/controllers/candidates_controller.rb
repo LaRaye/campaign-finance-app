@@ -9,10 +9,10 @@ class CandidatesController < ApplicationController
       @candidates = Candidate.all_in_order
     end
 
-    # respond_to do |format|
-    #   format.html
-    #   format.json { render json: @candidates }
-    # end
+    respond_to do |format|
+      format.html
+      format.json { render json: @candidates }
+    end
   end
 
   def favorites
@@ -25,6 +25,11 @@ class CandidatesController < ApplicationController
 
   def show
     @current_user = User.find(session[:user_id])
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @candidate }
+    end
   end
 
   def new

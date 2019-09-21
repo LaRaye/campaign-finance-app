@@ -74,3 +74,26 @@ function clearForm() {
 
 
 <a href ="#" data-id="$(contribution.id)">${contribution.contributor_name} donated ${contribution.amount} on ${contribution.date}</a>
+
+function getCandidateContributions() {
+  let link = document.querySelector(".candidate_contribution_link");
+  let main = document.getElementById('candidate_main');
+
+  console.log(this)
+  debugger
+
+  link.addEventListener("click", function(event){
+    event.preventDefault();
+
+    fetch('/contributions')
+      .then(resp => resp.json())
+      .then(contributions => {
+        main.innerHTML = '<ul>';
+        main.innerHTML += contributions.map(contribution =>
+          {const contrib = new CnTrbn(contribution)
+          return contrib.renderContribution()}
+        ).join('')
+        main.innerHTML += '</ul>'
+      })
+  })
+}
