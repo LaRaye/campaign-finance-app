@@ -9,8 +9,6 @@ class CnTrbn {
     this.date = contribution.date
     this.candidate = contribution.candidate
     this.contributor = contribution.contributor
-    // this.candidate_id = contribution.candidate.id
-    // this.contributor_id = contribution.contributor.id
   }
 
   renderContribution() {
@@ -47,7 +45,6 @@ function displayCreateForm() {
 
 function createContribution() {
   const contribution = {
-    // creating new contributors/candidates objects from form???
     contributor_name: document.getElementById('contributor_name').value,
     candidate_name: document.getElementById('candidate_name').value,
     amount: document.getElementById('amount').value,
