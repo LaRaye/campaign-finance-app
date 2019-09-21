@@ -49738,3 +49738,261 @@ Processing by ContributionsController#index as */*
 Completed 200 OK in 78ms (Views: 74.1ms | ActiveRecord: 3.4ms)
 
 
+Started GET "/users/2" for 127.0.0.1 at 2019-09-20 21:52:43 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+Completed 200 OK in 34ms (Views: 32.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2019-09-20 21:53:09 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 27ms (Views: 25.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2019-09-20 21:53:34 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+Completed 200 OK in 30ms (Views: 28.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2019-09-20 21:54:50 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.5ms)
+  Rendered layouts/_header.html.erb (0.5ms)
+Completed 200 OK in 23ms (Views: 21.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-09-20 21:54:57 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.3ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/_index.html.erb:3
+  Rendered candidates/_index.html.erb (2.7ms)
+  Rendered candidates/index.html.erb within layouts/application (4.7ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+Completed 200 OK in 27ms (Views: 24.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-09-20 21:55:01 -0400
+Processing by ContributorsController#index as HTML
+  [1m[36mContributor Load (0.3ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 1]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 1]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.3ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 4]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 4]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 5]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 5]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 6]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 6]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 7]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 7]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 8]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 8]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 9]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 9]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 10]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 10]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 11]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 11]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 12]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 12]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (91.68ms)
+Completed 200 OK in 95ms (Views: 91.3ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-09-20 21:55:01 -0400
+Processing by ContributorsController#index as HTML
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 1]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 1]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 4]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 4]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 5]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 5]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 6]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 6]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 7]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 7]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 8]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 8]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 9]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 9]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 10]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 10]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 11]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 11]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 12]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 12]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (35.77ms)
+Completed 200 OK in 38ms (Views: 35.6ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/candidates" for 127.0.0.1 at 2019-09-20 21:55:08 -0400
+Processing by CandidatesController#index as HTML
+  Rendering candidates/index.html.erb within layouts/application
+  [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" ORDER BY "candidates"."last_name" ASC[0m
+  ↳ app/views/candidates/_index.html.erb:3
+  Rendered candidates/_index.html.erb (1.4ms)
+  Rendered candidates/index.html.erb within layouts/application (2.6ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+Completed 200 OK in 23ms (Views: 21.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-09-20 21:55:16 -0400
+Processing by ContributorsController#index as HTML
+  [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 1]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 1]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 4]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 4]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.3ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 5]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 5]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 6]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 6]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 7]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 7]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.2ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 8]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 8]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 9]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 9]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 10]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 10]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 11]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 11]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 12]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 12]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (39.58ms)
+Completed 200 OK in 42ms (Views: 38.8ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/contributors" for 127.0.0.1 at 2019-09-20 21:55:16 -0400
+Processing by ContributorsController#index as HTML
+  [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT "contributors".* FROM "contributors"[0m
+  ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 1]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 1]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 4]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 4]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 5]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 5]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 6]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 6]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 7]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 7]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 8]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 8]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 9]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 9]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 10]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 10]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 11]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 11]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mContribution Load (0.1ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 12]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT "candidates".* FROM "candidates" INNER JOIN "contributions" ON "candidates"."id" = "contributions"."candidate_id" WHERE "contributions"."contributor_id" = ?[0m  [["contributor_id", 12]]
+[active_model_serializers]   ↳ app/controllers/contributors_controller.rb:7
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (30.74ms)
+Completed 200 OK in 32ms (Views: 29.9ms | ActiveRecord: 1.8ms)
+
+
