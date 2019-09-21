@@ -16,7 +16,7 @@ class CnTrbn {
   }
 
   renderContributorLink() {
-    return `<a href="#" class="contributor_link" onclick="displayContributor(); return false;">${this.contributor.name}</a>`
+    return `<a href="#" data-id="${this.id}" class="contributor_link" onclick="displayContributor(); return false;">${this.contributor.name}</a>`
   }
 
   renderCandidateLink() {
@@ -96,18 +96,13 @@ function displayContributor() {
     link.addEventListener("click", function(event){
       event.preventDefault();
 
-      let linkValue = link.innerHTML;
+      let linkId = link.getAttribute('data-id');
 
-      function checkContributor(contribution) {
-        return contribution.contributor.name === linkValue;
-      }
-
-      fetch('/contributions')
+      fetch('/contributions/' + linkId)
         .then(resp => resp.json())
-        .then(contributions => {
-          let thisContribution = contributions.find(checkContributor);
+        .then(contribution => {
           main.innerHTML = "";
-          main.innerHTML += `${thisContribution.contributor.name} - ${thisContribution.contributor.industry_affiliation}`;
+          main.innerHTML += `${contribution.contributor.name} - ${contribution.contributor.industry_affiliation}`;
         })
     })
   })
