@@ -64,7 +64,8 @@ function createContribution() {
   })
   .then(resp => resp.json())
   .then(contribution => {
-    document.querySelector("div#main").innerHTML += `<li>${contribution.contributor.name} donated $${contribution.amount} to ${contribution.candidate.first_name} ${contribution.candidate.last_name} on ${contribution.date}</li>`;
+    const newContrib = new CnTrbn(contribution);
+    document.querySelector("div#main").innerHTML += newContrib.renderContribution();
     let contributionFormDiv = document.getElementById('contribution_form');
     contributionFormDiv.innerHTML = '';
   })

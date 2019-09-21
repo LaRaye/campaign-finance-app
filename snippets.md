@@ -74,3 +74,29 @@ function clearForm() {
 
 
 <a href ="#" data-id="$(contribution.id)">${contribution.contributor_name} donated ${contribution.amount} on ${contribution.date}</a>
+
+
+function createContribution() {
+  const contribution = {
+    // creating new contributors/candidates objects from form???
+    contributor_name: document.getElementById('contributor_name').value,
+    candidate_name: document.getElementById('candidate_name').value,
+    amount: document.getElementById('amount').value,
+    date: document.getElementById('date').value
+  }
+
+  fetch('/contributions', {
+    method: 'POST',
+    body: JSON.stringify({ contribution }),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  })
+  .then(resp => resp.json())
+  .then(contribution => {
+    document.querySelector("div#main").innerHTML += `<li>${contribution.contributor.name} donated $${contribution.amount} to ${contribution.candidate.first_name} ${contribution.candidate.last_name} on ${contribution.date}</li>`;
+    let contributionFormDiv = document.getElementById('contribution_form');
+    contributionFormDiv.innerHTML = '';
+  })
+}

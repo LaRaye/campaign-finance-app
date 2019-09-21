@@ -50443,3 +50443,132 @@ Can't verify CSRF token authenticity.
 Completed 201 Created in 7ms (Views: 1.6ms | ActiveRecord: 1.6ms)
 
 
+Started GET "/users/2" for 127.0.0.1 at 2019-09-20 22:08:13 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (2.7ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+Completed 200 OK in 110ms (Views: 103.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/contributions" for 127.0.0.1 at 2019-09-20 22:08:16 -0400
+Processing by ContributionsController#index as */*
+  [1m[36mContribution Load (1.0ms)[0m  [1m[34mSELECT "contributions".* FROM "contributions" ORDER BY "contributions"."date" DESC[0m
+  ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCandidate Load (0.4ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mContributor Load (0.4ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Candidate Load (0.0ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Contributor Load (0.0ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Candidate Load (0.0ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Contributor Load (0.0ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mContributor Load (0.2ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Candidate Load (0.0ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Contributor Load (0.0ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Candidate Load (0.0ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Contributor Load (0.0ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Candidate Load (0.0ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Contributor Load (0.0ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Candidate Load (0.0ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Contributor Load (0.0ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Candidate Load (0.0ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Contributor Load (0.0ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Candidate Load (0.0ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Contributor Load (0.0ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 14], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Candidate Load (0.0ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Contributor Load (0.0ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCandidate Load (0.1ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mContributor Load (0.1ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Candidate Load (0.0ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Contributor Load (0.0ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Candidate Load (0.0ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers]   [1m[36mCACHE Contributor Load (0.0ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/contributions_controller.rb:13
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (33.96ms)
+Completed 200 OK in 37ms (Views: 33.5ms | ActiveRecord: 3.3ms)
+
+
+Started POST "/contributions" for 127.0.0.1 at 2019-09-20 22:08:31 -0400
+Processing by ContributionsController#create as JSON
+  Parameters: {"contribution"=>{"contributor_name"=>"amy", "candidate_name"=>"amy", "amount"=>"600", "date"=>"08/08/2008"}}
+Can't verify CSRF token authenticity.
+  [1m[36mContributor Load (0.3ms)[0m  [1m[34mSELECT  "contributors".* FROM "contributors" WHERE "contributors"."name" = ? LIMIT ?[0m  [["name", "amy"], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:39
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/contribution.rb:39
+  [1m[36mContributor Create (5.7ms)[0m  [1m[32mINSERT INTO "contributors" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "amy"], ["created_at", "2019-09-21 02:08:31.042605"], ["updated_at", "2019-09-21 02:08:31.042605"]]
+  ↳ app/models/contribution.rb:39
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/contribution.rb:39
+  [1m[36mCandidate Load (0.2ms)[0m  [1m[34mSELECT  "candidates".* FROM "candidates" WHERE "candidates"."first_name" = ? AND "candidates"."last_name" = ? LIMIT ?[0m  [["first_name", "amy"], ["last_name", " "], ["LIMIT", 1]]
+  ↳ app/models/contribution.rb:30
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/contribution.rb:30
+  [1m[36mCandidate Create (0.4ms)[0m  [1m[32mINSERT INTO "candidates" ("first_name", "last_name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["first_name", "amy"], ["last_name", " "], ["created_at", "2019-09-21 02:08:31.054079"], ["updated_at", "2019-09-21 02:08:31.054079"]]
+  ↳ app/models/contribution.rb:30
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/contribution.rb:30
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/contributions_controller.rb:29
+  [1m[36mContribution Create (3.5ms)[0m  [1m[32mINSERT INTO "contributions" ("amount", "date", "created_at", "updated_at", "candidate_id", "contributor_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["amount", 600], ["date", "08/08/2008"], ["created_at", "2019-09-21 02:08:31.059283"], ["updated_at", "2019-09-21 02:08:31.059283"], ["candidate_id", 17], ["contributor_id", 14]]
+  ↳ app/controllers/contributions_controller.rb:29
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/contributions_controller.rb:29
+[active_model_serializers] Rendered ContributionSerializer with ActiveModelSerializers::Adapter::Attributes (1.05ms)
+Completed 201 Created in 29ms (Views: 1.6ms | ActiveRecord: 15.0ms)
+
+
