@@ -22,6 +22,20 @@ class CnTrbn {
   renderCandidateLink() {
     return `<a href="#" class="candidate_link" onclick="displayCandidate(); return false;">${this.candidate.first_name} ${this.candidate.last_name}</a>`
   }
+
+  renderContributor() {
+    let industry = this.checkIndustry();
+    return `<p><strong>Contributor:</strong> ${this.contributor.name}</p>` + industry
+  }
+
+  checkIndustry() {
+    if (`${this.contributor.industry_affiliation}` === 'null') {
+      return `<p><strong>Industry Affiliation:</strong> Not Available</p>`
+    } else {
+      return `<p><strong>Industry Affiliation:</strong> ${this.contributor.industry_affiliation}</p>`
+    }
+  }
+
 }
 
 function displayCreateForm() {
@@ -101,8 +115,9 @@ function displayContributor() {
       fetch('/contributions/' + linkId)
         .then(resp => resp.json())
         .then(contribution => {
+          const contrib = new CnTrbn(contribution)
           main.innerHTML = "";
-          main.innerHTML += `${contribution.contributor.name} - ${contribution.contributor.industry_affiliation}`;
+          main.innerHTML += contrib.renderContributor()
         })
     })
   })
