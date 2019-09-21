@@ -9,6 +9,8 @@ class CnTrbn {
     this.date = contribution.date
     this.candidate = contribution.candidate
     this.contributor = contribution.contributor
+    // this.candidate_id = contribution.candidate.id
+    // this.contributor_id = contribution.contributor.id
   }
 
   renderContribution() {
@@ -20,7 +22,7 @@ class CnTrbn {
   }
 
   renderCandidateLink() {
-    return `<a href="#" class="candidate_link" onclick="displayCandidate(); return false;">${this.candidate.first_name + " " + this.candidate.last_name}</a>`
+    return `<a href="#" class="candidate_link" onclick="displayCandidate(); return false;">${this.candidate.first_name} ${this.candidate.last_name}</a>`
   }
 }
 
@@ -46,8 +48,8 @@ function displayCreateForm() {
 function createContribution() {
   const contribution = {
     // creating new contributors/candidates objects from form???
-    contributor: document.getElementById('contributor_name').value,
-    candidate: document.getElementById('candidate_name').value,
+    contributor_name: document.getElementById('contributor_name').value,
+    candidate_name: document.getElementById('candidate_name').value,
     amount: document.getElementById('amount').value,
     date: document.getElementById('date').value
   }
@@ -62,7 +64,7 @@ function createContribution() {
   })
   .then(resp => resp.json())
   .then(contribution => {
-    document.querySelector("#main ul").innerHTML += `<li>${contribution.contributor.name} donated ${contribution.amount}</li>`;
+    document.querySelector("div#main").innerHTML += `<li>${contribution.contributor.name} donated $${contribution.amount} to ${contribution.candidate.first_name} ${contribution.candidate.last_name} on ${contribution.date}</li>`;
     let contributionFormDiv = document.getElementById('contribution_form');
     contributionFormDiv.innerHTML = '';
   })
@@ -101,4 +103,8 @@ function displayContributor() {
   // let main = document.getElementById('main');
   // main.innerHTML = '';
   // debugger
+}
+
+function displayCandidate() {
+
 }
