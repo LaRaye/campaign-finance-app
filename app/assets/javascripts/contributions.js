@@ -152,3 +152,26 @@ function displayCandidate() {
     })
   })
 }
+
+function getCandidateContributions() {
+  let link = document.querySelector(".candidate_contribution_link");
+  let main = document.getElementById('main');
+
+  link.addEventListener("click", function(event){
+    event.preventDefault();
+
+    let linkId = link.getAttribute('data-id');
+
+    fetch('/candidates/' + linkId + '/contributions')
+      .then(resp => resp.json())
+      .then(contributions => {
+        console.log(contributions)
+        main.innerHTML = '<ul>';
+        main.innerHTML += contributions.map(contribution =>
+          {const contrib = new CnTrbn(contribution)
+          return contrib.renderContribution()}
+        ).join('')
+        main.innerHTML += '</ul>'
+      })
+  })
+}

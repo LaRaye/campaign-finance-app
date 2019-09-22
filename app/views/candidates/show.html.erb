@@ -4,8 +4,8 @@
     <p>Running for <%= @candidate.office_position %></p>
     <p>Key Issues: <%= @candidate.platform_outline %></p>
 
-    <a href="#" class="candidate_contribution_link" onclick="getCandidateContributions(); return false;"><p>See All Contributions</p></a>
-    <div id="candidate_main"></div>
+    <a href="#" data-id="<%=@candidate.id%>" class="candidate_contribution_link" onclick="getCandidateContributions(); return false;"><p>See All Contributions</p></a>
+    <div id="main"></div><br>
 
 <%= button_to 'Edit Candidate', edit_candidate_path(@candidate), method: :get %><br>
 <%= button_to 'Delete Candidate', candidate_path(@candidate), method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
