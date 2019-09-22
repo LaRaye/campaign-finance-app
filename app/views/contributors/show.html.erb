@@ -1,6 +1,7 @@
 <h2><%= @contributor.name %></h2>
   <h3>Industry: <%= @contributor.industry_affiliation %></h3>
-  <p><%= link_to "See All Contributions", contributor_contributions_path(@contributor)%></p>
+  <a href="#" data-id="<%=@contributor.id%>" class="contributor_contribution_link" onclick="getContributorContributions(); return false;"><p>See All Contributions</p></a>
+  <div id="main"></div><br>
 
 <%= button_to 'Edit Contributor', edit_contributor_path(@contributor), method: :get %><br>
 <%= button_to 'Delete Contributor', contributor_path(@contributor), method: :delete, data: {confirm: "Are you sure you want to delete?"} %>
