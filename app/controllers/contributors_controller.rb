@@ -11,7 +11,10 @@ class ContributorsController < ApplicationController
   end
 
   def show
-    render json: @contributor
+    respond_to do |format|
+      format.html
+      format.json { render json: @contributor }
+    end
   end
 
   def new
@@ -20,7 +23,7 @@ class ContributorsController < ApplicationController
 
   def create
     @contributor = Contributor.new(contributor_params)
-    
+
     if @contributor.save
       redirect_to contributor_path(@contributor)
     else
