@@ -97,7 +97,6 @@ function getContributions() {
 
   link.addEventListener("click", function(event){
     event.preventDefault();
-
     fetch('/contributions')
       .then(resp => resp.json())
       .then(contributions => {
@@ -155,7 +154,6 @@ function displayCandidate() {
 
 function getCandidateContributions() {
   let link = document.querySelector(".candidate_contribution_link");
-  let main = document.getElementById('main');
 
   link.addEventListener("click", function(event){
     event.preventDefault();
@@ -165,20 +163,13 @@ function getCandidateContributions() {
     fetch('/candidates/' + linkId + '/contributions')
       .then(resp => resp.json())
       .then(contributions => {
-        console.log(contributions)
-        main.innerHTML = '<ul>';
-        main.innerHTML += contributions.map(contribution =>
-          {const contrib = new CnTrbn(contribution)
-          return contrib.renderContribution()}
-        ).join('')
-        main.innerHTML += '</ul>'
+        createTemplate(contributions);
       })
   })
 }
 
 function getContributorContributions() {
   let link = document.querySelector(".contributor_contribution_link");
-  let main = document.getElementById('main');
 
   link.addEventListener("click", function(event){
     event.preventDefault();
@@ -188,13 +179,43 @@ function getContributorContributions() {
     fetch('/contributors/' + linkId + '/contributions')
       .then(resp => resp.json())
       .then(contributions => {
-        console.log(contributions)
-        main.innerHTML = '<ul>';
-        main.innerHTML += contributions.map(contribution =>
-          {const contrib = new CnTrbn(contribution)
-          return contrib.renderContribution()}
-        ).join('')
-        main.innerHTML += '</ul>'
+        createTemplate(contributions);
       })
   })
 }
+
+function createTemplate(contributions) {
+  let main = document.getElementById('main');
+
+  main.innerHTML = '<ul>';
+  main.innerHTML += contributions.map(contribution =>
+    {const contrib = new CnTrbn(contribution)
+    return contrib.renderContribution()}
+  ).join('')
+  main.innerHTML += '</ul>';
+}
+
+
+let counter = 0;
+
+function addEventToButton() {
+  let button = document.getElementById('my_button');
+
+  button.addEventListener("click", incrementCounter);
+
+  displayCounter();
+}
+
+function incrementCounter() {
+  counter++
+
+  displayCounter();
+}
+
+function displayCounter() {
+  let display = document.querySelector('span')
+
+  display.innerHTML = `${counter}`;
+}
+
+document.addEventListener("DOMContentLoaded", addEventToButton);
